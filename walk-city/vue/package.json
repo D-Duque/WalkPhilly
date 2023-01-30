@@ -10,6 +10,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@fawmi/vue-google-maps": "^0.9.79",
     "axios": "^0.21.1",
     "bootstrap": "^5.2.3",
     "core-js": "^3.9.1",
