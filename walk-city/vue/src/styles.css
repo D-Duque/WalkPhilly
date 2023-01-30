@@ -1,0 +1,13 @@
+#app {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(0, 73, 83);
+    color: white;
+    height: inherit;
+    width:inherit;
+}
+
+html, body {
+    margin:0;
+    padding:0;
+    height:100%;
+}
