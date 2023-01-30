@@ -12,7 +12,10 @@
   "dependencies": {
     "@fawmi/vue-google-maps": "^0.9.79",
     "axios": "^0.21.1",
+    "bootstrap": "^5.2.3",
     "core-js": "^3.9.1",
+    "jquery": "^3.6.3",
+    "popper.js": "^1.16.1",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
