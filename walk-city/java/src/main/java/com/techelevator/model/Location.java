@@ -9,7 +9,7 @@ public class Location
     private double longitude;
     private String address;
     private String description;
-    private String Availability;
+    private String availability;
     private String image;
     private String socialMedia;
 
@@ -26,7 +26,7 @@ public class Location
         this.longitude = longitude;
         this.address = address;
         this.description = description;
-        Availability = availability;
+        this.availability = availability;
         this.image = image;
         this.socialMedia = socialMedia;
     }
@@ -103,12 +103,12 @@ public class Location
 
     public String getAvailability()
     {
-        return Availability;
+        return availability;
     }
 
     public void setAvailability(String availability)
     {
-        Availability = availability;
+        this.availability = availability;
     }
 
     public String getImage()
