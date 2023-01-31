@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/locations")
-//@PreAuthorize("isAuthenticated()")
+@PreAuthorize("isAuthenticated()")
 @CrossOrigin
 public class LocationController
 {
