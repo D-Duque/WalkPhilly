@@ -1,16 +1,24 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+      <div class="text-center">
+        <img src="../assets/llama.png">
+      </div>
+      <div class="register-message text-center">
+        Please create an account so you can find an amazing philly cheesesteak and explore everything Philadelphia has to offer!
+      </div>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
+
+      <div class="create-account">
       <label for="username" class="sr-only">Username</label>
       <input
         type="text"
         id="username"
         class="form-control"
-        placeholder="Username"
+        placeholder="enter username"
         v-model="user.username"
         required
         autofocus
@@ -20,7 +28,7 @@
         type="password"
         id="password"
         class="form-control"
-        placeholder="Password"
+        placeholder="enter password"
         v-model="user.password"
         required
       />
@@ -28,14 +36,16 @@
         type="password"
         id="confirmPassword"
         class="form-control"
-        placeholder="Confirm Password"
+        placeholder="confirm password"
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
-      </button>
+      </div>
+
+      <div class="button-container text-center">
+      <div><router-link :to="{ name: 'login' }">Have an account?</router-link> </div>
+      <div><button class="btn-midnight-green" type="submit"> CREATE ACCOUNT </button> </div>
+      </div>
     </form>
   </div>
 </template>
