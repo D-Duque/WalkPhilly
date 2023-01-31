@@ -2,7 +2,7 @@ package com.techelevator.model;
 
 public class Location
 {
-    private Long locationId;
+    private int locationId;
     private String locationName;
     private String category;
     private double latitude;
@@ -17,7 +17,7 @@ public class Location
     {
     }
 
-    public Location(Long locationId, String locationName, String category, double latitude, double longitude, String address, String description, String availability, String image, String socialMedia)
+    public Location(int locationId, String locationName, String category, double latitude, double longitude, String address, String description, String availability, String image, String socialMedia)
     {
         this.locationId = locationId;
         this.locationName = locationName;
@@ -31,12 +31,12 @@ public class Location
         this.socialMedia = socialMedia;
     }
 
-    public Long getLocationId()
+    public int getLocationId()
     {
         return locationId;
     }
 
-    public void setLocationId(Long locationId)
+    public void setLocationId(int locationId)
     {
         this.locationId = locationId;
     }

@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Location;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.object.SqlQuery;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import java.util.ArrayList;
@@ -17,13 +18,13 @@ public class JdbcLocationDao implements LocationDao
     public List<Location> findAll()
     {
         List<Location> locationList = new ArrayList<>();
-        String sql = "select * from locations";
+        String sql = "SELECT * FROM locations";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while(results.next()) {
             Location location = mapRowToLocation(results);
+            locationList.add(location);
         }
-
 
         return locationList;
     }
@@ -31,18 +32,40 @@ public class JdbcLocationDao implements LocationDao
     @Override
     public Location getLocationById(Long locationID)
     {
-        return null;
+        String sql = "SELECT * FROM locations" +
+                     "WHERE location_id = ?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, locationID);
+
+        if(results.next())
+        {
+            return mapRowToLocation(results);
+        }
+        else {
+            throw new RuntimeException("locationId " + locationID + " was not found");
+        }
+
     }
 
     @Override
     public Location findByName(String locationName)
     {
-        return null;
+        String sql = "SELECT * FROM locations WHERE location_name = ?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, locationName);
+
+        if (results.next())
+        {
+            return mapRowToLocation(results);
+        }
+       else {
+            throw new RuntimeException("locationName " + locationName + " was not found");
+        }
     }
 
     public Location mapRowToLocation(SqlRowSet rs) {
         Location location = new Location();
-        location.setLocationId(rs.getLong("location_id"));
+        location.setLocationId(rs.getInt("location_id"));
         location.setLocationName(rs.getString("location_name"));
         location.setCategory(rs.getString("category"));
         location.setLatitude(rs.getDouble("latitude"));
