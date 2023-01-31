@@ -8,9 +8,9 @@ public interface LocationDao
 {
     List<Location> findAll();
 
-    Location getLocationById(Long locationID);
+    Location getLocationById(int locationID);
 
     Location findByName(String locationName);
 
-
+    List<Location> findByCategory(String category);
 }
