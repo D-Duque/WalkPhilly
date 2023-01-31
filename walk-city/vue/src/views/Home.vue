@@ -8,7 +8,7 @@
       rotateControl: false,
       fullscreenControl: true,
       disableDefaultUi: false
-    }" map-type-id="roadmap" style="width: 100vw; height: 95vh">
+    }" map-type-id="roadmap" style="width: 100vw; height: 93vh">
       <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true" :draggable="true"
         @click="center = m.position">
         <GMapInfoWindow>
