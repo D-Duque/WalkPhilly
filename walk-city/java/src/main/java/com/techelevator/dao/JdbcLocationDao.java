@@ -4,10 +4,13 @@ import com.techelevator.model.Location;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.object.SqlQuery;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcLocationDao implements LocationDao
 {
     private JdbcTemplate jdbcTemplate;
@@ -30,10 +33,9 @@ public class JdbcLocationDao implements LocationDao
     }
 
     @Override
-    public Location getLocationById(Long locationID)
+    public Location getLocationById(int locationID)
     {
-        String sql = "SELECT * FROM locations" +
-                     "WHERE location_id = ?";
+        String sql = "SELECT * FROM locations WHERE location_id = ?";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, locationID);
 
@@ -61,6 +63,22 @@ public class JdbcLocationDao implements LocationDao
        else {
             throw new RuntimeException("locationName " + locationName + " was not found");
         }
+    }
+
+    @Override
+    public List<Location> findByCategory(String category){
+        List<Location> locationList = new ArrayList<>();
+
+        String sql = "SELECT * FROM locations WHERE category = ?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, category);
+
+        while (results.next())
+        {
+            Location location = mapRowToLocation(results);
+            locationList.add(location);
+        }
+        return locationList;
     }
 
     public Location mapRowToLocation(SqlRowSet rs) {

@@ -28,5 +28,34 @@ CREATE TABLE locations (
     availability varchar(500),
     image varchar(100),
     social_media varchar(100) NOT NULL
-)
+);
+
+CREATE TABLE badges (
+    badge_id SERIAL NOT NULL PRIMARY KEY,
+    badge_name varchar(50) NOT NULL,
+    description varchar(500)
+);
+
+CREATE TABLE user_location (
+    user_id INT NOT NULL,
+    location_id INT NOT NULL,
+    checking BOOLEAN NOT NULL,
+    PRIMARY KEY (
+        user_id,
+        location_id)
+);
+
+CREATE TABLE user_badge (
+    user_id INT NOT NULL,
+    badge_id INT NOT NULL,
+    PRIMARY KEY (
+        user_id,
+        badge_id)
+);
+
+
+
+
+
+
 -- Add Foreign key constraints in the 04_constraints.sql script file

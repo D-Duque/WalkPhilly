@@ -19,3 +19,8 @@ INSERT INTO locations(location_name, category, latitude, longitude, address, des
                        ('Franklin Square', 'Park', '39.95584431', '-75.15051458', '200 N 6th St, Philadelphia, PA 19106', '215-629-4026', '', '', 'historicphiladelphia.org/franklin-square');
 
 
+INSERT INTO badges (badge_name, description)
+                VALUES ('Defender of the Land', 'for visiting every location'),
+                       ('Bar Hugger', 'for visiting minimum 5 bars and/or restaurants'),
+                       ('History Lover', 'for visiting minimum 5 museums'),
+                       ('Tree Hugger', 'for visiting minimum 5 parks');
