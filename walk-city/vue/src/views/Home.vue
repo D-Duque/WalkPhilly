@@ -18,8 +18,8 @@
 
       </GmapMarker>
     </GmapMap>
-    <menu-button @click=openCloseMenu() v-show="isMenuButtonShowing"> </menu-button>
-    <menu-view v-show="isMenuViewShowing"></menu-view>
+    <menu-button v-show="$store.state.isMenuButtonShowing"> </menu-button>
+    <menu-view v-show="$store.state.isMenuViewShowing">I AM MENU</menu-view>
   </div>
 </template>
 
@@ -54,8 +54,7 @@ export default {
         }
       }
       ],
-      isMenuViewShowing: false,
-      isMenuButtonShowing: true
+
     }
   }
 
