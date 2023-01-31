@@ -19,7 +19,9 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    isMenuButtonShowing: true,
+    isMenuViewShowing: false,
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -37,6 +39,10 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    MENU_TOGGLE(state) {
+      state.isMenuButtonShowing = !state.isMenuButtonShowing;
+      state.isMenuViewShowing = !state.isMenuViewShowing;
     }
   }
 })
