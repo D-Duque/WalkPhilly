@@ -56,7 +56,7 @@ public class JdbcLocationDaoTest
         //act
         int actual = locationDao.findAll().size();
         //assert
-        String msg = "Because the list of locations should total 10"
+        String msg = "Because the list of locations should total 10";
         assertEquals(msg, expected, actual);
     }
 
