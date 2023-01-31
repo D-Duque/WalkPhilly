@@ -5,7 +5,6 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
-import MapView from '../views/Map.vue'
 
 Vue.use(Router)
 
@@ -50,14 +49,6 @@ const router = new Router({
       path: "/register",
       name: "register",
       component: Register,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
-      path: "/map",
-      name: "map",
-      component: MapView,
       meta: {
         requiresAuth: false
       }
