@@ -20,7 +20,7 @@ export default {
     display: flex;
     bottom: 0px;
     background: #004953;
-    height: 5%;
+    height: 7%;
     width: 100%;
     justify-content: center;
     align-items: center;
