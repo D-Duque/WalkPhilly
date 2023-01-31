@@ -24,7 +24,7 @@ CREATE TABLE locations (
     latitude varchar(50) NOT NULL,
     longitude varchar(50) NOT NUll,
     address varchar(250) NOT NULL,
-    description varchar(500) NOT NULL,
+    description varchar(500),
     availability varchar(500),
     image varchar(100),
     social_media varchar(100) NOT NULL
