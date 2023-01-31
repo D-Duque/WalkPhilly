@@ -17,5 +17,16 @@ CREATE TABLE users (
 );
 
 -- Add seed data in the 03_data.sql script file
-
+CREATE TABLE locations (
+    location_id SERIAL NOT NULL PRIMARY KEY,
+    location_name varchar(150) NOT NULL,
+    category varchar(50) NOT NULL,
+    latitude varchar(50) NOT NULL,
+    longitude varchar(50) NOT NUll,
+    address varchar(250) NOT NULL,
+    description varchar(500) NOT NULL,
+    availability varchar(500),
+    image varchar(100),
+    social_media varchar(100) NOT NULL
+)
 -- Add Foreign key constraints in the 04_constraints.sql script file
