@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <GmapMap
-  :center="{lat:39.9526, lng:-75.1652}"
+  :center='{lat: 39.9526, lng: -75.1652}'
   :zoom="13"
   :options="{
    zoomControl: true,
@@ -20,7 +20,7 @@
     v-for="(m, index) in markers"
     :position="m.position"
     :clickable="true"
-    :draggable="true"
+    :draggable="false"
     @click="center=m.position"
     >
     <GMapInfoWindow>
@@ -38,6 +38,8 @@ export default {
     name: 'home',
     data() {
         return {
+          center: { lat: 0.0, lng: 0.0},
+          
             markers: [{
                 name: 'Liberty Bell',
                 position: {
@@ -49,10 +51,23 @@ export default {
                 position: {
                     lat: 39.9656, lng: -75.1810
                 }
-            }
+            },
             ]
         }
-    }
+    },
+    mounted() {
+      this.geolocate();
+    },
+    methods: {
+      geolocate: function() {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.center = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+      });
+    },
+    },
 
-}
+};
 </script>
