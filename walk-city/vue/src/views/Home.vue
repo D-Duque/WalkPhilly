@@ -18,8 +18,8 @@
 
       </GmapMarker>
     </GmapMap>
-    <menu-button v-show="isMenuButtonShowing"> </menu-button>
-    <menu-view v-show="isMenuViewShowing">I AM MENU</menu-view>
+    <menu-button @click=openCloseMenu() v-show="isMenuButtonShowing"> </menu-button>
+    <menu-view v-show="isMenuViewShowing"></menu-view>
   </div>
 </template>
 
@@ -29,6 +29,12 @@ import MenuView from "../components/MenuView.vue"
 
 export default {
   name: 'home',
+  methods: {
+    openCloseMenu() {
+      this.isMenuButtonShowing = !this.isMenuButtonShowing;
+      this.isMenuViewShowing = !this.isMenuViewShowing
+    }
+  },
   components: {
     MenuButton,
     MenuView
