@@ -2,10 +2,10 @@
 -- insert users table data
 INSERT INTO users (user_id, username,password_hash,role) VALUES (1, 'user', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (user_id, username,password_hash,role) VALUES (2, 'admin', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
-INSERT INTO users (user_id, username,password_hash,role) VALUES (3, 'daniel', 'password','ROLE_ADMIN');
-INSERT INTO users (user_id, username,password_hash,role) VALUES (4, 'emma', 'password','ROLE_ADMIN');
-INSERT INTO users (user_id, username,password_hash,role) VALUES (5, 'patricia', 'password','ROLE_ADMIN');
-INSERT INTO users (user_id, username,password_hash,role) VALUES (6, 'hong', 'password','ROLE_ADMIN');
+INSERT INTO users (user_id, username,password_hash,role) VALUES (3, 'daniel', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO users (user_id, username,password_hash,role) VALUES (4, 'emma', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO users (user_id, username,password_hash,role) VALUES (5, 'patricia', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO users (user_id, username,password_hash,role) VALUES (6, 'hong', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 ALTER SEQUENCE seq_user_id RESTART WITH 7;
 
 INSERT INTO locations(location_name, category, latitude, longitude, address, description, availability, image, social_media)
