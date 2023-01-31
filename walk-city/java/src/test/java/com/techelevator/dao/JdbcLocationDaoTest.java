@@ -3,20 +3,24 @@ package com.techelevator.dao;
 import com.techelevator.model.Location;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class JdbcLocationDaoTest
+public class JdbcLocationDaoTest extends FinalCapstoneDaoTests
 {
     private JdbcLocationDao locationDao;
 
+    @Before
     public void setup() {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        DataSource dataSource = this.getDataSource();
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         locationDao = new JdbcLocationDao(jdbcTemplate);
 
         List<Location> locationList = new ArrayList<>();
@@ -52,11 +56,11 @@ public class JdbcLocationDaoTest
     public void findAll_ShouldReturnAListOfAllLocations()
     {
         //arrange
-        int expected = 10;
+        int expected = 8;
         //act
         int actual = locationDao.findAll().size();
         //assert
-        String msg = "Because the list of locations should total 10"
+        String msg = "Because the list of locations should total 8";
         assertEquals(msg, expected, actual);
     }
 
@@ -64,15 +68,35 @@ public class JdbcLocationDaoTest
     public void getLocationById_ShouldReturnALocationById()
     {
         //arrange
-        
+        String expected = "Spin Philadelphia";
         //act
-
+        String actual = locationDao.getLocationById(5).getLocationName();
         //assert
+        String msg = "Because the id should pull the correct location";
+        assertEquals(msg, expected, actual);
     }
 
+//    @Test
+//    public void findByName_ShouldReturnALocationByName()
+//    {
+//        // arrange
+//
+//        // act
+//
+//        // assert
+//    }
+
     @Test
-    public void findByName_ShouldReturnALocationByName()
-    {
+    public void findByCategory_ShouldReturnAllLocationsInACategory() {
+        // arrange
+        int expected = 2;
+
+        // act
+        int actual = locationDao.findByCategory("Bar").size();
+
+        // assert
+        String msg = "Because there are 2 locations in the bar category";
+        assertEquals(msg, expected, actual);
     }
 
     @After

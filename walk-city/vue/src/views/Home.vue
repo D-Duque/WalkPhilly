@@ -29,6 +29,12 @@ import MenuView from "../components/MenuView.vue"
 
 export default {
   name: 'home',
+  methods: {
+    openCloseMenu() {
+      this.isMenuButtonShowing = !this.isMenuButtonShowing;
+      this.isMenuViewShowing = !this.isMenuViewShowing
+    }
+  },
   components: {
     MenuButton,
     MenuView
@@ -48,7 +54,7 @@ export default {
         }
       }
       ],
-  
+
     }
   }
 

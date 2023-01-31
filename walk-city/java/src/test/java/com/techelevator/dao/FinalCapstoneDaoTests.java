@@ -22,7 +22,7 @@ public abstract class FinalCapstoneDaoTests {
         dataSource = new SingleConnectionDataSource();
         dataSource.setUrl("jdbc:postgresql://localhost:5432/walk_city");
         dataSource.setUsername("walk_city_appuser");
-        dataSource.setPassword("walk_city");
+        dataSource.setPassword("walk_city_pass");
         /* The following line disables autocommit for connections
          * returned by this DataSource. This allows us to rollback
          * any changes after each test */
