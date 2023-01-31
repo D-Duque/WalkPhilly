@@ -1,5 +1,5 @@
 <template>
-    <div id="menu-button">
+    <div @click="menuToggle" id="menu-button">
         MENU
     </div>
 </template>
@@ -7,7 +7,11 @@
 export default {
     name: 'menu-button',
     props: [],
-    methods: {},
+    methods: {
+        menuToggle() {
+            this.$store.commit('MENU_TOGGLE');
+        }
+    },
 }
 </script>
 <style>
