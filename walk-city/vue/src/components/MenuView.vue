@@ -1,66 +1,65 @@
 <template>
-    <div id="main-menu">
-        <div id="title">MENU</div>
-        <search-bar></search-bar>
+  <div id="main-menu">
+      <div id="title">MENU</div>
+      <search-bar></search-bar>
+      <div id= "dropdown-container">
         <dropdown-bar></dropdown-bar>
-        <div class="cool-line"></div>
-        <div id="view-badges">VIEW BADGES</div>
-        <div class="cool-line"></div>
-        <div id="username">USERNAME</div>
-        <div id="home-and-logout">
-
-            <div @click="menuToggle" id="back-button">
-                <img src="../assets/back-arrow.png">
-            </div>
-
-            <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">
-                <button class="btn-midnight-green" id="log-out">LOG OUT</button>
-            </router-link>
+      </div>
+      <div class="cool-line"></div>
+      <div id="view-badges">VIEW BADGES</div>
+      <div class="cool-line"></div>
+      <div id="username">{{ $store.state.user.username.toUpperCase() }}</div>
+      <div id="home-and-logout">
+        <div @click="menuToggle" id="back-button">
+          <img src="../assets/back-arrow.png" />
         </div>
 
-
-    </div>
+        <router-link
+          v-bind:to="{ name: 'logout' }"
+          v-if="$store.state.token != ''"
+        >
+          <button class="btn-midnight-green" id="log-out">LOG OUT</button>
+        </router-link>
+      </div>
+  </div>
 </template>
 <script>
-import DropdownBar from './DropdownBar.vue';
-import SearchBar from './SearchBar.vue'
+import DropdownBar from "./DropdownBar.vue";
+import SearchBar from "./SearchBar.vue";
 export default {
-    name: 'menu-view',
-    props: [],
-    components: {
-        SearchBar,
-        DropdownBar
+  name: "menu-view",
+  props: [],
+  components: {
+    SearchBar,
+    DropdownBar,
+  },
+  methods: {
+    menuToggle() {
+      this.$store.commit("MENU_TOGGLE");
     },
-    methods: {
-        menuToggle() {
-            this.$store.commit('MENU_TOGGLE');
-        }
-    },
-
-}
+  },
+};
 </script>
 
 <style>
 #main-menu {
-    position: fixed;
-    display: flex;
-    bottom: 0px;
-    background: #004953;
-    height: 70%;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
-    font-size: x-large;
-    flex-direction: column;
-
+  position: fixed;
+  display: flex;
+  bottom: 0px;
+  background: #004953;
+  height: 70%;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  font-size: x-large;
+  flex-direction: column;
 }
 
 #home-and-logout {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
 }
 
 /* #view-badges, #username {
@@ -73,12 +72,16 @@ export default {
 } */
 
 .cool-line {
-    width: 90%;
-    height: 1px;
-    background-color: white;
+  width: 90%;
+  height: 1px;
+  background-color: white;
 }
 
-#dropdown-bar {
-    width: 100%;
+#dropdown-container {
+  width: 100vw;
+  display: flex;
+  
 }
+
+
 </style>

@@ -1,27 +1,30 @@
 <template>
-  <div class="dropdown">
-    <b-dropdown id="dropdown-1" block text="Category" class="m-2" menu-class="w-100" variant="light">
-      <b-dropdown-item>Restaurants</b-dropdown-item>
-      <b-dropdown-item>Museums</b-dropdown-item>
-      <b-dropdown-item>Bars</b-dropdown-item>
-      <b-dropdown-item>Parks</b-dropdown-item>
+  <div class="dropdown-container">
+    <b-dropdown
+      text="Category"
+      block
+      variant="light"
+      class="m-0"
+      menu-class="w-100"
+    >
+      <b-dropdown-item href="#">Resturants</b-dropdown-item>
+      <b-dropdown-item href="#">Museums</b-dropdown-item>
+      <b-dropdown-item href="#">Bars</b-dropdown-item>
+      <b-dropdown-item href="#">Parks</b-dropdown-item>
     </b-dropdown>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'dropdown-bar',
+  name: "dropdown-bar",
   props: [],
   methods: {}
-
-}
-
+};
 </script>
 <style scoped>
-.dropdown {
+.dropdown-container {
   width: 80%;
-  background-color: white;
+  margin: 0 auto;
   border-radius: 10px;
 }
 </style>
