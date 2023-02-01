@@ -6,8 +6,9 @@
       variant="light"
       class="m-0"
       menu-class="w-100"
+      v-model="currentCategory"
     >
-      <b-dropdown-item href="#">Restaurants</b-dropdown-item>
+      <b-dropdown-item href="#" value="restaurant" >Restaurants</b-dropdown-item>
       <b-dropdown-item href="#">Museums</b-dropdown-item>
       <b-dropdown-item href="#">Bars</b-dropdown-item>
       <b-dropdown-item href="#">Parks</b-dropdown-item>
@@ -18,7 +19,12 @@
 export default {
   name: "dropdown-bar",
   props: [],
-  methods: {}
+  methods: {},
+  data() {
+    return {
+      currentCategory: ""
+    }
+  }
 };
 </script>
 <style scoped>
