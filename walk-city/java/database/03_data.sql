@@ -54,6 +54,6 @@ INSERT INTO locations(location_name, category, latitude, longitude, address, des
 
 INSERT INTO badges (badge_name, description)
                 VALUES ('Defender of the Land', 'for visiting every location'),
-                       ('Bar Hugger', 'for visiting minimum 5 bars and/or restaurants'),
+                       ('Bar Hopper', 'for visiting minimum 5 bars and/or restaurants'),
                        ('History Lover', 'for visiting minimum 5 museums'),
                        ('Tree Hugger', 'for visiting minimum 5 parks');

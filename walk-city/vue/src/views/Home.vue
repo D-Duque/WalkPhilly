@@ -10,7 +10,7 @@
         streetViewControl: false,
         rotateControl: false,
         fullscreenControl: false,
-        disableDefaultUi: false,
+        disableDefaultUi: false
       }"
       map-type-id="roadmap"
       style="width: 100vw; height: 93vh"
@@ -28,8 +28,10 @@
         </GMapInfoWindow>
       </GmapMarker>
     </GmapMap>
-    <menu-button v-show="$store.state.isMenuButtonShowing"> </menu-button>
-    <menu-view v-show="$store.state.isMenuViewShowing">I AM MENU</menu-view>
+    <menu-button v-show="$store.state.isMenuButtonShowing"></menu-button>
+    <Transition name="slide">
+    <menu-view v-show="$store.state.isMenuViewShowing"></menu-view>
+    </Transition>
   </div>
 </template>
 
@@ -45,18 +47,18 @@ export default {
       this.isMenuButtonShowing = !this.isMenuButtonShowing;
       this.isMenuViewShowing = !this.isMenuViewShowing;
     },
-    geolocate: function () {
-      navigator.geolocation.getCurrentPosition((position) => {
+    geolocate: function() {
+      navigator.geolocation.getCurrentPosition(position => {
         this.userPos = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lng: position.coords.longitude
         };
       });
-    },
+    }
   },
   components: {
     MenuButton,
-    MenuView,
+    MenuView
   },
   data() {
     return {};
@@ -66,20 +68,20 @@ export default {
   },
   created() {
     // get data from API
-    LocationService.getAllLocations().then((response) => {
+    LocationService.getAllLocations().then(response => {
       this.$store.commit("LOAD_LOCATIONS", response.data);
     });
   },
   computed: {
     nearbyMarkers() {
       const markers = this.$store.state.locations
-        .map((location) => {
+        .map(location => {
           return {
             name: location.name,
             position: {
               lat: location.latitude,
-              lng: location.longitude,
-            },
+              lng: location.longitude
+            }
           };
         })
         .filter((location) => {
@@ -98,7 +100,7 @@ export default {
     },
     getUserPos() {
       return this.userPos;
-    },
-  },
+    }
+  }
 };
 </script>
