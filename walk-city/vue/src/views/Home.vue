@@ -1,28 +1,16 @@
 <template>
   <div class="home">
-    <GmapMap
-      :center="{ lat: 39.9526, lng: -75.1652 }"
-      :zoom="15"
-      :options="{
-        zoomControl: false,
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        rotateControl: false,
-        fullscreenControl: false,
-        disableDefaultUi: false
-      }"
-      map-type-id="roadmap"
-      style="width: 100vw; height: 93vh"
-    >
-      <GmapMarker
-        :key="index"
-        v-for="(m, index) in $store.state.filteredMarkers"
-        :position="m.position"
-        :clickable="true"
-        :draggable="false"
-        @click="center = m.position"
-      >
+    <GmapMap :center="{ lat: 39.9526, lng: -75.1652 }" :zoom="15" :options="{
+      zoomControl: false,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: false,
+      disableDefaultUi: false
+    }" map-type-id="roadmap" style="width: 100vw; height: 93vh" @click="closeMenuView">
+      <GmapMarker :key="index" v-for="(m, index) in $store.state.filteredMarkers" :position="m.position"
+        :clickable="true" :draggable="false" @click="center = m.position">
         <GMapInfoWindow>
           <div>I am in info window</div>
         </GMapInfoWindow>
@@ -43,11 +31,12 @@ import LocationService from "../services/LocationService";
 export default {
   name: "home",
   methods: {
-    openCloseMenu() {
-      this.isMenuButtonShowing = !this.isMenuButtonShowing;
-      this.isMenuViewShowing = !this.isMenuViewShowing;
+    closeMenuView() {
+      if (this.$store.state.isMenuViewShowing) {
+        this.$store.commit('MENU_TOGGLE')
+      }
     },
-    geolocate: function() {
+    geolocate: function () {
       navigator.geolocation.getCurrentPosition(position => {
         this.userPos = {
           lat: position.coords.latitude,
