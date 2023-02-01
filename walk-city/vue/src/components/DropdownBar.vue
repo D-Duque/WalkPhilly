@@ -1,12 +1,6 @@
 <template>
   <div class="dropdown-container">
-    <b-dropdown
-      text="Category"
-      block
-      variant="light"
-      class="m-0"
-      menu-class="w-100"
-    >
+    <b-dropdown text="Category" block variant="light" class="m-0" menu-class="w-100">
       <b-dropdown-item href="#">Restaurants</b-dropdown-item>
       <b-dropdown-item href="#">Museums</b-dropdown-item>
       <b-dropdown-item href="#">Bars</b-dropdown-item>
