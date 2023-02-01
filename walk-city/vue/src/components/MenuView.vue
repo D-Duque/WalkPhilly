@@ -1,20 +1,24 @@
 <template>
     <div id="main-menu">
-        <div  @click="menuToggle" id="title">MENU</div>
+        <div @click="menuToggle" id="title">MENU</div>
         <search-bar></search-bar>
         <dropdown-bar></dropdown-bar>
         <div class="cool-line"></div>
         <div id="view-badges">VIEW BADGES</div>
         <div class="cool-line"></div>
-        <div id= "username">USERNAME</div>
+        <div id="username">USERNAME</div>
         <div id="home-and-logout">
-            <div id="back-button">
-                <img src="../assets/back-arrow.png">
-            </div>
-            <button class="btn-midnight-green" id="log-out">LOG OUT</button>
+            <router-link v-bind:to="{ name: 'home' }">
+                <div id="back-button">
+                    <img src="../assets/back-arrow.png">
+                </div>
+            </router-link>
+            <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">
+                <button class="btn-midnight-green" id="log-out">LOG OUT</button>
+            </router-link>
         </div>
 
-        
+
     </div>
 </template>
 <script>
@@ -47,12 +51,12 @@ export default {
     justify-content: space-around;
     align-items: center;
     font-size: x-large;
-    flex-direction:column;
+    flex-direction: column;
 
 }
 
 #home-and-logout {
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: space-around;
     width: 100%;
@@ -73,8 +77,4 @@ export default {
     height: 1px;
     background-color: white;
 }
-
-
-
-
 </style>
