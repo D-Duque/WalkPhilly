@@ -61,3 +61,15 @@ label {
 .create-account > input {
     margin-bottom:1rem;
 }
+
+.slide-enter-active,
+.slide-leave-active
+{
+    transition: transform 0.2s ease;
+}
+
+.slide-enter,
+.slide-leave-to {
+    transform: translateY(100%);
+    transition: all 250ms ease-in 0s
+}

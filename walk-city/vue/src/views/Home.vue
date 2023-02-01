@@ -28,8 +28,10 @@
         </GMapInfoWindow>
       </GmapMarker>
     </GmapMap>
-    <menu-button v-show="$store.state.isMenuButtonShowing"> </menu-button>
-    <menu-view v-show="$store.state.isMenuViewShowing">I AM MENU</menu-view>
+    <menu-button v-show="$store.state.isMenuButtonShowing"></menu-button>
+    <Transition name="slide">
+    <menu-view v-show="$store.state.isMenuViewShowing"></menu-view>
+    </Transition>
   </div>
 </template>
 
