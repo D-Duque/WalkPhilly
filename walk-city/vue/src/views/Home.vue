@@ -91,6 +91,7 @@ export default {
             location.position.lng - -75.1503 >= -0.01;
 
           return isLatNear && isLngNear;
+
         });
       return markers;
     },
