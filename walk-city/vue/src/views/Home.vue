@@ -17,7 +17,7 @@
     >
       <GmapMarker
         :key="index"
-        v-for="(m, index) in markers"
+        v-for="(m, index) in filteredMarkers"
         :position="m.position"
         :clickable="true"
         :draggable="false"
@@ -45,34 +45,61 @@ export default {
       this.isMenuButtonShowing = !this.isMenuButtonShowing;
       this.isMenuViewShowing = !this.isMenuViewShowing;
     },
+    geolocate: function () {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.userPos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+      });
+    },
   },
   components: {
     MenuButton,
     MenuView,
   },
   data() {
-    return {
-
-    };
+    return {};
+  },
+  mounted() {
+    this.geolocate();
   },
   created() {
     // get data from API
     LocationService.getAllLocations().then((response) => {
       this.$store.commit("LOAD_LOCATIONS", response.data);
     });
-    // save data to store
-    
   },
   computed: {
-    markers(){
-      const markers = this.$store.state.locations.map(location => {
-          return {position: {
+    filteredMarkers() {
+      const markers = this.$store.state.locations.map((location) => {
+        return {
+          position: {
             lat: location.latitude,
-            lng: location.longitude
-          }}
-      })
+            lng: location.longitude,
+          },
+        };
+      });
       return markers;
-    }
-  }
+    },
+    getUserPos() {
+      return this.userPos;
+    },
+    nearbyFilter() {
+      let center = {
+        lat: 47.0,
+        lng: -122.0,
+      };
+
+      const isLatNear =
+        center.lat - this.userPos.lat <= 1 &&
+        center.lat - this.userPos.lat >= -1;
+      const isLngNear =
+        center.lng - this.userPos.lng <= 1 &&
+        center.lng - this.userPos.lng >= -1;
+        
+      return isLatNear && isLngNear;
+    },
+  },
 };
 </script>
