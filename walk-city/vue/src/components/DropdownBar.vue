@@ -1,11 +1,6 @@
 <template>
   <div class="dropdown-container">
-    <b-dropdown text="Category" block variant="light" class="m-0" menu-class="w-100">
-      <b-dropdown-item href="#">Restaurants</b-dropdown-item>
-      <b-dropdown-item href="#">Museums</b-dropdown-item>
-      <b-dropdown-item href="#">Bars</b-dropdown-item>
-      <b-dropdown-item href="#">Parks</b-dropdown-item>
-    </b-dropdown>
+    <b-form-select v-model="currentCategory" :options="options"></b-form-select>
   </div>
 </template>
 <script>
@@ -26,7 +21,14 @@ export default {
   },
   data() {
     return {
-      currentCategory: ""
+      currentCategory: "",
+      options: [
+        { value: null, text: 'Categories' },
+        { value: 'Restaurant', text: "Restaurants" },
+        { value: 'Museums', text: "Museums" },
+        { value: 'Bar', text: "Bar" },
+        { value: 'Parks', text: 'Parks' }
+      ]
     };
   }
 };
