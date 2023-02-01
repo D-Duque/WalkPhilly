@@ -1,11 +1,19 @@
 <template>
     <div id="main-menu">
-        <div  @click="menuToggle" id="title">Menu</div>
+        <div  @click="menuToggle" id="title">MENU</div>
         <search-bar></search-bar>
         <dropdown-bar></dropdown-bar>
-        <div id="view-badges">view badges</div>
-        <div id= "username">username</div>
-        <div id="home-and-logout">home button and log out</div>
+        <div class="cool-line"></div>
+        <div id="view-badges">VIEW BADGES</div>
+        <div class="cool-line"></div>
+        <div id= "username">USERNAME</div>
+        <div id="home-and-logout">
+            <div id="back-button">
+                <img src="../assets/back-arrow.png">
+            </div>
+            <button class="btn-midnight-green" id="log-out">LOG OUT</button>
+        </div>
+
         
     </div>
 </template>
@@ -36,14 +44,37 @@ export default {
     background: #004953;
     height: 70%;
     width: 100%;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    font-size: large;
+    font-size: x-large;
     flex-direction:column;
-}
-
-#title {
 
 }
+
+#home-and-logout {
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+
+}
+
+/* #view-badges, #username {
+    border-bottom: 1px solid #FFFFFF;
+    width: 90%;
+    text-align: center;
+    padding: 2rem;
+    margin: 0px;
+
+} */
+
+.cool-line {
+    width: 90%;
+    height: 1px;
+    background-color: white;
+}
+
+
+
 
 </style>

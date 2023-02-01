@@ -24,6 +24,6 @@ export default {
     width: 100%;
     justify-content: center;
     align-items: center;
-    font-size: large;
+    font-size: x-large;
 }
 </style>

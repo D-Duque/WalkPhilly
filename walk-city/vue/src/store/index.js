@@ -22,6 +22,7 @@ export default new Vuex.Store({
     user: currentUser || {},
     isMenuButtonShowing: true,
     isMenuViewShowing: false,
+    locations: [],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -43,6 +44,9 @@ export default new Vuex.Store({
     MENU_TOGGLE(state) {
       state.isMenuButtonShowing = !state.isMenuButtonShowing;
       state.isMenuViewShowing = !state.isMenuViewShowing;
+    },
+    LOAD_LOCATIONS(state, locations) {
+      state.locations = locations;
     }
   }
 })

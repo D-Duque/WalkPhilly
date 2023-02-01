@@ -1,21 +1,31 @@
 <template>
   <div class="home">
-    <GmapMap :center="{ lat: 39.9526, lng: -75.1652 }" :zoom="13" :options="{
-      zoomControl: true,
-      mapTypeControl: false,
-      scaleControl: false,
-      streetViewControl: false,
-      rotateControl: false,
-      fullscreenControl: true,
-      disableDefaultUi: false
-    }" map-type-id="roadmap" style="width: 100vw; height: 93vh">
-      <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true" :draggable="true"
-        @click="center = m.position">
+    <GmapMap
+      :center="{ lat: 39.9526, lng: -75.1652 }"
+      :zoom="13"
+      :options="{
+        zoomControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false,
+        disableDefaultUi: false,
+      }"
+      map-type-id="roadmap"
+      style="width: 100vw; height: 93vh"
+    >
+      <GmapMarker
+        :key="index"
+        v-for="(m, index) in markers"
+        :position="m.position"
+        :clickable="true"
+        :draggable="false"
+        @click="center = m.position"
+      >
         <GMapInfoWindow>
-          <div>I am in info window
-          </div>
+          <div>I am in info window</div>
         </GMapInfoWindow>
-
       </GmapMarker>
     </GmapMap>
     <menu-button v-show="$store.state.isMenuButtonShowing"> </menu-button>
@@ -24,39 +34,45 @@
 </template>
 
 <script>
-import MenuButton from "../components/MenuButton.vue"
-import MenuView from "../components/MenuView.vue"
+import MenuButton from "../components/MenuButton.vue";
+import MenuView from "../components/MenuView.vue";
+import LocationService from "../services/LocationService";
 
 export default {
-  name: 'home',
+  name: "home",
   methods: {
     openCloseMenu() {
       this.isMenuButtonShowing = !this.isMenuButtonShowing;
-      this.isMenuViewShowing = !this.isMenuViewShowing
-    }
+      this.isMenuViewShowing = !this.isMenuViewShowing;
+    },
   },
   components: {
     MenuButton,
-    MenuView
+    MenuView,
   },
   data() {
     return {
-      markers: [{
-        name: 'Liberty Bell',
-        position: {
-          lat: 39.9496, lng: -75.1503
-        }
-      },
-      {
-        name: 'Philadelphia Museum of Art',
-        position: {
-          lat: 39.9656, lng: -75.1810
-        }
-      }
-      ],
 
+    };
+  },
+  created() {
+    // get data from API
+    LocationService.getAllLocations().then((response) => {
+      this.$store.commit("LOAD_LOCATIONS", response.data);
+    });
+    // save data to store
+    
+  },
+  computed: {
+    markers(){
+      const markers = this.$store.state.locations.map(location => {
+          return {position: {
+            lat: location.latitude,
+            lng: location.longitude
+          }}
+      })
+      return markers;
     }
   }
-
 };
 </script>
