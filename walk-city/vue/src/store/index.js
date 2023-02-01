@@ -24,6 +24,9 @@ export default new Vuex.Store({
     isMenuViewShowing: false,
     locations: [],
   },
+  getters: {
+    
+  },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
@@ -47,6 +50,6 @@ export default new Vuex.Store({
     },
     LOAD_LOCATIONS(state, locations) {
       state.locations = locations;
-    }
+    },
   }
 })

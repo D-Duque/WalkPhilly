@@ -2,7 +2,7 @@
   <div class="home">
     <GmapMap
       :center="{ lat: 39.9526, lng: -75.1652 }"
-      :zoom="13"
+      :zoom="15"
       :options="{
         zoomControl: false,
         mapTypeControl: false,
@@ -71,10 +71,11 @@ export default {
     });
   },
   computed: {
-    filteredMarkers() {
+    nearbyMarkers() {
       const markers = this.$store.state.locations
         .map((location) => {
           return {
+            name: location.name,
             position: {
               lat: location.latitude,
               lng: location.longitude,
@@ -82,13 +83,13 @@ export default {
           };
         })
         .filter((location) => {
-          // replace hard-coded coords with whatever coords we decide to use
+          const range = 0.01;
           const isLatNear =
-            location.position.lat - 39.9496 <= 0.01 &&
-            location.position.lat - 39.9496 >= -0.01;
+            location.position.lat - this.userPos.lat <= range &&
+            location.position.lat - this.userPos.lat >= -range;
           const isLngNear =
-            location.position.lng - -75.1503 <= 0.01 &&
-            location.position.lng - -75.1503 >= -0.01;
+            location.position.lng - this.userPos.lng <= range &&
+            location.position.lng - this.userPos.lng >= -range;
 
           return isLatNear && isLngNear;
 
