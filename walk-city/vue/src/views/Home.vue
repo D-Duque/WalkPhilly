@@ -10,7 +10,7 @@
         streetViewControl: false,
         rotateControl: false,
         fullscreenControl: false,
-        disableDefaultUi: false,
+        disableDefaultUi: false
       }"
       map-type-id="roadmap"
       style="width: 100vw; height: 93vh"
@@ -47,30 +47,29 @@ export default {
       this.isMenuButtonShowing = !this.isMenuButtonShowing;
       this.isMenuViewShowing = !this.isMenuViewShowing;
     },
-    geolocate: function () {
-      navigator.geolocation.getCurrentPosition((position) => {
+    geolocate: function() {
+      navigator.geolocation.getCurrentPosition(position => {
         this.userPos = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lng: position.coords.longitude
         };
         this.$store.commit("SET_USER_POSITION", this.userPos);
       });
-    },
+    }
   },
   components: {
     MenuButton,
-    MenuView,
+    MenuView
   },
   data() {
-    return {
-    };
+    return {};
   },
   mounted() {
     this.geolocate();
   },
   created() {
     // get data from API
-    LocationService.getAllLocations().then((response) => {
+    LocationService.getAllLocations().then(response => {
       this.$store.commit("LOAD_LOCATIONS", response.data);
     });
   },
@@ -101,7 +100,7 @@ export default {
     // },
     getUserPos() {
       return this.userPos;
-    },
-  },
+    }
+  }
 };
 </script>

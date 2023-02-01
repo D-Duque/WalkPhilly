@@ -12,7 +12,23 @@
 export default {
   name: "dropdown-bar",
   props: [],
-  methods: {}
+  methods: {
+    filteredCategories() {
+      const filteredLocations = this.$store.getters.nearbyLocations.filter(
+        location =>
+          location.category
+            .toLowerCase()
+            .includes(this.currentCategory.toLowerCase()) ||
+          location.category == ""
+      );
+      this.$store.commit("FILTER_LOCATIONS", filteredLocations);
+    }
+  },
+  data() {
+    return {
+      currentCategory: ""
+    };
+  }
 };
 </script>
 <style scoped>
