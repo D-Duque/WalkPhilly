@@ -3,14 +3,17 @@ import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
 import axios from 'axios'
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import * as VueGoogleMaps from 'vue2-google-maps'
 
+import { BootstrapVue } from 'bootstrap-vue'
+Vue.use(BootstrapVue)
 
+// import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 Vue.config.productionTip = false
 
 axios.defaults.baseURL = process.env.VUE_APP_REMOTE_API;
+
 
 Vue.use(VueGoogleMaps, {
   load: {
