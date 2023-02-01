@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown-container">
-    <b-form-select v-model="currentCategory" :options="options"></b-form-select>
+    <b-form-select v-model="currentCategory" :options="options" @change="filteredCategories"></b-form-select>
   </div>
 </template>
 <script>
@@ -25,9 +25,9 @@ export default {
       options: [
         { value: null, text: 'Categories' },
         { value: 'Restaurant', text: "Restaurants" },
-        { value: 'Museums', text: "Museums" },
-        { value: 'Bar', text: "Bar" },
-        { value: 'Parks', text: 'Parks' }
+        { value: 'Museum', text: "Museums" },
+        { value: 'Bar', text: "Bars" },
+        { value: 'Park', text: 'Parks' }
       ]
     };
   }

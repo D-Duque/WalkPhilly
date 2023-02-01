@@ -26,8 +26,9 @@ export default {
     filteredMarkers() {
       const filteredLocations = this.$store.getters.nearbyLocations.filter(
         location =>
-          location.name.toLowerCase().includes(this.textFilter.toLowerCase()) ||
-          location.name == ""
+        location.name == "" ||
+          location.name.toLowerCase().includes(this.textFilter.toLowerCase())
+          
       );
       this.$store.commit("FILTER_LOCATIONS", filteredLocations);
     }
