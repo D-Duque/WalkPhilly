@@ -72,33 +72,30 @@ export default {
   },
   computed: {
     filteredMarkers() {
-      const markers = this.$store.state.locations.map((location) => {
-        return {
-          position: {
-            lat: location.latitude,
-            lng: location.longitude,
-          },
-        };
-      });
+      const markers = this.$store.state.locations
+        .map((location) => {
+          return {
+            position: {
+              lat: location.latitude,
+              lng: location.longitude,
+            },
+          };
+        })
+        .filter((location) => {
+          // replace hard-coded coords with whatever coords we decide to use
+          const isLatNear =
+            location.position.lat - 39.9496 <= 0.01 &&
+            location.position.lat - 39.9496 >= -0.01;
+          const isLngNear =
+            location.position.lng - -75.1503 <= 0.01 &&
+            location.position.lng - -75.1503 >= -0.01;
+
+          return isLatNear && isLngNear;
+        });
       return markers;
     },
     getUserPos() {
       return this.userPos;
-    },
-    nearbyFilter() {
-      let center = {
-        lat: 47.0,
-        lng: -122.0,
-      };
-
-      const isLatNear =
-        center.lat - this.userPos.lat <= 1 &&
-        center.lat - this.userPos.lat >= -1;
-      const isLngNear =
-        center.lng - this.userPos.lng <= 1 &&
-        center.lng - this.userPos.lng >= -1;
-        
-      return isLatNear && isLngNear;
     },
   },
 };
