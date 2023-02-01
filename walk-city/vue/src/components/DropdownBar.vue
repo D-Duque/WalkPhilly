@@ -20,7 +20,8 @@ export default {
 </script>
 <style scoped>
 .dropdown {
-  width: 100%;
+  width: 80%;
   background-color: white;
+  border-radius: 10px;
 }
 </style>
