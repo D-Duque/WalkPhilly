@@ -10,14 +10,14 @@
         streetViewControl: false,
         rotateControl: false,
         fullscreenControl: false,
-        disableDefaultUi: false
+        disableDefaultUi: false,
       }"
       map-type-id="roadmap"
       style="width: 100vw; height: 93vh"
     >
       <GmapMarker
         :key="index"
-        v-for="(m, index) in filteredMarkers"
+        v-for="(m, index) in $store.state.filteredMarkers"
         :position="m.position"
         :clickable="true"
         :draggable="false"
@@ -30,7 +30,7 @@
     </GmapMap>
     <menu-button v-show="$store.state.isMenuButtonShowing"></menu-button>
     <Transition name="slide">
-    <menu-view v-show="$store.state.isMenuViewShowing"></menu-view>
+      <menu-view v-show="$store.state.isMenuViewShowing"></menu-view>
     </Transition>
   </div>
 </template>
@@ -47,60 +47,61 @@ export default {
       this.isMenuButtonShowing = !this.isMenuButtonShowing;
       this.isMenuViewShowing = !this.isMenuViewShowing;
     },
-    geolocate: function() {
-      navigator.geolocation.getCurrentPosition(position => {
+    geolocate: function () {
+      navigator.geolocation.getCurrentPosition((position) => {
         this.userPos = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lng: position.coords.longitude,
         };
+        this.$store.commit("SET_USER_POSITION", this.userPos);
       });
-    }
+    },
   },
   components: {
     MenuButton,
-    MenuView
+    MenuView,
   },
   data() {
-    return {};
+    return {
+    };
   },
   mounted() {
     this.geolocate();
   },
   created() {
     // get data from API
-    LocationService.getAllLocations().then(response => {
+    LocationService.getAllLocations().then((response) => {
       this.$store.commit("LOAD_LOCATIONS", response.data);
     });
   },
   computed: {
-    nearbyMarkers() {
-      const markers = this.$store.state.locations
-        .map(location => {
-          return {
-            name: location.name,
-            position: {
-              lat: location.latitude,
-              lng: location.longitude
-            }
-          };
-        })
-        .filter((location) => {
-          const range = 0.01;
-          const isLatNear =
-            location.position.lat - this.userPos.lat <= range &&
-            location.position.lat - this.userPos.lat >= -range;
-          const isLngNear =
-            location.position.lng - this.userPos.lng <= range &&
-            location.position.lng - this.userPos.lng >= -range;
+    // nearbyMarkers() {
+    //   const markers = this.$store.state.locations
+    //     .map((location) => {
+    //       return {
+    //         name: location.name,
+    //         position: {
+    //           lat: location.latitude,
+    //           lng: location.longitude,
+    //         },
+    //       };
+    //     })
+    //     .filter((location) => {
+    //       const range = 0.01;
+    //       const isLatNear =
+    //         location.position.lat - this.userPos.lat <= range &&
+    //         location.position.lat - this.userPos.lat >= -range;
+    //       const isLngNear =
+    //         location.position.lng - this.userPos.lng <= range &&
+    //         location.position.lng - this.userPos.lng >= -range;
 
-          return isLatNear && isLngNear;
-
-        });
-      return markers;
-    },
+    //       return isLatNear && isLngNear;
+    //     });
+    //   return markers;
+    // },
     getUserPos() {
       return this.userPos;
-    }
-  }
+    },
+  },
 };
 </script>

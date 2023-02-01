@@ -23,9 +23,35 @@ export default new Vuex.Store({
     isMenuButtonShowing: true,
     isMenuViewShowing: false,
     locations: [],
+    userPos: {},
+    textFilter: "",
+    filteredMarkers: []
   },
   getters: {
-    
+    nearbyLocations(state) {
+      const locations = state.locations.map((location) => {
+          return {
+            name: location.locationName,
+            position: {
+              lat: location.latitude,
+              lng: location.longitude,
+            },
+            category: location.category 
+          };
+        })
+        .filter((location) => {
+          const range = 0.01;
+          const isLatNear =
+            location.position.lat - state.userPos.lat <= range &&
+            location.position.lat - state.userPos.lat >= -range;
+          const isLngNear =
+            location.position.lng - state.userPos.lng <= range &&
+            location.position.lng - state.userPos.lng >= -range;
+
+          return isLatNear && isLngNear;
+        });
+      return locations;
+    },
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -51,5 +77,13 @@ export default new Vuex.Store({
     LOAD_LOCATIONS(state, locations) {
       state.locations = locations;
     },
+    SET_USER_POSITION(state, position) {
+      state.userPos = position
+    },
+    FILTER_LOCATIONS(state, filteredLocations) {
+    
+      state.filteredMarkers = filteredLocations;
+
+    }
   }
 })
