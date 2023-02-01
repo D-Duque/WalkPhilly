@@ -1,17 +1,16 @@
 <template>
-  <div class="dropdown">
+  <div class="dropdown-container">
     <b-dropdown
-      id="dropdown-1"
-      block
       text="Category"
-      class="m-2"
-      menu-class="w-100"
+      block
       variant="light"
+      class="m-0"
+      menu-class="w-100"
     >
-      <b-dropdown-item>Restaurants</b-dropdown-item>
-      <b-dropdown-item>Museums</b-dropdown-item>
-      <b-dropdown-item>Bars</b-dropdown-item>
-      <b-dropdown-item>Parks</b-dropdown-item>
+      <b-dropdown-item href="#">Resturants</b-dropdown-item>
+      <b-dropdown-item href="#">Museums</b-dropdown-item>
+      <b-dropdown-item href="#">Bars</b-dropdown-item>
+      <b-dropdown-item href="#">Parks</b-dropdown-item>
     </b-dropdown>
   </div>
 </template>
@@ -23,8 +22,9 @@ export default {
 };
 </script>
 <style scoped>
-.dropdown {
-  width: 100%;
-  background-color: white;
+.dropdown-container {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 10px;
 }
 </style>
