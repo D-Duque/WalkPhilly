@@ -1,6 +1,6 @@
 <template>
     <div id="main-menu">
-        <div @click="menuToggle" id="title">MENU</div>
+        <div id="title">MENU</div>
         <search-bar></search-bar>
         <dropdown-bar></dropdown-bar>
         <div class="cool-line"></div>
@@ -8,11 +8,11 @@
         <div class="cool-line"></div>
         <div id="username">USERNAME</div>
         <div id="home-and-logout">
-            <router-link v-bind:to="{ name: 'home' }">
-                <div id="back-button">
-                    <img src="../assets/back-arrow.png">
-                </div>
-            </router-link>
+
+            <div @click="menuToggle" id="back-button">
+                <img src="../assets/back-arrow.png">
+            </div>
+
             <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">
                 <button class="btn-midnight-green" id="log-out">LOG OUT</button>
             </router-link>
@@ -76,5 +76,9 @@ export default {
     width: 90%;
     height: 1px;
     background-color: white;
+}
+
+#dropdown-bar {
+    width: 100%;
 }
 </style>
