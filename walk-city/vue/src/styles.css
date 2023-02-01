@@ -18,7 +18,7 @@ label {
     text-align: left;
 }
 
-.welcome-message{
+.welcome-message, .register-message {
     margin: 1rem
 }
 
