@@ -14,7 +14,7 @@
         <GMapInfoWindow>
           <div>I am in info window</div>
         </GMapInfoWindow>
-      </GmapMarker>
+      </GmapMarker >
     </GmapMap>
     <menu-button v-show="$store.state.isMenuButtonShowing"></menu-button>
     <Transition name="slide">
