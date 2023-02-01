@@ -7,21 +7,10 @@
 export default {
   name: "dropdown-bar",
   props: [],
-  methods: {
-    filteredCategories() {
-      const filteredLocations = this.$store.getters.nearbyLocations.filter(
-        location =>
-          location.category
-            .toLowerCase()
-            .includes(this.currentCategory.toLowerCase()) ||
-          location.category == ""
-      );
-      this.$store.commit("FILTER_LOCATIONS", filteredLocations);
-    }
-  },
+  methods: {},
   data() {
     return {
-      currentCategory: "",
+      currentCategory: null,
       options: [
         { value: null, text: 'Categories' },
         { value: 'Restaurant', text: "Restaurants" },
@@ -29,7 +18,7 @@ export default {
         { value: 'Bar', text: "Bar" },
         { value: 'Parks', text: 'Parks' }
       ]
-    };
+    }
   }
 };
 </script>

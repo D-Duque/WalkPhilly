@@ -17,30 +17,28 @@ export default {
   name: "search-bar",
   props: [],
   methods: {
-     // access nearbyLocations getter and filter from that to get new filter
+    // access nearbyLocations getter and filter from that to get new filter
 
     // somehow get new filter to store and set results to filteredMarkers in store
     // commit to FILTER_LOCATIONS in computed property, pass list of locations return commit?
 
     // call filteredMarkers in Home
     filteredMarkers() {
-    const filteredLocations = this.$store.getters.nearbyLocations.filter(location => location.name.toLowerCase().includes(this.textFilter.toLowerCase()) || location.name == "")
+      const filteredLocations = this.$store.getters.nearbyLocations.filter(
+        location =>
+          location.name.toLowerCase().includes(this.textFilter.toLowerCase()) ||
+          location.name == ""
+      );
       this.$store.commit("FILTER_LOCATIONS", filteredLocations);
     }
   },
   data() {
     return {
-      textFilter: "",
+      textFilter: ""
     };
   },
-  mounted() {
-    
-  },
-  computed: {
-
-   
-    
-  }
+  mounted() {},
+  computed: {}
 };
 </script>
 <style scoped>
