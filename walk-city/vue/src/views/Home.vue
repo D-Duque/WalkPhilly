@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <GmapMap
-      :center=this.userPos
+      :center=userPos
       :zoom="15"
       :options="{
         zoomControl: false,
@@ -68,7 +68,12 @@ export default {
     MenuView,
   },
   data() {
-    return {};
+    return {
+      userPos: {
+        lat: 0,
+          lng: 0,
+      }
+    };
   },
   mounted() {
     this.geolocate();
