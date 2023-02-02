@@ -21,7 +21,7 @@
   </div>
 </template>
 <script>
-import DropdownBar from "./DropdownBar new.vue";
+import DropdownBar from "./DropdownBar.vue";
 import SearchBar from "./SearchBar.vue";
 export default {
   name: "menu-view",

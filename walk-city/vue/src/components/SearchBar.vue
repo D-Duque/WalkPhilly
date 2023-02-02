@@ -1,14 +1,7 @@
 <template>
   <div class="form-outline">
-    <input
-      type="search"
-      id="search-input"
-      class="form-control"
-      placeholder="Search"
-      aria-label="Search"
-      v-model="textFilter"
-      @change="filteredMarkers"
-    />
+    <input type="search" id="search-input" class="form-control" placeholder="Search" aria-label="Search"
+      v-model="textFilter" @change="filteredMarkers" />
   </div>
 </template>
 
@@ -26,10 +19,11 @@ export default {
     filteredMarkers() {
       const filteredLocations = this.$store.getters.nearbyLocations.filter(
         location =>
-        location.name == "" ||
+          location.name == "" ||
           location.name.toLowerCase().includes(this.textFilter.toLowerCase())
-          
+
       );
+      this.$store.state.textFilter = this.textFilter;
       this.$store.commit("FILTER_LOCATIONS", filteredLocations);
     }
   },
@@ -38,7 +32,7 @@ export default {
       textFilter: ""
     };
   },
-  mounted() {},
+  mounted() { },
   computed: {}
 };
 </script>

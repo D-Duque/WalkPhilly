@@ -16,6 +16,7 @@ export default {
             .includes(this.currentCategory.toLowerCase()) ||
           location.category == ""
       );
+      this.$store.state.currentCategory = this.currentCategory;
       this.$store.commit("FILTER_LOCATIONS", filteredLocations);
     }
   },
@@ -24,9 +25,9 @@ export default {
       currentCategory: "",
       options: [
         { value: null, text: 'Categories' },
-        { value: 'Restaurant', text: "Restaurants" },
-        { value: 'Museum', text: "Museums" },
-        { value: 'Bar', text: "Bars" },
+        { value: 'Restaurant', text: 'Restaurants' },
+        { value: 'Museum', text: 'Museums' },
+        { value: 'Bar', text: 'Bars' },
         { value: 'Park', text: 'Parks' }
       ]
     };
