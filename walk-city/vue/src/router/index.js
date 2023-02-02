@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Logout from '../views/Logout.vue'
-import Register from '../views/Register.vue'
-import store from '../store/index'
-
-Vue.use(Router)
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "../views/Home.vue";
+import Login from "../views/Login.vue";
+import Logout from "../views/Logout.vue";
+import Register from "../views/Register.vue";
+import store from "../store/index";
+import LocationDetails from "../views/LocationDetails.vue";
+Vue.use(Router);
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -18,12 +18,12 @@ Vue.use(Router)
  */
 
 const router = new Router({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       component: Home,
       meta: {
         requiresAuth: false
@@ -52,16 +52,24 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: "/locations/:id",
+      name: "location-details",
+      component: LocationDetails,
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
-})
+});
 
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
 
   // If it does and they are not logged in, send the user to "/login"
-  if (requiresAuth && store.state.token === '') {
+  if (requiresAuth && store.state.token === "") {
     next("/login");
   } else {
     // Else let them go to their next destination

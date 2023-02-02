@@ -38,7 +38,9 @@ export default new Vuex.Store({
               lat: location.latitude,
               lng: location.longitude
             },
-            category: location.category
+            category: location.category,
+            address: location.address,
+            social: location.socialMedia
           };
         })
         .filter(location => {
@@ -52,9 +54,9 @@ export default new Vuex.Store({
 
           return isLatNear && isLngNear;
         });
-        // state.filteredMarkers = locations;
+      // state.filteredMarkers = locations;
       return locations;
-    },
+    }
     // filteredLocations(state){
     //   if (!state.textFilter == "" || !state.currentCategory == "")
     //   {
@@ -93,8 +95,14 @@ export default new Vuex.Store({
     SET_USER_POSITION(state, position) {
       state.userPos = position;
     },
-    LOAD_NEARBY_LOCATIONS(state){
-      state.filteredMarkers = this.getters.nearbyLocations
+    LOAD_NEARBY_LOCATIONS(state) {
+      state.filteredMarkers = this.getters.nearbyLocations;
+    },
+    FLIP_CHECKED(state, locationToChange) {
+      locationToChange.checked = !locationToChange.checked;
+    },
+    SET_ACTIVE_PRODUCT(state, locationID) {
+      state.activeLocation = locationID;
     },
     // SEARCH_LOCATIONS(state, text) {
     //   state.textFilter = text;
@@ -103,10 +111,13 @@ export default new Vuex.Store({
     //   state.currentCategory = category
     // }
 
-    FILTER_ALL(state){
+    FILTER_ALL(state) {
       const filteredLocations = this.getters.nearbyLocations.filter(
-        location => location.category.toLowerCase().includes(state.currentCategory.toLowerCase())
-          && location.name.toLowerCase().includes(state.textFilter.toLowerCase())
+        location =>
+          location.category
+            .toLowerCase()
+            .includes(state.currentCategory.toLowerCase()) &&
+          location.name.toLowerCase().includes(state.textFilter.toLowerCase())
       );
       state.filteredMarkers = filteredLocations;
     }
