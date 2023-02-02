@@ -7,11 +7,8 @@
     </div>
     <div class="cool-line"></div>
 
-    <router-link
-      v-bind:to="{ name: 'location-list' }"
-      v-if="$store.state.token != ''"
-    >
-      <div id="list-view">
+    <router-link v-bind:to="{ name: 'location-details' }" v-if="$store.state.token != ''">
+      <div id="list-view" @click="menuToggle">
         {{ $store.state.token != "" ? "LIST VIEW" : " " }}
       </div>
     </router-link>
@@ -32,19 +29,11 @@
         <img src="../assets/back-arrow.png" />
       </div>
 
-      <button
-        class="btn-midnight-green"
-        id="log-out"
-        v-if="$store.state.token != ''"
-        @click="logoutAndMenuToggle"
-      >
+      <button class="btn-midnight-green" id="log-out" v-if="$store.state.token != ''" @click="logoutAndMenuToggle">
         LOG OUT
       </button>
 
-      <router-link
-        v-bind:to="{ name: 'login' }"
-        v-if="$store.state.token == ''"
-      >
+      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">
         <button class="btn-midnight-green" id="log-out" @click="menuToggle">
           LOG IN
         </button>
