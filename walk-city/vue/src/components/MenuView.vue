@@ -8,7 +8,7 @@
     <div class="cool-line"></div>
 
     <router-link
-      v-bind:to="{ name: 'location-details' }"
+      v-bind:to="{ name: 'location-list' }"
       v-if="$store.state.token != ''"
     >
       <div id="list-view">
