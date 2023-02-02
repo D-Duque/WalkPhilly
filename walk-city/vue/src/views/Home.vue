@@ -1,39 +1,25 @@
 <template>
   <div class="home">
-    <GmapMap
-      :center=this.userPos
-      :zoom="15"
-      :options="{
-        mapId: '5bad73ddd2112653',
-        zoomControl: false,
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        rotateControl: false,
-        fullscreenControl: false,
-        disableDefaultUi: false,
-        mapId: '5bad73ddd2112653'
-      }"
-      map-type-id="roadmap"
-      style="width: 100vw; height: 93vh"
-      @click="closeMenuView"
-    >
-      <GmapMarker
-        :key="index"
-        v-for="(m, index) in $store.state.filteredMarkers"
-        :ref="`marker${index}`"
+    <GmapMap :center=this.userPos :zoom="15" :options="{
+      zoomControl: false,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: false,
+      disableDefaultUi: false,
+      mapId: '5bad73ddd2112653'
+    }" map-type-id="roadmap" style="width: 100vw; height: 93vh" @click="closeMenuView">
+      <GmapMarker :key="index" v-for="(m, index) in $store.state.filteredMarkers" :ref="`marker${index}`"
         :position="m.position"
-        :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index+1}|FF0000|FFFFFF`"
-        
-        :clickable="true"
-        :draggable="false"
-        @click="center = m.position"
-      >
+        :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index + 1}|FF0000|FFFFFF`"
+        :clickable="true" :draggable="false" @click="center = m.position">
         <GMapInfoWindow>
           <div>I am in info window</div>
         </GMapInfoWindow>
       </GmapMarker>
     </GmapMap>
+    <filter-results></filter-results>
     <menu-button v-show="$store.state.isMenuButtonShowing"></menu-button>
     <Transition name="slide">
       <menu-view v-show="$store.state.isMenuViewShowing"></menu-view>
@@ -45,6 +31,7 @@
 import MenuButton from "../components/MenuButton.vue";
 import MenuView from "../components/MenuView.vue";
 import LocationService from "../services/LocationService";
+import FilterResults from "../components/FilterResults.vue"
 
 export default {
   name: "home",
@@ -67,6 +54,7 @@ export default {
   components: {
     MenuButton,
     MenuView,
+    FilterResults
   },
   data() {
     return {};

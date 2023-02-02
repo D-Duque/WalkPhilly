@@ -39,17 +39,6 @@ label {
     border-radius: 40px;
 }
 
-.btn-darker-midnight-green {
-    box-sizing: border-box;
-    width: 166px;
-    height: 55px;
-    color:#ffffff;
-    background: #004953;
-    border: 1px solid #004953;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 40px;
-}
-
 .user-credentials {
     display:flex;
     flex-direction:column;
