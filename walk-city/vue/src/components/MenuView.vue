@@ -6,9 +6,10 @@
       <dropdown-bar></dropdown-bar>
     </div>
     <div class="cool-line"></div>
-    <div id="view-badges">VIEW BADGES</div>
-    <div class="cool-line"></div>
-    <div id="username">{{ isLoggedIn? $store.state.user.username.toUpperCase() : 'GUEST'}}</div>
+    <div id="view-badges">{{ $store.state.token != '' ? 'VIEW BADGES' : ' ' }} </div>
+    <div class="cool-line">
+    </div>
+    <div id="username"> {{ $store.state.token != '' ? $store.state.user.username.toUpperCase() : 'GUEST' }}</div>
     <div id="home-and-logout">
       <div @click="menuToggle" id="back-button">
         <img src="../assets/back-arrow.png" />
@@ -32,13 +33,7 @@ export default {
   name: "menu-view",
   props: [],
   computed: {
-    isLoggedIn() {
-      if (Object.keys(this.$store.state.user).length == 0) {
-        return false;
-      } else {
-        return true;
-      }
-    }
+
   },
   components: {
     SearchBar,
