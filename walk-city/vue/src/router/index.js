@@ -55,8 +55,8 @@ const router = new Router({
     },
     {
       path: "/locations",
-      name: "location-details",
-      component: LocationDetails,
+      name: "location-list",
+      component: LocationList,
       meta: {
         requiresAuth: true
       }
