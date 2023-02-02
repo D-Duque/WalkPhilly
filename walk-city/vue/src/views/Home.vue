@@ -1,5 +1,21 @@
 <template>
   <div class="home">
+    
+    <!-- <div>
+      <table>
+        <tr>
+          <th>Start Location</th>
+          <th><GmapAutocomplete @place_changed="setPlace" /></th>
+          <th style="width: 50%;"><button class="btn" @click="addMarker(0)">Add</button></th>
+        </tr>
+        <tr>
+          <th>End Location</th>
+          <th><GmapAutocomplete @place_changed="setPlace" /></th>
+          <th style="width: 50%;"><button class="btn" @click="addMarker(1)">Add</button></th>
+        </tr>
+      </table>
+    </div> -->
+
     <GmapMap
       :center=userPos
       :zoom="15"
@@ -32,6 +48,11 @@
            <div id="location-address"> {{m.address}}</div>
         </GMapInfoWindow>
       </GmapMarker>
+      <DirectionsRenderer
+        travelMode="WALKING"
+        :origin="startLocation"
+        :destination="endLocation"
+      />
     </GmapMap>
     <filter-results></filter-results>
     <menu-button v-show="$store.state.isMenuButtonShowing"></menu-button>
@@ -46,6 +67,7 @@ import MenuButton from "../components/MenuButton.vue";
 import MenuView from "../components/MenuView.vue";
 import LocationService from "../services/LocationService";
 import FilterResults from "../components/FilterResults.vue";
+import DirectionsRenderer from "../components/DirectionsRenderer.js"
 
 // let dS = new google.maps.DirectionsService();
 // let dD = new google.maps.DirectionsRenderer();
@@ -69,12 +91,26 @@ export default {
     },
     openMarker(id) {
       this.openMarkerId = id
-    }
+    },
+    setPlace(place) {
+      this.currentPlace = place;
+    },
+    addMarker(index) {
+      const marker = {
+        lat: this.currentPlace.geometry.location.lat(),
+        lng: this.currentPlace.geometry.location.lng(),
+      };
+      if (index === 0) this.startLocation = marker;
+      if (index === 1) this.endLocation = marker;
+      this.center = marker;
+    },
+
   },
   components: {
     MenuButton,
     MenuView,
     FilterResults,
+    DirectionsRenderer
 
   },
   data() {
@@ -84,6 +120,9 @@ export default {
           lng: 0,
       },
       openMarkerId: null,
+      startLocation: null,
+      endLocation: null,
+      currentPlace: null,
     };
   },
   mounted() {
@@ -128,11 +167,9 @@ export default {
 };
 </script>
 
-<style>
- div {
-  color: black;
-}
-#location-name {
+<style scoped>
+#location-name, #location-address {
   font-weight: bold;
+  color: black;
 }
 </style>
