@@ -23,11 +23,11 @@ export default {
   },
   data() {
     return {
-      textFilter: ""
+      textFilter: "",
     };
   },
   mounted() { },
-  computed: {}
+  computed: {},
 };
 </script>
 <style scoped>

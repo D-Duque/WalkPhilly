@@ -24,7 +24,7 @@ export default {
         { value: 'Park', text: 'Parks' }
       ]
     };
-  }
+  },
 };
 </script>
 <style scoped>
