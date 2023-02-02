@@ -8,7 +8,7 @@
 
     <h4>{{ location.category }}</h4>
     <p>{{ location.address }}</p>
-    <p>{{ location.social }}></p>
+    <p>{{ location.social }}</p>
     <p>
       Checking?
       <input
