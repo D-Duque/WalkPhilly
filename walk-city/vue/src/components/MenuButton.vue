@@ -1,25 +1,26 @@
 <template>
-    <div :class="{
-        'menu-filters-on': filteringOn,
-        'menu-filters-off': !filteringOn
-    }">
-        <div @click="menuToggle" id="menu-button">
-            MENU
-        </div>
-        <search-bar v-show="filteringOn"></search-bar>
-        <dropdown-bar v-show="filteringOn"></dropdown-bar>
+    <!-- <div :class="{
+        'menu-filters-on': filteringOn
+    }"> -->
+    <div @click="menuToggle" id="menu-button">
+        MENU
     </div>
+    <!-- <div v-if="filteringOn">
+            <search-bar></search-bar>
+            <dropdown-bar></dropdown-bar>
+        </div> -->
+    <!-- </div> -->
 </template>
 <script>
-import DropdownBar from "./DropdownBar.vue";
-import SearchBar from "./SearchBar.vue";
+// import DropdownBar from "./DropdownBar.vue";
+// import SearchBar from "./SearchBar.vue";
 
 export default {
     name: 'menu-button',
     props: [],
     components: {
-        SearchBar,
-        DropdownBar
+        // SearchBar,
+        // DropdownBar
     },
     methods: {
         menuToggle() {
@@ -34,34 +35,7 @@ export default {
 }
 </script>
 <style>
-.menu-filters-off {
-    position: fixed;
-    display: flex;
-    bottom: 0px;
-    background: #004953;
-    height: 7%;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    font-size: x-large;
-
-}
-
-.menu-filters-on {
-    position: fixed;
-    display: flex;
-    bottom: 0px;
-    background: #004953;
-    height: 20%;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
-    font-size: x-large;
-    flex-direction: column;
-
-}
-
-/* #menu-button {
+.menu-button {
     position: fixed;
     display: flex;
     bottom: 0px;
@@ -73,5 +47,5 @@ export default {
     font-size: x-large;
 
 
-} */
+}
 </style>
