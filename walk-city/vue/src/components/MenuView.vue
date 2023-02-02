@@ -6,6 +6,16 @@
       <dropdown-bar></dropdown-bar>
     </div>
     <div class="cool-line"></div>
+
+    <router-link
+      v-bind:to="{ name: 'location-details' }"
+      v-if="$store.state.token != ''"
+    >
+      <div id="list-view">
+        {{ $store.state.token != "" ? "LIST VIEW" : " " }}
+      </div>
+    </router-link>
+    <div class="cool-line"></div>
     <div id="view-badges">
       {{ $store.state.token != "" ? "VIEW BADGES" : " " }}
     </div>
@@ -21,15 +31,6 @@
       <div @click="menuToggle" id="back-button">
         <img src="../assets/back-arrow.png" />
       </div>
-
-      <router-link
-        v-bind:to="{ name: 'location-details' }"
-        v-if="$store.state.token != ''"
-      >
-        <button class="btn-midnight-green" id="links">
-          LOCATIONS
-        </button>
-      </router-link>
 
       <button
         class="btn-midnight-green"
@@ -116,5 +117,13 @@ export default {
 #dropdown-container {
   width: 100vw;
   display: flex;
+}
+
+#list-view {
+  color: white;
+}
+
+#list-view:hover {
+  color: orange;
 }
 </style>
