@@ -41,7 +41,10 @@
 import MenuButton from "../components/MenuButton.vue";
 import MenuView from "../components/MenuView.vue";
 import LocationService from "../services/LocationService";
-import FilterResults from "../components/FilterResults.vue"
+import FilterResults from "../components/FilterResults.vue";
+
+// let dS = new google.maps.DirectionsService();
+// let dD = new google.maps.DirectionsRenderer();
 
 export default {
   name: "home",
@@ -64,7 +67,8 @@ export default {
   components: {
     MenuButton,
     MenuView,
-    FilterResults
+    FilterResults,
+
   },
   data() {
     return {
