@@ -25,7 +25,5 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: x-large;
-
-
 }
 </style>
