@@ -9,14 +9,6 @@
     <h4>{{ location.category }}</h4>
     <p>{{ location.address }}</p>
     <p>{{ location.social }}</p>
-    <p>
-      Checking?
-      <input
-        type="checkbox"
-        v-bind:checked="location.checked"
-        v-on:change="onCheckedChange(location)"
-      />
-    </p>
   </div>
 </template>
 
@@ -24,18 +16,8 @@
 export default {
   name: "location-display",
   props: ["location"],
-  methods: {
-    onCheckedChange(location) {
-      this.$store.commit("FLIP_CHECKED", location);
-    }
-  },
-  computed: {
-    // mediaLink() {
-    //   let textUrls = this.$store.getters.location.social;
-    //   let urls = textUrls.map(url => "https://" + url);
-    //   return urls;
-    // }
-  }
+  methods: {},
+  computed: {}
 };
 </script>
 
