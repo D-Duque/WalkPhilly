@@ -25,21 +25,20 @@ export default {
     // call filteredMarkers in Home
     filteredMarkers() {
       const filteredLocations = this.$store.getters.nearbyLocations.filter(
-        location =>
-        location.name == "" ||
+        (location) =>
+          this.textFilter == "" ||
           location.name.toLowerCase().includes(this.textFilter.toLowerCase())
-          
       );
       this.$store.commit("FILTER_LOCATIONS", filteredLocations);
-    }
+    },
   },
   data() {
     return {
-      textFilter: ""
+      textFilter: "",
     };
   },
   mounted() {},
-  computed: {}
+  computed: {},
 };
 </script>
 <style scoped>
