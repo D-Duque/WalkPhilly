@@ -1,8 +1,8 @@
 <template>
-    <div id="filter-results"
-        :class="{ 'filter-on': filteringOn, 'filter-off': !filteringOn, 'one-filter': oneFilter, 'two-filter': twoFilter }">
-        <div id="magnifying-glass"><img v-show="twoFilter" src="../assets/search-big.png"><img v-show="oneFilter"></div>
-        <div id="text-category-results">
+    <div id="filter-results" :class="{ 'filter-on': filteringOn, 'filter-off': !filteringOn }" @click="menuToggle">
+        <img id="big-glass" v-show="twoFilter" src="../assets/search-big.png"><img id="small-glass" v-show="oneFilter"
+            src="../assets/search-little.png">
+        <div id="text-category-results" :class="{ 'one-filter': oneFilter, 'two-filter': twoFilter }">
             <div id="text-result">{{ this.$store.state.textFilter }}</div>
             <div id="category-result">{{ this.$store.state.currentCategory }}</div>
         </div>
@@ -10,6 +10,11 @@
 </template>
 <script>
 export default {
+    methods: {
+        menuToggle() {
+            this.$store.commit("MENU_TOGGLE");
+        }
+    },
     computed: {
         filteringOn() {
             return this.$store.state.textFilter != '' || this.$store.state.currentCategory != ''
@@ -33,7 +38,7 @@ export default {
     border: 1px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 40px;
-    flex-direction: column;
+
     justify-content: center;
     align-items: center;
     width: 90%;
@@ -42,16 +47,40 @@ export default {
 
 
 .filter-on {
-    position: absolute;
+    position: fixed;
     top: 1px;
+    left: 5%;
     font-size: large;
     height: auto;
     align-self: center;
+    margin: 0 auto;
+}
+
+img {
+    position: absolute;
+
+}
+
+#big-glass {
+    margin-left: 1rem;
+    margin-top: .5rem;
+}
+
+
+.one-filter {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .two-filter {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .filter-off {
