@@ -20,14 +20,13 @@ export default new Vuex.Store({
   state: {
     token: currentToken || "",
     user: currentUser || {},
-    isMenuButtonShowing: false,
-    isMenuViewShowing: true,
+    isMenuButtonShowing: true,
+    isMenuViewShowing: false,
     locations: [],
     userPos: {},
     textFilter: "",
     currentCategory: "",
-    filteredMarkers: [],
-    isExpanded: true
+    filteredMarkers: []
   },
   getters: {
     nearbyLocations(state) {
@@ -87,9 +86,6 @@ export default new Vuex.Store({
     MENU_TOGGLE(state) {
       state.isMenuButtonShowing = !state.isMenuButtonShowing;
       state.isMenuViewShowing = !state.isMenuViewShowing;
-    },
-    MENU_EXPAND(state){
-      state.isExpanded = !state.isExpanded;
     },
     LOAD_LOCATIONS(state, locations) {
       state.locations = locations;
