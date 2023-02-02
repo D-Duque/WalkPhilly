@@ -14,7 +14,7 @@ export default MapElementFactory({
   props: {
     origin: { type: [Object, Array] },
     destination: { type: [Object, Array] },
-    travelMode: { type: String },
+    travelMode: { type: String }
   },
 
   afterCreate(directionsRenderer) {
@@ -29,7 +29,7 @@ export default MapElementFactory({
           {
             origin,
             destination,
-            travelMode,
+            travelMode
           },
           (response, status) => {
             if (status !== "OK") return;
@@ -40,5 +40,5 @@ export default MapElementFactory({
         );
       }
     );
-  },
+  }
 });
