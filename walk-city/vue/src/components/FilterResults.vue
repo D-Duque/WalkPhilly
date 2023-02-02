@@ -40,16 +40,13 @@ export default {
 
 }
 
-#text-category-results {
-    color: white;
-}
 
 .filter-on {
-    position: fixed;
+    position: absolute;
     top: 1px;
     font-size: large;
     height: auto;
-
+    align-self: center;
 }
 
 .two-filter {
