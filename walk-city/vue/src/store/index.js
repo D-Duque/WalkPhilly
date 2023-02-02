@@ -52,8 +52,19 @@ export default new Vuex.Store({
 
           return isLatNear && isLngNear;
         });
+        // state.filteredMarkers = locations;
       return locations;
-    }
+    },
+    // filteredLocations(state){
+    //   if (!state.textFilter == "" || !state.currentCategory == "")
+    //   {
+    //     return state.filteredMarkers = state.filteredMarkers.filter(
+    //       location => location.category.toLowerCase().includes(state.currentCategory.toLowerCase())
+    //         && location.name.toLowerCase().includes(state.textFilter.toLowerCase())
+    //     );
+    //   }
+    //   return state.filteredMarkers
+    // }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -82,15 +93,20 @@ export default new Vuex.Store({
     SET_USER_POSITION(state, position) {
       state.userPos = position;
     },
-    FILTER_LOCATIONS(state, filteredLocations) {
-      state.filteredMarkers = filteredLocations;
+    LOAD_NEARBY_LOCATIONS(state){
+      state.filteredMarkers = this.getters.nearbyLocations
     },
+    // SEARCH_LOCATIONS(state, text) {
+    //   state.textFilter = text;
+    // },
+    // FILTER_CATEGORY(state, category){
+    //   state.currentCategory = category
+    // }
+
     FILTER_ALL(state){
       const filteredLocations = this.getters.nearbyLocations.filter(
-        location =>
-          location.category.toLowerCase().includes(state.currentCategory.toLowerCase())
-          &&
-          location.name.toLowerCase().includes(state.textFilter.toLowerCase())
+        location => location.category.toLowerCase().includes(state.currentCategory.toLowerCase())
+          && location.name.toLowerCase().includes(state.textFilter.toLowerCase())
       );
       state.filteredMarkers = filteredLocations;
     }
