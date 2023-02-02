@@ -1,10 +1,6 @@
 <template>
   <div class="dropdown-container">
-    <b-form-select
-      v-model.lazy="currentCategory"
-      :options="options"
-      @change.="filteredCategories"
-    ></b-form-select>
+    <b-form-select v-model="currentCategory" :options="options" @change="filteredMarkers"></b-form-select>
   </div>
 </template>
 <script>
@@ -12,22 +8,16 @@ export default {
   name: "dropdown-bar",
   props: [],
   methods: {
-    filteredCategories() {
-      const filteredLocations = this.$store.getters.nearbyLocations.filter(
-        (location) =>
-          this.category == "" ||
-          location.category
-            .toLowerCase()
-            .includes(this.currentCategory.toLowerCase())
-      );
-      this.$store.commit("FILTER_LOCATIONS", filteredLocations);
-    },
+    filterMarkers() {
+      this.$store.state.currentCategory = this.currentCategory;
+      this.$store.commit("FILTER_ALL");
+    }
   },
   data() {
     return {
       currentCategory: "",
       options: [
-        { value: "", text: 'Categories' },
+        { value: '', text: 'Categories' },
         { value: 'Restaurant', text: 'Restaurants' },
         { value: 'Museum', text: 'Museums' },
         { value: 'Bar', text: 'Bars' },
