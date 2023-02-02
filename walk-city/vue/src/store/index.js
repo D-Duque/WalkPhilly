@@ -84,22 +84,12 @@ export default new Vuex.Store({
     SET_USER_POSITION(state, position) {
       state.userPos = position;
     },
+    FILTER_LOCATIONS(state, filteredLocations) {
+      state.filteredMarkers = filteredLocations;
+    },
     LOAD_NEARBY_LOCATIONS(state) {
       state.filteredMarkers = this.getters.nearbyLocations;
     },
-    FLIP_CHECKED(state, locationToChange) {
-      locationToChange.checked = !locationToChange.checked;
-    },
-    SET_ACTIVE_PRODUCT(state, locationID) {
-      state.activeLocation = locationID;
-    },
-    // SEARCH_LOCATIONS(state, text) {
-    //   state.textFilter = text;
-    // },
-    // FILTER_CATEGORY(state, category){
-    //   state.currentCategory = category
-    // }
-
     FILTER_ALL(state) {
       const filteredLocations = this.getters.nearbyLocations.filter(
         location =>
