@@ -1,7 +1,7 @@
 <template>
   <div class="form-outline">
     <input type="search" id="search-input" class="form-control" placeholder="Search" aria-label="Search"
-      v-model="textFilter" @change="filteredMarkers" />
+      v-model="textFilter" @change="filterMarkers" />
   </div>
 </template>
 
@@ -16,15 +16,9 @@ export default {
     // commit to FILTER_LOCATIONS in computed property, pass list of locations return commit?
 
     // call filteredMarkers in Home
-    filteredMarkers() {
-      const filteredLocations = this.$store.getters.nearbyLocations.filter(
-        location =>
-          location.name == "" ||
-          location.name.toLowerCase().includes(this.textFilter.toLowerCase())
-
-      );
+    filterMarkers() {
       this.$store.state.textFilter = this.textFilter;
-      this.$store.commit("FILTER_LOCATIONS", filteredLocations);
+      this.$store.commit("FILTER_ALL");
     }
   },
   data() {

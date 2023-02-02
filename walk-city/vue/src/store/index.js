@@ -84,6 +84,15 @@ export default new Vuex.Store({
     },
     FILTER_LOCATIONS(state, filteredLocations) {
       state.filteredMarkers = filteredLocations;
+    },
+    FILTER_ALL(state){
+      const filteredLocations = this.getters.nearbyLocations.filter(
+        location =>
+          location.category.toLowerCase().includes(state.currentCategory.toLowerCase())
+          &&
+          location.name.toLowerCase().includes(state.textFilter.toLowerCase())
+      );
+      state.filteredMarkers = filteredLocations;
     }
   }
 });
