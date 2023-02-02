@@ -39,7 +39,8 @@ export default new Vuex.Store({
               lng: location.longitude
             },
             category: location.category,
-            address: location.address
+            address: location.address,
+            social: location.socialMedia
           };
         })
         .filter(location => {
@@ -86,14 +87,18 @@ export default new Vuex.Store({
     FILTER_LOCATIONS(state, filteredLocations) {
       state.filteredMarkers = filteredLocations;
     },
-    LOAD_NEARBY_LOCATIONS(state){
-      state.filteredMarkers = this.getters.nearbyLocations
+    LOAD_NEARBY_LOCATIONS(state) {
+      state.filteredMarkers = this.getters.nearbyLocations;
     },
-    FILTER_ALL(state){
+    FLIP_CHECKED(state, locationToChange) {
+      locationToChange.checked = !locationToChange.checked;
+    },
+    FILTER_ALL(state) {
       const filteredLocations = this.getters.nearbyLocations.filter(
         location =>
-          location.category.toLowerCase().includes(state.currentCategory.toLowerCase())
-          &&
+          location.category
+            .toLowerCase()
+            .includes(state.currentCategory.toLowerCase()) &&
           location.name.toLowerCase().includes(state.textFilter.toLowerCase())
       );
       state.filteredMarkers = filteredLocations;

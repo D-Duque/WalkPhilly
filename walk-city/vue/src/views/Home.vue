@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    
     <!-- <div>
       <table>
         <tr>
@@ -17,7 +16,7 @@
     </div> -->
 
     <GmapMap
-      :center=userPos
+      :center="userPos"
       :zoom="15"
       :options="{
         zoomControl: false,
@@ -38,15 +37,22 @@
         v-for="(m, index) in $store.state.filteredMarkers"
         :ref="`marker${index}`"
         :position="m.position"
-        :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index + 1}|FF0000|FFFFFF`"
-        :clickable="true" :draggable="false" @click="openMarker(index)">
+        :icon="
+          `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index +
+            1}|FF0000|FFFFFF`
+        "
+        :clickable="true"
+        :draggable="false"
+        @click="openMarker(index)"
+      >
         <GmapInfoWindow
-        :closeclick="true"
-        @closeclick="openMarker(null)"
-        :opened="openMarkerId === index">
-         <div id="location-name"> {{m.name}}</div>
-           <div id="location-address"> {{m.address}}</div>
-        </GMapInfoWindow>
+          :closeclick="true"
+          @closeclick="openMarker(null)"
+          :opened="openMarkerId === index"
+        >
+          <div id="location-name">{{ m.name }}</div>
+          <div id="location-address">{{ m.address }}</div>
+        </GmapInfoWindow>
       </GmapMarker>
       <DirectionsRenderer
         travelMode="WALKING"
@@ -67,7 +73,7 @@ import MenuButton from "../components/MenuButton.vue";
 import MenuView from "../components/MenuView.vue";
 import LocationService from "../services/LocationService";
 import FilterResults from "../components/FilterResults.vue";
-import DirectionsRenderer from "../components/DirectionsRenderer.js"
+import DirectionsRenderer from "../components/DirectionsRenderer.js";
 
 // let dS = new google.maps.DirectionsService();
 // let dD = new google.maps.DirectionsRenderer();
@@ -80,17 +86,17 @@ export default {
         this.$store.commit("MENU_TOGGLE");
       }
     },
-    geolocate: function () {
-      navigator.geolocation.getCurrentPosition((position) => {
+    geolocate: function() {
+      navigator.geolocation.getCurrentPosition(position => {
         this.userPos = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lng: position.coords.longitude
         };
         this.$store.commit("SET_USER_POSITION", this.userPos);
       });
     },
     openMarker(id) {
-      this.openMarkerId = id
+      this.openMarkerId = id;
     },
     setPlace(place) {
       this.currentPlace = place;
@@ -98,31 +104,29 @@ export default {
     addMarker(index) {
       const marker = {
         lat: this.currentPlace.geometry.location.lat(),
-        lng: this.currentPlace.geometry.location.lng(),
+        lng: this.currentPlace.geometry.location.lng()
       };
       if (index === 0) this.startLocation = marker;
       if (index === 1) this.endLocation = marker;
       this.center = marker;
-    },
-
+    }
   },
   components: {
     MenuButton,
     MenuView,
     FilterResults,
     DirectionsRenderer
-
   },
   data() {
     return {
       userPos: {
         lat: 0,
-          lng: 0,
+        lng: 0
       },
       openMarkerId: null,
       startLocation: null,
       endLocation: null,
-      currentPlace: null,
+      currentPlace: null
     };
   },
   mounted() {
@@ -130,7 +134,7 @@ export default {
   },
   created() {
     // get data from API
-    LocationService.getAllLocations().then((response) => {
+    LocationService.getAllLocations().then(response => {
       this.$store.commit("LOAD_LOCATIONS", response.data);
       this.$store.commit("LOAD_NEARBY_LOCATIONS");
     });
@@ -162,13 +166,14 @@ export default {
     // },
     getUserPos() {
       return this.userPos;
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-#location-name, #location-address {
+#location-name,
+#location-address {
   font-weight: bold;
   color: black;
 }
