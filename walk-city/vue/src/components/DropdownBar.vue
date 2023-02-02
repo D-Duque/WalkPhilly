@@ -1,9 +1,9 @@
 <template>
   <div class="dropdown-container">
     <b-form-select
-      v-model="currentCategory"
+      v-model.lazy="currentCategory"
       :options="options"
-      @change="filteredCategories"
+      @change.="filteredCategories"
     ></b-form-select>
   </div>
 </template>
@@ -20,7 +20,6 @@ export default {
             .toLowerCase()
             .includes(this.currentCategory.toLowerCase())
       );
-      this.$store.state.currentCategory = this.currentCategory;
       this.$store.commit("FILTER_LOCATIONS", filteredLocations);
     },
   },
@@ -28,7 +27,7 @@ export default {
     return {
       currentCategory: "",
       options: [
-        { value: null, text: 'Categories' },
+        { value: "", text: 'Categories' },
         { value: 'Restaurant', text: 'Restaurants' },
         { value: 'Museum', text: 'Museums' },
         { value: 'Bar', text: 'Bars' },
