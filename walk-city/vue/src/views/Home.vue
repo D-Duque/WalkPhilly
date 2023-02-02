@@ -55,16 +55,12 @@ export default {
   },
   mounted() {
     this.geolocate();
- 
   },
   created() {
     // get data from API
     LocationService.getAllLocations().then(response => {
       this.$store.commit("LOAD_LOCATIONS", response.data);
-      this.$store.commit("LOAD_NEARBY_LOCATIONS")
     });
-  
-
   },
   computed: {
     // nearbyMarkers() {
