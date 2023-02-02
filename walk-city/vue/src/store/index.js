@@ -38,7 +38,8 @@ export default new Vuex.Store({
               lat: location.latitude,
               lng: location.longitude
             },
-            category: location.category
+            category: location.category,
+            address: location.address
           };
         })
         .filter(location => {
