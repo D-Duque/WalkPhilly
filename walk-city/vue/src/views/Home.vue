@@ -4,6 +4,7 @@
       :center=this.userPos
       :zoom="15"
       :options="{
+        mapId: '5bad73ddd2112653',
         zoomControl: false,
         mapTypeControl: false,
         scaleControl: false,
