@@ -54,19 +54,8 @@ export default new Vuex.Store({
 
           return isLatNear && isLngNear;
         });
-      // state.filteredMarkers = locations;
       return locations;
     }
-    // filteredLocations(state){
-    //   if (!state.textFilter == "" || !state.currentCategory == "")
-    //   {
-    //     return state.filteredMarkers = state.filteredMarkers.filter(
-    //       location => location.category.toLowerCase().includes(state.currentCategory.toLowerCase())
-    //         && location.name.toLowerCase().includes(state.textFilter.toLowerCase())
-    //     );
-    //   }
-    //   return state.filteredMarkers
-    // }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
