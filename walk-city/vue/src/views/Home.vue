@@ -23,9 +23,13 @@
         :ref="`marker${index}`"
         :position="m.position"
         :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index + 1}|FF0000|FFFFFF`"
-        :clickable="true" :draggable="false" @click="center = m.position">
-        <GMapInfoWindow>
-          <div>I am in info window</div>
+        :clickable="true" :draggable="false" @click="openMarker(index)">
+        <GmapInfoWindow
+        :closeclick="true"
+        @closeclick="openMarker(null)"
+        :opened="openMarkerId === index">
+         <div id="location-name"> {{m.name}}</div>
+           <div id="location-address"> {{m.address}}</div>
         </GMapInfoWindow>
       </GmapMarker>
     </GmapMap>
@@ -41,7 +45,10 @@
 import MenuButton from "../components/MenuButton.vue";
 import MenuView from "../components/MenuView.vue";
 import LocationService from "../services/LocationService";
-import FilterResults from "../components/FilterResults.vue"
+import FilterResults from "../components/FilterResults.vue";
+
+// let dS = new google.maps.DirectionsService();
+// let dD = new google.maps.DirectionsRenderer();
 
 export default {
   name: "home",
@@ -60,18 +67,23 @@ export default {
         this.$store.commit("SET_USER_POSITION", this.userPos);
       });
     },
+    openMarker(id) {
+      this.openMarkerId = id
+    }
   },
   components: {
     MenuButton,
     MenuView,
-    FilterResults
+    FilterResults,
+
   },
   data() {
     return {
       userPos: {
         lat: 0,
           lng: 0,
-      }
+      },
+      openMarkerId: null,
     };
   },
   mounted() {
@@ -115,3 +127,12 @@ export default {
   },
 };
 </script>
+
+<style>
+ div {
+  color: black;
+}
+#location-name {
+  font-weight: bold;
+}
+</style>
