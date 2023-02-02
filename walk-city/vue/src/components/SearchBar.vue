@@ -1,14 +1,7 @@
 <template>
   <div class="form-outline">
-    <input
-      type="search"
-      id="search-input"
-      class="form-control"
-      placeholder="Search"
-      aria-label="Search"
-      v-model="textFilter"
-      @change="filteredMarkers"
-    />
+    <input type="search" id="search-input" class="form-control" placeholder="Search" aria-label="Search"
+      v-model="textFilter" @change="filteredMarkers" />
   </div>
 </template>
 
@@ -29,6 +22,7 @@ export default {
           this.textFilter == "" ||
           location.name.toLowerCase().includes(this.textFilter.toLowerCase())
       );
+      this.$store.state.textFilter = this.textFilter;
       this.$store.commit("FILTER_LOCATIONS", filteredLocations);
     },
   },
