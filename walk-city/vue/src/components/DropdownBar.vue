@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown-container">
-    <b-form-select v-model="currentCategory" :options="options" @change="filteredMarkers"></b-form-select>
+    <b-form-select v-model="currentCategory" :options="options" @change="filterMarkers"></b-form-select>
   </div>
 </template>
 <script>

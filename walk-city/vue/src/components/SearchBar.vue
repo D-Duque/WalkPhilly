@@ -1,7 +1,7 @@
 <template>
   <div class="form-outline">
     <input type="search" id="search-input" class="form-control" placeholder="Search" aria-label="Search"
-      v-model="textFilter" @change="filterMarkers" />
+      v-model="textFilter" @input="filterMarkers" />
   </div>
 </template>
 
