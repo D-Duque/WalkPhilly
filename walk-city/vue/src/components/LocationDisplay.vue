@@ -4,10 +4,10 @@
     v-bind:class="{ checking: location.checked }"
     v-bind:key="location.id"
   >
-    <h3>{{ location.namme }}</h3>
+    <h3>{{ location.name }}</h3>
 
-    <h4>{{ location.address }}</h4>
-    <p>{{ location.category }}</p>
+    <h4>{{ location.category }}</h4>
+    <p>{{ location.address }}</p>
     <p>{{ location.social }}</p>
     <p>
       Checking?
@@ -38,9 +38,11 @@ div.main div.location {
   border-radius: 6px;
   padding: 1rem;
   margin: 10px;
+  background-color: #ffff;
+  color: black;
 }
 
-div.main div.location.checking {
+div.main div.location.check {
   background-color: lightyellow;
 }
 

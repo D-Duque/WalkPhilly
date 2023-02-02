@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <GmapMap
-      :center=userPos
+      :center="userPos"
       :zoom="15"
       :options="{
         zoomControl: false,
@@ -22,8 +22,14 @@
         v-for="(m, index) in $store.state.filteredMarkers"
         :ref="`marker${index}`"
         :position="m.position"
-        :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index + 1}|FF0000|FFFFFF`"
-        :clickable="true" :draggable="false" @click="center = m.position">
+        :icon="
+          `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index +
+            1}|FF0000|FFFFFF`
+        "
+        :clickable="true"
+        :draggable="false"
+        @click="center = m.position"
+      >
         <GMapInfoWindow>
           <div>I am in info window</div>
         </GMapInfoWindow>
@@ -41,7 +47,7 @@
 import MenuButton from "../components/MenuButton.vue";
 import MenuView from "../components/MenuView.vue";
 import LocationService from "../services/LocationService";
-import FilterResults from "../components/FilterResults.vue"
+import FilterResults from "../components/FilterResults.vue";
 
 export default {
   name: "home",
@@ -51,15 +57,15 @@ export default {
         this.$store.commit("MENU_TOGGLE");
       }
     },
-    geolocate: function () {
-      navigator.geolocation.getCurrentPosition((position) => {
+    geolocate: function() {
+      navigator.geolocation.getCurrentPosition(position => {
         this.userPos = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lng: position.coords.longitude
         };
         this.$store.commit("SET_USER_POSITION", this.userPos);
       });
-    },
+    }
   },
   components: {
     MenuButton,
@@ -70,7 +76,7 @@ export default {
     return {
       userPos: {
         lat: 0,
-          lng: 0,
+        lng: 0
       }
     };
   },
@@ -79,7 +85,7 @@ export default {
   },
   created() {
     // get data from API
-    LocationService.getAllLocations().then((response) => {
+    LocationService.getAllLocations().then(response => {
       this.$store.commit("LOAD_LOCATIONS", response.data);
       this.$store.commit("LOAD_NEARBY_LOCATIONS");
     });
@@ -111,7 +117,7 @@ export default {
     // },
     getUserPos() {
       return this.userPos;
-    },
-  },
+    }
+  }
 };
 </script>

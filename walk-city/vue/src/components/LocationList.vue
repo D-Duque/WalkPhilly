@@ -1,7 +1,7 @@
 <template>
   <div class="locations">
     <location-display
-      v-for="location in filteredLocations"
+      v-for="location in this.$store.state.filteredMarkers"
       v-bind:key="location.id"
       v-bind:location="location"
     />
@@ -17,9 +17,9 @@ export default {
     LocationDisplay
   },
   computed: {
-    filteredLocations() {
-      return this.$store.state.filteredMarkers;
-    }
+    // filteredLocations() {
+    //   return this.$store.state.filteredMarkers;
+    // }
   }
 };
 </script>

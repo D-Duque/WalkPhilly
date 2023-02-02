@@ -1,9 +1,7 @@
 <template>
   <div class="main">
     <div>
-      <router-link class="btn btn-outline-primary" to="/"
-        >Back to Map</router-link
-      >
+      <router-link class="btn btn-outline-primary" to="/">Back</router-link>
     </div>
     <location-list />
   </div>
@@ -19,19 +17,18 @@ export default {
   },
   data() {
     return {
-      id: 0
+      // id: 0
     };
   },
   created() {
     // this is the constructor
-    this.id = +this.$route.params.id;
-
-    this.$store.commit("SET_ACTIVE_PRODUCT", this.id);
+    // this.id = +this.$route.params.id;
+    // this.$store.commit("SET_ACTIVE_PRODUCT", this.id);
   },
   computed: {
-    location() {
-      return this.$store.getters.location;
-    }
+    // location() {
+    //   return this.$store.getters.location;
+    // }
   }
 };
 </script>

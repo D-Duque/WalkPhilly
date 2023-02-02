@@ -6,22 +6,47 @@
       <dropdown-bar></dropdown-bar>
     </div>
     <div class="cool-line"></div>
-    <div id="view-badges">{{ $store.state.token != '' ? 'VIEW BADGES' : ' ' }} </div>
-    <div class="cool-line">
+    <div id="view-badges">
+      {{ $store.state.token != "" ? "VIEW BADGES" : " " }}
     </div>
-    <div id="username"> {{ $store.state.token != '' ? $store.state.user.username.toUpperCase() : 'GUEST' }}</div>
+    <div class="cool-line"></div>
+    <div id="username">
+      {{
+        $store.state.token != ""
+          ? $store.state.user.username.toUpperCase()
+          : "GUEST"
+      }}
+    </div>
     <div id="home-and-logout">
       <div @click="menuToggle" id="back-button">
         <img src="../assets/back-arrow.png" />
       </div>
 
+      <router-link
+        v-bind:to="{ name: 'location-details' }"
+        v-if="$store.state.token != ''"
+      >
+        <button class="btn-midnight-green" id="links">
+          LOCATIONS
+        </button>
+      </router-link>
 
-      <button class="btn-midnight-green" id="log-out" v-if="$store.state.token != ''" @click="logoutAndMenuToggle">LOG
-        OUT</button>
+      <button
+        class="btn-midnight-green"
+        id="log-out"
+        v-if="$store.state.token != ''"
+        @click="logoutAndMenuToggle"
+      >
+        LOG OUT
+      </button>
 
-
-      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">
-        <button class="btn-midnight-green" id="log-out" @click="menuToggle">LOG IN</button>
+      <router-link
+        v-bind:to="{ name: 'login' }"
+        v-if="$store.state.token == ''"
+      >
+        <button class="btn-midnight-green" id="log-out" @click="menuToggle">
+          LOG IN
+        </button>
       </router-link>
     </div>
   </div>
@@ -32,12 +57,10 @@ import SearchBar from "./SearchBar.vue";
 export default {
   name: "menu-view",
   props: [],
-  computed: {
-
-  },
+  computed: {},
   components: {
     SearchBar,
-    DropdownBar,
+    DropdownBar
   },
   methods: {
     menuToggle() {
@@ -50,7 +73,7 @@ export default {
       this.menuToggle();
       this.logout();
     }
-  },
+  }
 };
 </script>
 
@@ -93,6 +116,5 @@ export default {
 #dropdown-container {
   width: 100vw;
   display: flex;
-
 }
 </style>
