@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import LocationDisplay from "./LocationDisplay";
+import LocationDisplay from "../components/LocationDisplay";
 
 export default {
   name: "location-list",
