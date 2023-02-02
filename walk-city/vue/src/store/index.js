@@ -85,6 +85,9 @@ export default new Vuex.Store({
     FILTER_LOCATIONS(state, filteredLocations) {
       state.filteredMarkers = filteredLocations;
     },
+    LOAD_NEARBY_LOCATIONS(state){
+      state.filteredMarkers = this.getters.nearbyLocations
+    },
     FILTER_ALL(state){
       const filteredLocations = this.getters.nearbyLocations.filter(
         location =>
