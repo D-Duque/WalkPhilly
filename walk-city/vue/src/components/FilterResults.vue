@@ -1,11 +1,15 @@
 <template>
-    <div id="filter-results" :class>
+    <div id="filter-results" :class="{ filterOn: filteringOn() }">
         Philly Cheesesteak
     </div>
 </template>
 <script>
 export default {
-
+    methods: {
+        filteringOn() {
+            return this.$store.state.textFilter != '' || this.$store.state.currentCategory != ''
+        },
+    }
 }
 </script>
 <style scoped>
