@@ -3,8 +3,8 @@
         <img id="big-glass" v-show="twoFilter" src="../assets/search-big.png"><img id="small-glass" v-show="oneFilter"
             src="../assets/search-little.png">
         <div id="text-category-results" :class="{ 'one-filter': oneFilter, 'two-filter': twoFilter }">
-            <div id="text-result">{{ this.$store.state.textFilter }}</div>
             <div id="category-result">{{ this.$store.state.currentCategory }}</div>
+            <div id="text-result">{{ this.$store.state.textFilter }}</div>
         </div>
     </div>
 </template>
@@ -81,6 +81,10 @@ img {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+
+.two-filter>div:nth-child(1) {
+    font-weight: bold;
 }
 
 .filter-off {
