@@ -1,6 +1,6 @@
 <template>
   <div id="main-menu">
-    <div id="title">MENU</div>
+    <div id="title" @click="menuToggle">MENU</div>
     <search-bar></search-bar>
     <div id="dropdown-container">
       <dropdown-bar></dropdown-bar>
