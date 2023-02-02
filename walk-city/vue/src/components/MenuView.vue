@@ -8,14 +8,19 @@
     <div class="cool-line"></div>
     <div id="view-badges">VIEW BADGES</div>
     <div class="cool-line"></div>
-    <div id="username">{{ $store.state.user.username.toUpperCase() }}</div>
+    <div id="username">{{ isLoggedIn? $store.state.user.username.toUpperCase() : 'GUEST'}}</div>
     <div id="home-and-logout">
       <div @click="menuToggle" id="back-button">
         <img src="../assets/back-arrow.png" />
       </div>
 
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">
-        <button class="btn-midnight-green" id="log-out" @click="menuToggle">LOG OUT</button>
+
+      <button class="btn-midnight-green" id="log-out" v-if="$store.state.token != ''" @click="logoutAndMenuToggle">LOG
+        OUT</button>
+
+
+      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">
+        <button class="btn-midnight-green" id="log-out" @click="menuToggle">LOG IN</button>
       </router-link>
     </div>
   </div>
@@ -26,6 +31,15 @@ import SearchBar from "./SearchBar.vue";
 export default {
   name: "menu-view",
   props: [],
+  computed: {
+    isLoggedIn() {
+      if (Object.keys(this.$store.state.user).length == 0) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
   components: {
     SearchBar,
     DropdownBar,
@@ -34,6 +48,13 @@ export default {
     menuToggle() {
       this.$store.commit("MENU_TOGGLE");
     },
+    logout() {
+      this.$store.commit("LOGOUT");
+    },
+    logoutAndMenuToggle() {
+      this.menuToggle();
+      this.logout();
+    }
   },
 };
 </script>

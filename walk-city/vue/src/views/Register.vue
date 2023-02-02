@@ -6,45 +6,27 @@
         <img src="../assets/llama.png">
       </div>
       <div class="register-message text-center">
-        Please create an account so you can find an amazing philly cheesesteak and explore everything Philadelphia has to offer!
+        Please create an account so you can find an amazing philly cheesesteak and explore everything Philadelphia has
+        to offer!
       </div>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
 
       <div class="create-account">
-      <label for="username" class="sr-only">Username</label>
-      <input
-        type="text"
-        id="username"
-        class="form-control"
-        placeholder="enter username"
-        v-model="user.username"
-        required
-        autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="password"
-        class="form-control"
-        placeholder="enter password"
-        v-model="user.password"
-        required
-      />
-      <input
-        type="password"
-        id="confirmPassword"
-        class="form-control"
-        placeholder="confirm password"
-        v-model="user.confirmPassword"
-        required
-      />
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" id="username" class="form-control" placeholder="enter username" v-model="user.username"
+          required autofocus />
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" class="form-control" placeholder="enter password" v-model="user.password"
+          required />
+        <input type="password" id="confirmPassword" class="form-control" placeholder="confirm password"
+          v-model="user.confirmPassword" required />
       </div>
 
       <div class="button-container text-center">
-      <div><router-link :to="{ name: 'login' }">Have an account?</router-link> </div>
-      <div><button class="btn-midnight-green" type="submit"> CREATE ACCOUNT </button> </div>
+        <div><router-link :to="{ name: 'login' }">Have an account?</router-link> </div>
+        <div><button class="btn-midnight-green" type="submit"> CREATE ACCOUNT </button> </div>
       </div>
     </form>
   </div>
@@ -100,4 +82,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
