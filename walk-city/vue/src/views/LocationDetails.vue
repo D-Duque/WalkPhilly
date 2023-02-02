@@ -15,20 +15,11 @@ export default {
   components: {
     LocationList
   },
+
   data() {
-    return {
-      // id: 0
-    };
+    return {};
   },
-  created() {
-    // this is the constructor
-    // this.id = +this.$route.params.id;
-    // this.$store.commit("SET_ACTIVE_PRODUCT", this.id);
-  },
-  computed: {
-    // location() {
-    //   return this.$store.getters.location;
-    // }
-  }
+  created() {},
+  computed: {}
 };
 </script>

@@ -8,7 +8,7 @@
 
     <h4>{{ location.category }}</h4>
     <p>{{ location.address }}</p>
-    <p>{{ location.social }}</p>
+    <p>{{ location.social }}></p>
     <p>
       Checking?
       <input
@@ -28,33 +28,36 @@ export default {
     onCheckedChange(location) {
       this.$store.commit("FLIP_CHECKED", location);
     }
+  },
+  computed: {
+    // mediaLink() {
+    //   let textUrls = this.$store.getters.location.social;
+    //   let urls = textUrls.map(url => "https://" + url);
+    //   return urls;
+    // }
   }
 };
 </script>
 
 <style>
-div.main div.location {
+div.location {
   border: 1px black solid;
   border-radius: 6px;
   padding: 1rem;
   margin: 10px;
-  background-color: #ffff;
-  color: black;
+  background-color: white;
+  color: rgb(0, 73, 83);
 }
 
-div.main div.location.check {
-  background-color: lightyellow;
-}
-
-div.main div.location p {
+div.location p {
   margin: 20px;
 }
 
-div.main div.location h3 {
+div.location h3 {
   display: inline-block;
 }
 
-div.main div.location h4 {
+div.location h4 {
   font-size: 1rem;
 }
 </style>

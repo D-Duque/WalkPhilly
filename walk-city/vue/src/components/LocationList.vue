@@ -16,19 +16,15 @@ export default {
   components: {
     LocationDisplay
   },
-  computed: {
-    // filteredLocations() {
-    //   return this.$store.state.filteredMarkers;
-    // }
-  }
+  computed: {}
 };
 </script>
 
 <style>
-div.main {
+/* div.main {
   margin: 1rem 0;
-}
-div.main div.well-display {
+} */
+/* div.main div.well-display {
   display: flex;
   justify-content: space-around;
 }
@@ -43,12 +39,12 @@ div.main div.well-display div.well {
 }
 
 div.main div.well-display div.well span.amount {
-  color: darkslategray;
+  color: white;
   display: block;
   font-size: 2.5rem;
 }
 
 div.main div.well-display div.well {
   cursor: pointer;
-}
+} */
 </style>
