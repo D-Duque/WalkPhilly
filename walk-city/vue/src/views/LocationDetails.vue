@@ -50,5 +50,6 @@ export default {
 <style>
 #location-description {
   color: rgb(0, 73, 83);
+  text-align: center;
 }
 </style>
