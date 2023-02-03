@@ -62,13 +62,24 @@
             <div id="location-address">{{ m.address }}</div>
             <img id="location-img" src="../assets/harpers-garden.png" alt="" />
             <div id="location-buttons">
+              
+              <div id="directions">
+                <div class="dropdown-container">
+                  <b-form-select
+                    v-model="travelMode"
+                    :options="options"
+                    @change="setTravelMode"
+                  ></b-form-select>
+                </div>
+                <button
+                  class="btn-midnight-green"
+                  @click="showDirections(m.position)"
+                >
+                  DIRECTIONS
+                </button>
+                
+              </div>
               <button class="btn-midnight-green">CHECK-IN</button>
-              <button
-                class="btn-midnight-green"
-                @click="showDirections(m.position)"
-              >
-                DIRECTIONS
-              </button>
             </div>
           </div>
         </GmapInfoWindow>
@@ -79,7 +90,7 @@
       ></GmapMarker>
       <!-- </router-link> -->
       <DirectionsRenderer
-        travelMode="WALKING"
+        :travelMode="travelMode"
         :origin="startLocation"
         :destination="endLocation"
       />
@@ -129,6 +140,9 @@ export default {
       this.startLocation = this.userPos;
       this.endLocation = destination;
     },
+    setTravelMode(travelMode) {
+      this.travelMode = travelMode;
+    },
   },
   components: {
     MenuButton,
@@ -146,6 +160,11 @@ export default {
       startLocation: null,
       endLocation: null,
       currentPlace: null,
+      travelMode: "WALKING",
+      options: [
+        { value: "WALKING", text: "Walk" },
+        { value: "TRANSIT", text: "Transit" },
+      ],
     };
   },
   mounted() {
@@ -193,5 +212,11 @@ export default {
   flex-direction: column;
   align-items: center;
   flex-shrink: 2;
+}
+#directions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
 }
 </style>
