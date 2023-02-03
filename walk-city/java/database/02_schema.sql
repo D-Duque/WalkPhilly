@@ -39,10 +39,11 @@ CREATE TABLE badges (
 CREATE TABLE user_location (
     user_id INT NOT NULL,
     location_id INT NOT NULL,
-    checking BOOLEAN NOT NULL,
+    checking_id INT NOT NULL,
     PRIMARY KEY (
         user_id,
-        location_id)
+        location_id,
+        checking_id)
 );
 
 CREATE TABLE user_badge (
