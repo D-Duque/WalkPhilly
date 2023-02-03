@@ -53,4 +53,8 @@ div.location h3 {
 div.location h4 {
   font-size: 1rem;
 }
+
+#description {
+  text-align: justify;
+}
 </style>
