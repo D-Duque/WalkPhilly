@@ -2,7 +2,6 @@
 
 <template>
   <div class="main">
-    <search-bar></search-bar>
     <div id="location-card">
       <h2 id="location-name">{{ location.locationName }}</h2>
       <div class="cooler-line"></div>
@@ -17,33 +16,41 @@
         </button>
       </div>
       <div id="location-description">
-        <p>{{ location.description }}</p>
-        <p>{{ location.availability }}</p>
+        <p>
+          Description of the location and the hours. This is beautifcul location
+          where lots of things happen and stuff yeah.
+        </p>
+        <p>Current Hours:</p>
+        <p>Monday: 9:00am - 5:00pm</p>
       </div>
+      <img @click= "goBack" id="back-button" src="../assets/back-arrow.png" />
     </div>
   </div>
 </template>
 
 <script>
-import SearchBar from "../components/SearchBar.vue";
 import locationService from "../services/LocationService";
 export default {
   name: "location-details",
   components: {
-    SearchBar
   },
   props: [],
+  methods: {
+    goBack() {
+      this.$router.push({name: 'home'})
+    }
+  },
   data() {
     return {
-      location: {}
+      location: {},
     };
   },
   created() {
-    locationService.getLocationById(this.$route.params.id).then(response => {
+    locationService.getLocationById(this.$route.params.id).then((response) => {
       this.location = response.data;
     });
   },
-  computed: {}
+  computed: {},
 };
 </script>
 
