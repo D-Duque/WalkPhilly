@@ -32,6 +32,9 @@
       style="width: 100vw; height: 93vh"
       @click="closeMenuView"
     >
+      <!-- <router-link
+        :to="{ name: 'location-details', params: { id: location.locationId } }"
+      > -->
       <GmapMarker
         :key="index"
         v-for="(m, index) in $store.state.filteredMarkers"
@@ -45,15 +48,36 @@
         @click="openMarker(index)"
       >
         <GmapInfoWindow
+          class="info-window"
           :closeclick="true"
           @closeclick="openMarker(null)"
           :opened="openMarkerId === index"
         >
-          <LocationDetails />
-          <!-- <div id="location-name">{{ m.name }}</div>
-          <div id="location-address">{{ m.address }}</div> -->
+          <div id="body">
+            <router-link
+              :to="{ name: 'location-details', params: { id: index } }"
+              ><div id="location-name">{{ m.name }}</div></router-link
+            >
+
+            <div id="location-address">{{ m.address }}</div>
+            <img id="location-img" src="../assets/harpers-garden.png" alt="" />
+            <div id="location-buttons">
+              <button class="btn-midnight-green">CHECK-IN</button>
+              <button
+                class="btn-midnight-green"
+                @click="showDirections(m.position)"
+              >
+                DIRECTIONS
+              </button>
+            </div>
+          </div>
         </GmapInfoWindow>
       </GmapMarker>
+      <GmapMarker
+        :position="userPos"
+        :icon="require('../assets/user-location_50.png')"
+      ></GmapMarker>
+      <!-- </router-link> -->
       <DirectionsRenderer
         travelMode="WALKING"
         :origin="startLocation"
@@ -74,7 +98,6 @@ import MenuView from "../components/MenuView.vue";
 import LocationService from "../services/LocationService";
 import FilterResults from "../components/FilterResults.vue";
 import DirectionsRenderer from "../components/DirectionsRenderer.js";
-import LocationDetails from "./LocationDetails.vue";
 
 // let dS = new google.maps.DirectionsService();
 // let dD = new google.maps.DirectionsRenderer();
@@ -102,14 +125,9 @@ export default {
     setPlace(place) {
       this.currentPlace = place;
     },
-    addMarker(index) {
-      const marker = {
-        lat: this.currentPlace.geometry.location.lat(),
-        lng: this.currentPlace.geometry.location.lng(),
-      };
-      if (index === 0) this.startLocation = marker;
-      if (index === 1) this.endLocation = marker;
-      this.center = marker;
+    showDirections(destination) {
+      this.startLocation = this.userPos;
+      this.endLocation = destination;
     },
   },
   components: {
@@ -117,7 +135,6 @@ export default {
     MenuView,
     FilterResults,
     DirectionsRenderer,
-    LocationDetails,
   },
   data() {
     return {
@@ -142,30 +159,6 @@ export default {
     });
   },
   computed: {
-    // nearbyMarkers() {
-    //   const markers = this.$store.state.locations
-    //     .map((location) => {
-    //       return {
-    //         name: location.name,
-    //         position: {
-    //           lat: location.latitude,
-    //           lng: location.longitude,
-    //         },
-    //       };
-    //     })
-    //     .filter((location) => {
-    //       const range = 0.01;
-    //       const isLatNear =
-    //         location.position.lat - this.userPos.lat <= range &&
-    //         location.position.lat - this.userPos.lat >= -range;
-    //       const isLngNear =
-    //         location.position.lng - this.userPos.lng <= range &&
-    //         location.position.lng - this.userPos.lng >= -range;
-
-    //       return isLatNear && isLngNear;
-    //     });
-    //   return markers;
-    // },
     getUserPos() {
       return this.userPos;
     },
@@ -174,9 +167,31 @@ export default {
 </script>
 
 <style scoped>
-#location-name,
-#location-address {
+#location-name {
   font-weight: bold;
-  color: black;
+  color: rgb(0, 73, 83);
+  font-size: 24px;
+}
+#location-address {
+  color: rgb(0, 73, 83);
+}
+#body {
+  display: grid;
+  padding: 20px;
+  text-align: center;
+  place-content: center;
+  justify-content: center;
+}
+#location-img {
+  max-width: 240px;
+  margin: auto;
+  padding: 10px;
+}
+#location-buttons {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 2;
 }
 </style>

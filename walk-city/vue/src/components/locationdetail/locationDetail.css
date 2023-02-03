@@ -1,3 +1,25 @@
-#location-name {
-    color: black
+#location-card {
+    color: white;
+    position: absolute;
+    background-color: black;
+    padding-block: 50%;
+    text-align: center;
+    width: 353px;
+    height: 703px;
+    left: 14px;
+    top: 112px;
+
+    background: rgba(23, 19, 19, 0.25);
+    box-shadow: 10px 4px 4px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+    border-radius: 40px;
+    
 }
+
+#location-name {
+}
+.main {
+    display: flex;
+    
+}
+

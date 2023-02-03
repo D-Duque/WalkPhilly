@@ -26,13 +26,15 @@ export default new Vuex.Store({
     userPos: {},
     textFilter: "",
     currentCategory: "",
-    filteredMarkers: []
+    filteredMarkers: [],
+    currentMarker: null,
   },
   getters: {
     nearbyLocations(state) {
       const locations = state.locations
         .map(location => {
           return {
+            id: location.locationId,
             name: location.locationName,
             position: {
               lat: location.latitude,
@@ -102,6 +104,9 @@ export default new Vuex.Store({
           location.name.toLowerCase().includes(state.textFilter.toLowerCase())
       );
       state.filteredMarkers = filteredLocations;
+    },
+    SET_CURRENT_MARKER(state, id) {
+      state.currentMarker = id
     }
   }
 });
