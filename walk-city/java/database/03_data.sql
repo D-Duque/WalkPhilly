@@ -10,7 +10,7 @@ ALTER SEQUENCE seq_user_id RESTART WITH 7;
 
 INSERT INTO locations(location_name, category, latitude, longitude, address, description, availability, image, social_media)
                 VALUES ('Bistro Romano', 'Restaurant', '39.94211562', '-75.14463326', '120 Lombard St Society Hill, Philadelphia, PA 19147-1602', '215-925-8880', '', '', 'https://bistroromano.com'),
-                       ('Reading Terminal Market', 'Restaurant', '39.95388019', '-75.15850409', '12th and Arch Sts., Philadelphia, PA 19107', '215-922-2317', '', '', 'https://readingterminalmarket.org/'),
+                       ('Reading Terminal Market', 'Restaurant', '39.95388019', '-75.15850409', '12th and Arch Sts., Philadelphia, PA 19107', '215-922-2317', '', '', 'https://readingterminalmarket.org'),
                        ('Hershel''s East Side Deli', 'Restaurant', '39.95342564', '-75.15891542', '51 N 12th St, Philadelphia, PA 19107-2902', '215-922-6220', '', '', 'https://facebook.com/HershelsEastSideDeli'),
                        ('The Original Turkey', 'Restaurant', '39.95386374', '-75.1584719', '45 N 12th St, Philadelphia, PA 19107-2902', '215-925-5598', '', '', 'https://theoriginalturkey.com'),
                        ('Dutch Eating Place', 'Restaurant', '39.95391481', '-75.15897608', '1136 Arch St, Philadelphia, PA 19107-2956', '215-922-0425', '', '', 'https://readingterminalmarket.org/merchant/dutch-eating-place'),
