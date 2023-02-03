@@ -16,11 +16,8 @@
         </button>
       </div>
       <div id="location-description">
-        <p>
-          {{ location.description }}
-        </p>
-        <h4>Current Hours:</h4>
-        <p>{{ location.availability }}</p>
+        <p id="description">{{ location.description }}</p>
+        <p id="availability">{{ location.availability }}</p>
       </div>
       <img @click="goBack" id="back-button" src="../assets/back-arrow.png" />
     </div>
@@ -31,8 +28,7 @@
 import locationService from "../services/LocationService";
 export default {
   name: "location-details",
-  components: {
-  },
+  components: {},
   props: [],
   methods: {
     goBack() {
@@ -52,7 +48,7 @@ export default {
     };
   },
   created() {
-    locationService.getLocationById(this.$route.params.id).then((response) => {
+    locationService.getLocationById(this.$route.params.id).then(response => {
       this.location = response.data;
     });
   },

@@ -36,14 +36,10 @@ CREATE TABLE badges (
     description varchar(500)
 );
 
-CREATE TABLE user_location (
+CREATE TABLE checking (
+    checking_id SERIAL NOT NULL PRIMARY KEY,
     user_id INT NOT NULL,
-    location_id INT NOT NULL,
-    checking_id INT NOT NULL,
-    PRIMARY KEY (
-        user_id,
-        location_id,
-        checking_id)
+    location_id INT NOT NULL
 );
 
 CREATE TABLE user_badge (
