@@ -1,13 +1,13 @@
 #location-card {
     color: white;
-    position: absolute;
     background-color: black;
-    padding-block: 50%;
+    padding-block: 10%;
+    margin: 4%;
     text-align: center;
-    width: 353px;
-    height: 703px;
-    left: 14px;
-    top: 112px;
+    display: flex;
+    flex-direction: column;    
+    justify-content: space-between;
+
 
     background: rgba(23, 19, 19, 0.25);
     box-shadow: 10px 4px 4px rgba(0, 0, 0, 0.25);
@@ -16,10 +16,34 @@
     
 }
 
-#location-name {
-}
 .main {
-    display: flex;
     
 }
 
+#location-image {
+    max-width: 250px;
+    margin: auto;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.cooler-line {
+    width: 100%;
+    text-align: center;
+    height: 1px;
+    background-color: white;
+  }
+
+  #location-buttons {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  #location-description {
+      margin-top: 20px;;
+      padding: 20px;
+  }
