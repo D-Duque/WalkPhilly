@@ -1,18 +1,26 @@
 <template>
-  <div
-    class="location"
-    v-bind:class="{ checking: location.checked }"
-    v-bind:key="location.id"
+  <router-link
+    :to="{ name: 'location-details', params: { id: location.id } }"
+    style="text-decoration: none"
   >
-    <h3>{{ location.name }}</h3>
+    <div
+      class="location"
+      v-bind:class="{ checking: location.checked }"
+      v-bind:key="location.id"
+    >
+      <h3>{{ location.name }}</h3>
+      <h4>{{ location.category }}</h4>
+      <p id="description">{{ location.description }}</p>
+      <p id="address">{{ location.address }}</p>
+      <p id="availability">{{ location.availability }}</p>
 
-    <h4>{{ location.category }}</h4>
-    <p>{{ location.address }}</p>
-
-    <p>
-      <a v-bind:href="location.social" target="_blank">{{ location.social }}</a>
-    </p>
-  </div>
+      <p>
+        <a v-bind:href="location.social" target="_blank">{{
+          location.social
+        }}</a>
+      </p>
+    </div>
+  </router-link>
 </template>
 
 <script>
