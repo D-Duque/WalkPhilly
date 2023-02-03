@@ -15,76 +15,46 @@
       </table>
     </div> -->
 
-    <GmapMap
-      :center="userPos"
-      :zoom="15"
-      :options="{
-        zoomControl: false,
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        rotateControl: false,
-        fullscreenControl: false,
-        disableDefaultUi: false,
-        mapId: '5bad73ddd2112653',
-      }"
-      map-type-id="roadmap"
-      style="width: 100vw; height: 93vh"
-      @click="closeMenuView"
-    >
+    <GmapMap :center="userPos" :zoom="15" :options="{
+      zoomControl: false,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: false,
+      disableDefaultUi: false,
+      mapId: '5bad73ddd2112653',
+    }" map-type-id="roadmap" style="width: 100vw; height: 93vh" @click="closeMenuView">
       <!-- <router-link
         :to="{ name: 'location-details', params: { id: location.locationId } }"
       > -->
-      <GmapMarker
-        :key="index"
-        v-for="(m, index) in $store.state.filteredMarkers"
-        :ref="`marker${index}`"
-        :position="m.position"
-        :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${
-          index + 1
-        }|FF0000|FFFFFF`"
-        :clickable="true"
-        :draggable="false"
-        @click="openMarker(index)"
-      >
-        <GmapInfoWindow
-          class="info-window"
-          :closeclick="true"
-          @closeclick="openMarker(null)"
-          :opened="openMarkerId === index"
-        >
+      <GmapMarker :key="index" v-for="(m, index) in $store.state.filteredMarkers" :ref="`marker${index}`"
+        :position="m.position" :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index + 1
+        }|FF0000|FFFFFF`" :clickable="true" :draggable="false" @click="openMarker(index)">
+        <GmapInfoWindow class="info-window" :closeclick="true" @closeclick="openMarker(null)"
+          :opened="openMarkerId === index">
           <div id="body">
-            <router-link
-              :to="{ name: 'location-details', params: { id: m.id } }"
-              ><div id="location-name">{{ m.name }}</div></router-link
-            >
+            <router-link :to="{ name: 'location-details', params: { id: m.id } }">
+              <div id="location-name">{{ m.name }}</div>
+            </router-link>
 
             <div id="location-address">{{ m.address }}</div>
             <img id="location-img" src="../assets/harpers-garden.png" alt="" />
             <div id="location-buttons">
               <button class="btn-midnight-green">CHECK-IN</button>
-              <button
-                class="btn-midnight-green"
-                @click="showDirections(m.position)"
-              >
+              <button class="btn-midnight-green" @click="showDirections(m.position)">
                 DIRECTIONS
               </button>
             </div>
           </div>
         </GmapInfoWindow>
       </GmapMarker>
-      <GmapMarker
-        :position="userPos"
-        :icon="require('../assets/user-location_50.png')"
-      ></GmapMarker>
+      <GmapMarker :position="userPos" :icon="require('../assets/user-location_50.png')"></GmapMarker>
       <!-- </router-link> -->
-      <DirectionsRenderer
-        travelMode="WALKING"
-        :origin="startLocation"
-        :destination="endLocation"
-      />
+      <DirectionsRenderer travelMode="WALKING" :origin="startLocation" :destination="endLocation" />
     </GmapMap>
     <filter-results></filter-results>
+    <PhotoPlayground></PhotoPlayground>
     <menu-button v-show="$store.state.isMenuButtonShowing"></menu-button>
     <Transition name="slide">
       <menu-view v-show="$store.state.isMenuViewShowing"></menu-view>
@@ -98,6 +68,7 @@ import MenuView from "../components/MenuView.vue";
 import LocationService from "../services/LocationService";
 import FilterResults from "../components/FilterResults.vue";
 import DirectionsRenderer from "../components/DirectionsRenderer.js";
+import PhotoPlayground from "./PhotoPlayground.vue";
 
 // let dS = new google.maps.DirectionsService();
 // let dD = new google.maps.DirectionsRenderer();
@@ -135,6 +106,7 @@ export default {
     MenuView,
     FilterResults,
     DirectionsRenderer,
+    PhotoPlayground
   },
   data() {
     return {
@@ -172,9 +144,11 @@ export default {
   color: rgb(0, 73, 83);
   font-size: 24px;
 }
+
 #location-address {
   color: rgb(0, 73, 83);
 }
+
 #body {
   display: grid;
   padding: 20px;
@@ -182,11 +156,13 @@ export default {
   place-content: center;
   justify-content: center;
 }
+
 #location-img {
   max-width: 240px;
   margin: auto;
   padding: 10px;
 }
+
 #location-buttons {
   display: flex;
   gap: 10px;
