@@ -3,28 +3,37 @@
 
 <template>
   <div class="main">
-      <h2 id="location-name">{{this.location.name}}</h2>
-
-
-    <div>
-      <router-link class="btn btn-outline-primary" to="/">Back</router-link>
-    </div>
+      <h2 id="location-name">{{location.locationName}}</h2>
     
   </div>
 </template>
 
 <script>
+import locationService from "../services/LocationService"
 export default {
   name: "location-details",
   components: {
 
   },
-  props: ['locations'],
+  props: [],
   data() {
-    return {};
+    return {
+      location: {
+        name: '',
+        address: '',
+        category: '',
+
+      }
+    };
   },
-  created() {},
-  computed: {}
+  created() {
+    locationService.getLocationById(this.$route.params.id).then(response => {
+      this.location = response.data;
+    })
+  },
+  computed: {
+  
+  }
 };
 </script>
 
