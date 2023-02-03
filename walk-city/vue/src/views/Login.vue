@@ -68,3 +68,10 @@ export default {
   }
 };
 </script>
+
+<style>
+#app {
+  background-image: url("../assets/philadelphia-aerial-view.jpg") !important;
+  background-size: cover;
+}
+</style>

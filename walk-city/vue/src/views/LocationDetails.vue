@@ -10,20 +10,19 @@
         <button class="btn-darker-midnight-green">CHECK-IN</button>
         <button
           class="btn-darker-midnight-green"
-          @click="showDirections(m.position)"
+          @click.prevent="setLocation({lat: location.latitude, lng: location.longitude})"
         >
           DIRECTIONS
         </button>
       </div>
       <div id="location-description">
         <p>
-          Description of the location and the hours. This is beautifcul location
-          where lots of things happen and stuff yeah.
+          {{ location.description }}
         </p>
-        <p>Current Hours:</p>
-        <p>Monday: 9:00am - 5:00pm</p>
+        <h4>Current Hours:</h4>
+        <p>{{ location.availability }}</p>
       </div>
-      <img @click= "goBack" id="back-button" src="../assets/back-arrow.png" />
+      <img @click="goBack" id="back-button" src="../assets/back-arrow.png" />
     </div>
   </div>
 </template>
@@ -37,12 +36,19 @@ export default {
   props: [],
   methods: {
     goBack() {
-      this.$router.push({name: 'home'})
+      this.$router.push({name: 'home'});
+    },
+    setLocation(location) {
+      this.$router.push({name: 'home', query: {dir: true}});
+      this.$store.commit("SET_END_LOCATION", location);
+      
+      
     }
   },
   data() {
     return {
-      location: {},
+      location: { 
+      },
     };
   },
   created() {
@@ -50,12 +56,15 @@ export default {
       this.location = response.data;
     });
   },
-  computed: {},
+  computed: {
+    
+  },
 };
 </script>
 
 <style>
 #location-description {
   color: rgb(0, 73, 83);
+  margin-top: 0px !important;
 }
 </style>
