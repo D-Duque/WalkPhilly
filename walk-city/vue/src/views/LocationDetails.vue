@@ -2,8 +2,12 @@
 
 <template>
   <div class="main">
+    <img src="../assets/map-background.png" alt="">
+    <div id="location-card">
       <h2 id="location-name">{{location.locationName}}</h2>
-    
+      <div class="cool-line"></div>
+    </div>
+
   </div>
 </template>
 
@@ -35,3 +39,6 @@ export default {
   }
 };
 </script>
+
+<style>
+</style>
