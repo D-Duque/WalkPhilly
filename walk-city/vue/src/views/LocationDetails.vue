@@ -17,12 +17,7 @@ export default {
   props: [],
   data() {
     return {
-      location: {
-        name: '',
-        address: '',
-        category: '',
-
-      }
+      location: {}
     };
   },
   created() {
