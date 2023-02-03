@@ -2,11 +2,12 @@
     color: white;
     background-color: black;
     padding-block: 10%;
-    margin: 4%;
+    margin: 7%;
     text-align: center;
     display: flex;
     flex-direction: column;    
     justify-content: space-between;
+    padding: 20px;
 
 
     background: rgba(23, 19, 19, 0.25);
@@ -17,6 +18,9 @@
 }
 
 .main {
+    background-image: url("https://developers.google.com/static/maps/images/landing/webgl.png"); 
+    height: 100%;
+    background-size: cover;
     
 }
 
