@@ -1,3 +1,4 @@
+
 #location-card {
     color: white;
     background-color: black;
@@ -8,20 +9,10 @@
     flex-direction: column;    
     justify-content: space-between;
     padding: 20px;
-
-
     background: rgba(23, 19, 19, 0.25);
     box-shadow: 10px 4px 4px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(15px);
     border-radius: 40px;
-    
-}
-
-.main {
-    background-image: url("https://developers.google.com/static/maps/images/landing/webgl.png"); 
-    height: 100%;
-    background-size: cover;
-    
 }
 
 #location-image {
@@ -38,7 +29,7 @@
     background-color: white;
   }
 
-  #location-buttons {
+#location-buttons {
     display: flex;
     gap: 10px;
     flex-direction: row;
@@ -47,7 +38,22 @@
     margin-top: 10px;
   }
 
-  #location-description {
+#location-description {
       margin-top: 20px;;
       padding: 20px;
   }
+
+#back-button {
+      align-self: center;
+      width: 5rem;
+  }
+    
+.main {
+    display: grid;
+    background-image: url("https://developers.google.com/static/maps/images/landing/webgl.png"); 
+    height: 100%;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+
+}

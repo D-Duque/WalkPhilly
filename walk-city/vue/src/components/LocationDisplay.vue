@@ -1,4 +1,5 @@
 <template>
+<router-link :to="{name: 'location-details', params: {id: location.id}}" style="text-decoration: none">
   <div
     class="location"
     v-bind:class="{ checking: location.checked }"
@@ -14,6 +15,7 @@
       <a v-bind:href="location.social" target="_blank">{{ location.social }}</a>
     </p>
   </div>
+  </router-link>
 </template>
 
 <script>
