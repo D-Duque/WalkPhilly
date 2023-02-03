@@ -16,14 +16,10 @@
         </button>
       </div>
       <div id="location-description">
-        <p>
-          Description of the location and the hours. This is beautifcul location
-          where lots of things happen and stuff yeah.
-        </p>
-        <p>Current Hours:</p>
-        <p>Monday: 9:00am - 5:00pm</p>
+        <p id="description">{{ location.description }}</p>
+        <p id="availability">{{ location.availability }}</p>
       </div>
-      <img @click= "goBack" id="back-button" src="../assets/back-arrow.png" />
+      <img @click="goBack" id="back-button" src="../assets/back-arrow.png" />
     </div>
   </div>
 </template>
@@ -32,31 +28,30 @@
 import locationService from "../services/LocationService";
 export default {
   name: "location-details",
-  components: {
-  },
+  components: {},
   props: [],
   methods: {
     goBack() {
-      this.$router.push({name: 'home'})
+      this.$router.push({ name: "home" });
     }
   },
   data() {
     return {
-      location: {},
+      location: {}
     };
   },
   created() {
-    locationService.getLocationById(this.$route.params.id).then((response) => {
+    locationService.getLocationById(this.$route.params.id).then(response => {
       this.location = response.data;
     });
   },
-  computed: {},
+  computed: {}
 };
 </script>
 
 <style>
 #location-description {
   color: rgb(0, 73, 83);
-  text-align: center;
+  text-align: justify;
 }
 </style>
