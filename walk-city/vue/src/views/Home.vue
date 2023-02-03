@@ -55,7 +55,7 @@
         >
           <div id="body">
             <router-link
-              :to="{ name: 'location-details', params: { id: index } }"
+              :to="{ name: 'location-details', params: { id: m.id } }"
               ><div id="location-name">{{ m.name }}</div></router-link
             >
 
