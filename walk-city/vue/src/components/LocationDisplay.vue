@@ -8,12 +8,10 @@
 
     <h4>{{ location.category }}</h4>
     <p>{{ location.address }}</p>
-    <!-- <a
-      v-for="link in this.$store.state.location.social"
-      :key="link"
-      v-bind:href="link"
-    ></a> -->
-    <p>{{ location.social }}</p>
+
+    <p>
+      <a v-bind:href="location.social" target="_blank">{{ location.social }}</a>
+    </p>
   </div>
 </template>
 
