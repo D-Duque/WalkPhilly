@@ -41,15 +41,22 @@
             <div id="location-address">{{ m.address }}</div>
             <img id="location-img" src="../assets/harpers-garden.png" alt="" />
             <div id="location-buttons">
-
+              
               <div id="directions">
                 <div class="dropdown-container">
-                  <b-form-select v-model="travelMode" :options="options" @change="setTravelMode"></b-form-select>
+                  <b-form-select
+                    v-model="travelMode"
+                    :options="options"
+                    @change="setTravelMode"
+                  ></b-form-select>
                 </div>
-                <button class="btn-midnight-green" @click="showDirections(m.position)">
+                <button
+                  class="btn-midnight-green"
+                  @click="showDirections(m.position)"
+                >
                   DIRECTIONS
                 </button>
-
+                
               </div>
               <button class="btn-midnight-green">CHECK-IN</button>
             </div>
@@ -58,7 +65,11 @@
       </GmapMarker>
       <GmapMarker :position="userPos" :icon="require('../assets/user-location_50.png')"></GmapMarker>
       <!-- </router-link> -->
-      <DirectionsRenderer :travelMode="travelMode" :origin="startLocation" :destination="endLocation" />
+      <DirectionsRenderer
+        :travelMode="travelMode"
+        :origin="startLocation"
+        :destination="endLocation"
+      />
     </GmapMap>
     <filter-results></filter-results>
     <menu-button v-show="$store.state.isMenuButtonShowing"></menu-button>
@@ -182,7 +193,6 @@ export default {
   align-items: center;
   flex-shrink: 2;
 }
-
 #directions {
   display: flex;
   flex-direction: column;
