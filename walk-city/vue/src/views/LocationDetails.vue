@@ -1,5 +1,4 @@
-<style src="../components/locationdetail/locationDetail.css" scoped/>
-
+<style src="../components/locationdetail/locationDetail.css" scoped />
 
 <template>
   <div class="main">
@@ -36,5 +35,3 @@ export default {
   }
 };
 </script>
-
-
