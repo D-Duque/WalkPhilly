@@ -63,11 +63,20 @@
             <img id="location-img" src="../assets/harpers-garden.png" alt="" />
             <div id="location-buttons">
               <button class="btn-midnight-green">CHECK-IN</button>
-              <button class="btn-midnight-green">DIRECTIONS</button>
+              <button
+                class="btn-midnight-green"
+                @click="showDirections(m.position)"
+              >
+                DIRECTIONS
+              </button>
             </div>
           </div>
         </GmapInfoWindow>
       </GmapMarker>
+      <GmapMarker
+        :position="userPos"
+        :icon="require('../assets/user-location_50.png')"
+      ></GmapMarker>
       <!-- </router-link> -->
       <DirectionsRenderer
         travelMode="WALKING"
@@ -116,14 +125,9 @@ export default {
     setPlace(place) {
       this.currentPlace = place;
     },
-    addMarker(index) {
-      const marker = {
-        lat: this.currentPlace.geometry.location.lat(),
-        lng: this.currentPlace.geometry.location.lng(),
-      };
-      if (index === 0) this.startLocation = marker;
-      if (index === 1) this.endLocation = marker;
-      this.center = marker;
+    showDirections(destination) {
+      this.startLocation = this.userPos;
+      this.endLocation = destination;
     },
   },
   components: {
