@@ -17,12 +17,8 @@
         </button>
       </div>
       <div id="location-description">
-        <p>
-          Description of the location and the hours. This is beautiful location
-          where lots of things happen and stuff yeah.
-        </p>
-        <p>Current Hours:</p>
-        <p>Monday: 9:00am - 5:00pm</p>
+        <p>{{ location.description }}</p>
+        <p>{{ location.availability }}</p>
       </div>
     </div>
   </div>
@@ -51,4 +47,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#location-description {
+  color: #480607;
+}
+</style>
