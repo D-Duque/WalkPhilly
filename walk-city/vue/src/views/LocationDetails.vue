@@ -49,6 +49,6 @@ export default {
 
 <style>
 #location-description {
-  color: #480607;
+  color: rgb(0, 73, 83);
 }
 </style>
