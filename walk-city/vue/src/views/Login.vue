@@ -6,8 +6,8 @@
         <img src="../assets/llama.png">
       </div>
       <div class="welcome-message text-center text-uppercase">
-        Hello and welcome to our app. Please take a walk and eat a philly cheesesteak outside of Betsy Ross's
-        house--where America was born!
+        <p>Hello and welcome to our app! </p>Let's go for a walk and eat a Philly Cheesesteak outside of Betsy Ross's
+        house—where America was born!
       </div>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">Invalid username and password!</div>
       <div class="alert alert-success" role="alert" v-if="this.$route.query.registration">Thank you for registering,
@@ -71,12 +71,24 @@ export default {
 
 <style scoped>
 #app {
-  display: grid;
-  background-image: url("../assets/philadelphia-aerial-view.jpg") !important;
-  background-size: cover ;
+  display: grid;  
   font-weight: bold;
   justify-content: center;
   padding: 20px;
+}
+#login {
+  background-image: url("../assets/philadelphia-aerial-view.jpg") !important;
+  background-size: cover;
+  height: 100vh;
+  font-weight: bold;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 800px) {
+  #login {
+     background-position: -460px;
+  }
+  
 }
 h1 {
   font-size: 48px !important;
@@ -91,8 +103,10 @@ img {
 .form-control{
   align-self: center;
   margin-top: 20px;
-  max-width: 20rem;
-  
+  max-width: 20rem;  
+}
+.form-signin {
+  margin: 30px 20px;
 }
 .button-container {
   display: flex;

@@ -1,11 +1,11 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+      <h1 class="h3 mb-3 font-weight-bold">Register</h1>
       <div class="text-center">
         <img src="../assets/llama.png">
       </div>
-      <div class="register-message text-center">
+      <div class="register-message text-center text-uppercase">
         Please create an account so you can find an amazing philly cheesesteak and explore everything Philadelphia has
         to offer!
       </div>
@@ -82,6 +82,46 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#app {
+  display: grid;  
+  font-weight: bold;
+  justify-content: center;
+  padding: 20px;
+}
+#register {
+  background-image: url("../assets/philadelphia-aerial-view.jpg") !important;
+  background-size: cover;
+  height: 100vh;
+  font-weight: bold;
+ 
+  background-repeat: no-repeat;
+}
+@media (max-width: 800px) {
+  #register {
+     background-position: -460px;
+  }  
+}
+h1 {
+  font-size: 48px !important;
+}
+img {
+  width: 240px;
+}
 
+.user-credentials {
+  margin-top: 40px;
+}
+.form-control{
+  align-self: center;
+  margin-top: 20px;
+  max-width: 20rem;
+}
+.form-register {
+  margin: 30px 20px;
+}
+.button-container {
+  display: flex;
+  margin-top: 20px;
+}
 </style>
