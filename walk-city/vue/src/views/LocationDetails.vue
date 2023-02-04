@@ -32,7 +32,7 @@ export default {
   props: [],
   methods: {
     goBack() {
-      this.$router.push({name: 'home'});
+      this.$router.back(1);
     },
     setLocation(location) {
       this.$router.push({name: 'home', query: {dir: true}});
