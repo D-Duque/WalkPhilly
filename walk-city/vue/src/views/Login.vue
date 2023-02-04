@@ -1,13 +1,13 @@
 <template>
   <div id="login" class="text-left">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal text-center">WalkPhilly</h1>
+      <h1 class="mb-3 font-weight-bold text-center">WalkPhilly</h1>
       <div class="text-center">
         <img src="../assets/llama.png">
       </div>
-      <div class="welcome-message text-center">
-        Hello and welcome to our app. Please take a walk and eat a philly cheesecake outside of Betsy Ross's
-        house--where American was born!
+      <div class="welcome-message text-center text-uppercase">
+        Hello and welcome to our app. Please take a walk and eat a philly cheesesteak outside of Betsy Ross's
+        house--where America was born!
       </div>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">Invalid username and password!</div>
       <div class="alert alert-success" role="alert" v-if="this.$route.query.registration">Thank you for registering,
@@ -71,7 +71,31 @@ export default {
 
 <style>
 #app {
+  display: grid;
   background-image: url("../assets/philadelphia-aerial-view.jpg") !important;
-  background-size: cover;
+  background-size: cover ;
+  font-weight: bold;
+  justify-content: center;
+  padding: 20px;
+}
+h1 {
+  font-size: 48px !important;
+}
+img {
+  width: 240px;
+}
+
+.user-credentials {
+  margin-top: 40px;
+}
+.form-control{
+  align-self: center;
+  margin-top: 20px;
+  max-width: 20rem;
+  
+}
+.button-container {
+  display: flex;
+  margin-top: 20px;
 }
 </style>
