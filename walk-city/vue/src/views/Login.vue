@@ -69,7 +69,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   display: grid;
   background-image: url("../assets/philadelphia-aerial-view.jpg") !important;
