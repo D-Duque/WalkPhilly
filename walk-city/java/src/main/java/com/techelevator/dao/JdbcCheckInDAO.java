@@ -8,11 +8,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcCheckInDAO
+@Component
+public class JdbcCheckInDao implements CheckInDao
 {
-    @Component
-    class JdbcCheckInDao implements CheckInDao
-    {
         private JdbcTemplate jdbcTemplate;
 
         private List<CheckIn> checkIns = new ArrayList<>();
@@ -52,12 +50,12 @@ public class JdbcCheckInDAO
         }
 
         @Override
-        public List<CheckIn> findCheckInByUserAndLocation(int UserId, int LocationId){
+        public List<CheckIn> findCheckInByUserAndLocation(int userId, int locationId){
             List<CheckIn> checkInList = new ArrayList<>();
 
             String sql = "SELECT * FROM locations WHERE user_id = ? AND location_id = ?";
 
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, UserId,LocationId);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, locationId);
 
             while (results.next())
             {
@@ -72,6 +70,22 @@ public class JdbcCheckInDAO
             checkIn.setCheckingId(getMaxIdPlusOne());
             checkIns.add(checkIn);
             return checkIn;
+        }
+
+        @Override
+        public List<CheckIn> findAllCheckInsByUserId(int userID) {
+            List<CheckIn> checkInList = new ArrayList<>();
+
+            String sql = "SELECT * FROM checking WHERE user_id = ?";
+
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userID);
+
+            while (results.next())
+            {
+                CheckIn checkIn = mapRowToCheckIn(results);
+                checkInList.add(checkIn);
+            }
+            return checkInList;
         }
 
         public CheckIn mapRowToCheckIn(SqlRowSet rs) {
@@ -105,5 +119,4 @@ public class JdbcCheckInDAO
         private int getMaxIdPlusOne() {
             return getMaxId() + 1;
         }
-    }
 }
