@@ -36,10 +36,9 @@
           :opened="openMarkerId === index"
         >
           <div id="body">
-            <router-link
-              :to="{ name: 'location-details', params: { id: m.id } }"
-              ><div id="location-name">{{ m.name }}</div></router-link
-            >
+            <router-link :to="{ name: 'location-details', params: { id: m.id } }">
+              <div id="location-name">{{ m.name }}</div>
+            </router-link>
 
             <div id="location-address">{{ m.address }}</div>
             <img id="location-img" src="../assets/harpers-garden.png" alt="" />
@@ -181,9 +180,11 @@ export default {
   color: rgb(0, 73, 83);
   font-size: 24px;
 }
+
 #location-address {
   color: rgb(0, 73, 83);
 }
+
 #body {
   display: grid;
   padding: 20px;
@@ -191,11 +192,13 @@ export default {
   place-content: center;
   justify-content: center;
 }
+
 #location-img {
   max-width: 240px;
   margin: auto;
   padding: 10px;
 }
+
 #location-buttons {
   display: flex;
   gap: 10px;

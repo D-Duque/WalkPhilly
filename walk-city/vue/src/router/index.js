@@ -7,6 +7,7 @@ import Register from "../views/Register.vue";
 import store from "../store/index";
 import LocationList from "../views/LocationList.vue";
 import LocationDetails from "../views/LocationDetails.vue";
+import PhotoPlayground from "../views/PhotoPlayground.vue"
 Vue.use(Router);
 
 /**
@@ -66,6 +67,14 @@ const router = new Router({
       path: `/locations/:id`,
       name: "location-details",
       component: LocationDetails,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: `/photos`,
+      name:"photo-playground",
+      component: PhotoPlayground,
       meta: {
         requiresAuth: false
       }
