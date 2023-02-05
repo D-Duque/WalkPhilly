@@ -9,9 +9,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+<<<<<<< HEAD
 class JdbcCheckInDao implements CheckInDao
 {
     private JdbcTemplate jdbcTemplate;
+=======
+public class JdbcCheckInDao implements CheckInDao
+{
+        private JdbcTemplate jdbcTemplate;
+
+        private List<CheckIn> checkIns = new ArrayList<>();
+>>>>>>> da3d32fa9d372c7db07f3d7f08f991610a5cc848
 
     private List<CheckIn> checkIns = new ArrayList<>();
 
@@ -47,13 +55,23 @@ class JdbcCheckInDao implements CheckInDao
             throw new RuntimeException("CheckingId " + checkingID + " was not found");
         }
 
+<<<<<<< HEAD
     }
+=======
+        @Override
+        public List<CheckIn> findCheckInByUserAndLocation(int userId, int locationId){
+            List<CheckIn> checkInList = new ArrayList<>();
+>>>>>>> da3d32fa9d372c7db07f3d7f08f991610a5cc848
 
     @Override
     public List<CheckIn> findCheckInByUserAndLocation(int UserId, int LocationId){
         List<CheckIn> checkInList = new ArrayList<>();
 
+<<<<<<< HEAD
         String sql = "SELECT * FROM locations WHERE user_id = ? AND location_id = ?";
+=======
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, locationId);
+>>>>>>> da3d32fa9d372c7db07f3d7f08f991610a5cc848
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, UserId,LocationId);
 
@@ -65,6 +83,7 @@ class JdbcCheckInDao implements CheckInDao
         return checkInList;
     }
 
+<<<<<<< HEAD
     @Override
     public CheckIn create(CheckIn checkIn) {
         checkIn.setCheckingId(getMaxIdPlusOne());
@@ -79,6 +98,31 @@ class JdbcCheckInDao implements CheckInDao
         checkIn.setLocationId(rs.getInt("location_id"));
         return checkIn;
     }
+=======
+        @Override
+        public List<CheckIn> findAllCheckInsByUserId(int userID) {
+            List<CheckIn> checkInList = new ArrayList<>();
+
+            String sql = "SELECT * FROM checking WHERE user_id = ?";
+
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userID);
+
+            while (results.next())
+            {
+                CheckIn checkIn = mapRowToCheckIn(results);
+                checkInList.add(checkIn);
+            }
+            return checkInList;
+        }
+
+        public CheckIn mapRowToCheckIn(SqlRowSet rs) {
+            CheckIn checkIn = new CheckIn();
+            checkIn.setCheckingId(rs.getInt("checking_id"));
+            checkIn.setUserId(rs.getInt("user_id"));
+            checkIn.setLocationId(rs.getInt("location_id"));
+            return checkIn;
+        }
+>>>>>>> da3d32fa9d372c7db07f3d7f08f991610a5cc848
 
     /**
      * finds the max id in the list of checkIns and returns it
@@ -95,6 +139,7 @@ class JdbcCheckInDao implements CheckInDao
         return maxId;
     }
 
+<<<<<<< HEAD
     /**
      * Adds 1 to the max id and returns it
      *
@@ -103,4 +148,14 @@ class JdbcCheckInDao implements CheckInDao
     private int getMaxIdPlusOne() {
         return getMaxId() + 1;
     }
+=======
+        /**
+         * Adds 1 to the max id and returns it
+         *
+         * @return
+         */
+        private int getMaxIdPlusOne() {
+            return getMaxId() + 1;
+        }
+>>>>>>> da3d32fa9d372c7db07f3d7f08f991610a5cc848
 }

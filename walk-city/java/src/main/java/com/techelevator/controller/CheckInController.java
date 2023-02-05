@@ -16,23 +16,29 @@ public class CheckInController
 
     public CheckInController(CheckInDao checkInDao) {this.checkInDao = checkInDao;}
 
-    @GetMapping("")
+    @GetMapping("/checkins")
     public List<CheckIn> getCheckIns() {return checkInDao.findAll(); }
 
-    @GetMapping("/{checkInId}")
+    @GetMapping("/checkins/{checkInId}")
     public CheckIn getCheckInById(@PathVariable int checkInId) {
         CheckIn checkIn = checkInDao.getCheckInById(checkInId);
         return checkIn;
     }
 
-    @GetMapping("/{userId}/{locationId}")
+    @GetMapping("/checkins/{userId}/{locationId}")
     public List<CheckIn> getCheckInByUserIdAndLocationId(@PathVariable int userId, int locationId) {
         List<CheckIn> checkIns = checkInDao.findCheckInByUserAndLocation(userId, locationId);
         return checkIns;
     }
 
-    @RequestMapping(value = "/checkIn", method = RequestMethod.POST)
+    @RequestMapping(value = "/checkin", method = RequestMethod.POST)
     public CheckIn add(@Valid @RequestBody CheckIn checkIn) {
         return checkInDao.create(checkIn);
+    }
+
+    @GetMapping("/checkins/{userId}")
+    public List<CheckIn> getCheckInsByUserId(@PathVariable int userId) {
+        List<CheckIn> checkIns = checkInDao.findAllCheckInsByUserId(userId);
+        return checkIns;
     }
 }

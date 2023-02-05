@@ -19,4 +19,6 @@ public interface CheckInDao
 
     CheckIn create(CheckIn checkIn);
 
+    List<CheckIn> findAllCheckInsByUserId (int userID);
+
 }
