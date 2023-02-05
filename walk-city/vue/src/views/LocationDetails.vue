@@ -10,7 +10,9 @@
         <button class="btn-darker-midnight-green">CHECK-IN</button>
         <button
           class="btn-darker-midnight-green"
-          @click.prevent="setLocation({lat: location.latitude, lng: location.longitude})"
+          @click.prevent="
+            setLocation({ lat: location.latitude, lng: location.longitude })
+          "
         >
           DIRECTIONS
         </button>
@@ -18,6 +20,11 @@
       <div id="location-description">
         <p id="description">{{ location.description }}</p>
         <p id="availability">{{ location.availability }}</p>
+        <p>
+          <a v-bind:href="location.social" target="_blank">{{
+            location.social
+          }}</a>
+        </p>
       </div>
       <img @click="goBack" id="back-button" src="../assets/back-arrow.png" />
     </div>
@@ -35,16 +42,13 @@ export default {
       this.$router.back(1);
     },
     setLocation(location) {
-      this.$router.push({name: 'home', query: {dir: true}});
+      this.$router.push({ name: "home", query: { dir: true } });
       this.$store.commit("SET_END_LOCATION", location);
-      
-      
     }
   },
   data() {
     return {
-      location: { 
-      },
+      location: {}
     };
   },
   created() {
@@ -52,9 +56,7 @@ export default {
       this.location = response.data;
     });
   },
-  computed: {
-    
-  },
+  computed: {}
 };
 </script>
 
