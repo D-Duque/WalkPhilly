@@ -13,7 +13,6 @@
       <p id="description">{{ location.description }}</p>
       <p id="address">{{ location.address }}</p>
       <p id="availability">{{ location.availability }}</p>
-
       <p>
         <a v-bind:href="location.social" target="_blank">{{
           location.social
