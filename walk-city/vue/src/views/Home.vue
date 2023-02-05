@@ -1,38 +1,40 @@
 <template>
   <div class="home">
-    <!-- <div>
-      <table>
-        <tr>
-          <th>Start Location</th>
-          <th><GmapAutocomplete @place_changed="setPlace" /></th>
-          <th style="width: 50%;"><button class="btn" @click="addMarker(0)">Add</button></th>
-        </tr>
-        <tr>
-          <th>End Location</th>
-          <th><GmapAutocomplete @place_changed="setPlace" /></th>
-          <th style="width: 50%;"><button class="btn" @click="addMarker(1)">Add</button></th>
-        </tr>
-      </table>
-    </div> -->
-
-    <GmapMap :center="userPos" :zoom="15" :options="{
-      zoomControl: false,
-      mapTypeControl: false,
-      scaleControl: false,
-      streetViewControl: false,
-      rotateControl: false,
-      fullscreenControl: false,
-      disableDefaultUi: false,
-      mapId: '5bad73ddd2112653',
-    }" map-type-id="roadmap" style="width: 100vw; height: 93vh" @click="closeMenuView">
-      <!-- <router-link
-        :to="{ name: 'location-details', params: { id: location.locationId } }"
-      > -->
-      <GmapMarker :key="index" v-for="(m, index) in $store.state.filteredMarkers" :ref="`marker${index}`"
-        :position="m.position" :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index + 1
-        }|FF0000|FFFFFF`" :clickable="true" :draggable="false" @click="openMarker(index)">
-        <GmapInfoWindow class="info-window" :closeclick="true" @closeclick="openMarker(null)"
-          :opened="openMarkerId === index">
+    <GmapMap
+      :center="userPos"
+      :zoom="15"
+      :options="{
+        zoomControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false,
+        disableDefaultUi: false,
+        mapId: '5bad73ddd2112653',
+      }"
+      map-type-id="roadmap"
+      style="width: 100vw; height: 93vh"
+      @click="closeMenuView"
+    >
+      <GmapMarker
+        :key="index"
+        v-for="(m, index) in $store.state.filteredMarkers"
+        :ref="`marker${index}`"
+        :position="m.position"
+        :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${
+          index + 1
+        }|FF0000|FFFFFF`"
+        :clickable="true"
+        :draggable="false"
+        @click="openMarker(index)"
+      >
+        <GmapInfoWindow
+          class="info-window"
+          :closeclick="true"
+          @closeclick="openMarker(null)"
+          :opened="openMarkerId === index"
+        >
           <div id="body">
             <router-link :to="{ name: 'location-details', params: { id: m.id } }">
               <div id="location-name">{{ m.name }}</div>
@@ -51,20 +53,22 @@
                   ></b-form-select>
                 </div>
                 <button
-                  class="btn-midnight-green"
+                  class="btn-midnight-green "
+                  :class="{active: isDirectionsShowing}"
                   @click="showDirections(m.position)"
                 >
                   DIRECTIONS
                 </button>
-                
               </div>
               <button class="btn-midnight-green">CHECK-IN</button>
             </div>
           </div>
         </GmapInfoWindow>
       </GmapMarker>
-      <GmapMarker :position="userPos" :icon="require('../assets/user-location_50.png')"></GmapMarker>
-      <!-- </router-link> -->
+      <GmapMarker
+        :position="userPos"
+        :icon="require('../assets/user-location_50.png')"
+      ></GmapMarker>
       <DirectionsRenderer
         :travelMode="travelMode"
         :origin="startLocation"
@@ -85,9 +89,6 @@ import MenuView from "../components/MenuView.vue";
 import LocationService from "../services/LocationService";
 import FilterResults from "../components/FilterResults.vue";
 import DirectionsRenderer from "../components/DirectionsRenderer.js";
-
-// let dS = new google.maps.DirectionsService();
-// let dD = new google.maps.DirectionsRenderer();
 
 export default {
   name: "home",
@@ -112,13 +113,24 @@ export default {
     setPlace(place) {
       this.currentPlace = place;
     },
-    showDirections(destination) {
+    showDirections(destination) { 
+      this.toggleDirections();
       this.startLocation = this.userPos;
       this.endLocation = destination;
     },
     setTravelMode(travelMode) {
       this.travelMode = travelMode;
     },
+    toggleDirections() {
+      const dir = this.$route.query.dir
+      if (dir == "true" || dir == true) {
+        this.$router.push({name: 'home', query: {dir: false}});
+      }
+      else {
+        this.$router.push({name: 'home', query: {dir: true}});
+      }
+      this.isDirectionsShowing = !dir;
+    }
   },
   components: {
     MenuButton,
@@ -133,14 +145,15 @@ export default {
         lng: 0,
       },
       openMarkerId: null,
-      startLocation: null,
-      endLocation: null,
+      startLocation: this.$store.state.userPos,
+      endLocation: this.$store.state.endLocation,
       currentPlace: null,
       travelMode: "WALKING",
       options: [
         { value: "WALKING", text: "Walk" },
         { value: "TRANSIT", text: "Transit" },
       ],
+      isDirectionsShowing: false,
     };
   },
   mounted() {
@@ -198,5 +211,10 @@ export default {
   flex-direction: column;
   gap: 10px;
   align-items: center;
+}
+
+button.active {
+  background-color: rgb(0, 73, 83);
+  color: white;
 }
 </style>

@@ -27,7 +27,9 @@ export default new Vuex.Store({
     textFilter: "",
     currentCategory: "",
     filteredMarkers: [],
-    currentMarker: null
+    currentMarker: null,
+    startLocation: null,
+    endLocation: null
   },
   getters: {
     nearbyLocations(state) {
@@ -109,6 +111,9 @@ export default new Vuex.Store({
     },
     SET_CURRENT_MARKER(state, id) {
       state.currentMarker = id;
+    },
+    SET_END_LOCATION(state, location) {
+      state.endLocation = location;
     }
   }
 });

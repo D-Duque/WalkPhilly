@@ -7,7 +7,7 @@
     </div>
     <div class="cool-line"></div>
 
-    <router-link v-bind:to="{ name: 'location-list' }" v-if="$store.state.token != ''">
+    <router-link :to="{ name: 'location-list' }" v-if="$store.state.token != ''">
       <div id="list-view" @click="menuToggle">
         {{ $store.state.token != "" ? "LIST VIEW" : " " }}
       </div>
