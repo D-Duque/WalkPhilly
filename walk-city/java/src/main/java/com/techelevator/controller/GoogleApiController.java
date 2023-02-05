@@ -20,10 +20,11 @@ public class GoogleApiController {
     }
 
     @RequestMapping(value="/{address}", method = RequestMethod.GET)
-    public String getImage (@PathVariable String address){
-        String photoReference = placesService.getPhotoReference(address, API_KEY);
-        String imageURL = photosService.getImageURL(photoReference, API_KEY);
-        System.out.println(imageURL);
-        return imageURL;
+    public String getPlaceId (@PathVariable String address){
+//        String photoReference = placesService.getPhotoReference(address, API_KEY);
+        String placeId = placesService.getPlaceId(address, API_KEY);
+//        String imageURL = photosService.getImageURL(photoReference, API_KEY);
+//        System.out.println(imageURL);
+        return placeId;
     }
 }

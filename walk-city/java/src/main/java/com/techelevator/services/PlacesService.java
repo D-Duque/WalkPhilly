@@ -13,7 +13,7 @@ import com.techelevator.model.PlacesSearchResponse;
 @Component
 public class PlacesService {
 
-    private static final String API_URL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?inputtype=textquery&fields=photo&input={address}&key={apiKey}";
+    private static final String API_URL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?inputtype=textquery&fields=place_id,photo&input={address}&key={apiKey}";
     private RestTemplate restTemplate = new RestTemplate();
 
     public String getPhotoReference(String address, String apiKey) {
@@ -24,5 +24,12 @@ public class PlacesService {
         Candidate candidate = candidates[0];
         Photo photo = candidate.getPhotos()[0];
         return photo.getPhotoReference();
+    }
+
+    public String getPlaceId(String address, String apiKey) {
+        PlacesSearchResponse searchResponse = restTemplate.getForObject(API_URL,PlacesSearchResponse.class, address, apiKey);
+        Candidate[] candidates = searchResponse.getCandidates();
+        Candidate candidate = candidates[0];
+        return candidate.getplaceId();
     }
 }
