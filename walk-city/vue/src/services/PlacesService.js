@@ -37,10 +37,11 @@ export default {
             apiKey: 'AIzaSyCGANmXOYKLmKzG6N46k5oEr7MBWy01C2c'
         }
     },
-    getPhotoReference(address){
-        return axios.get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photo&key=${this.apiKey}`)
+    getPlaceId(name){
+        return axios.get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${name}&inputtype=textquery&fields=photo&key=AIzaSyCGANmXOYKLmKzG6N46k5oEr7MBWy01C2c`)
     },
-    getPhotoReferenceDefault(){
-        return axios.get('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photo&key=AIzaSyCGANmXOYKLmKzG6N46k5oEr7MBWy01C2c')
-    }
+    // getPhotoReferenceDefault(){
+    //     return axios.get('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photo&key=AIzaSyCGANmXOYKLmKzG6N46k5oEr7MBWy01C2c')
+    // }
+
 }

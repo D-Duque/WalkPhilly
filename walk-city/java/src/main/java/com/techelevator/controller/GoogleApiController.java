@@ -5,9 +5,9 @@ import com.techelevator.services.PhotosService;
 import com.techelevator.services.PlacesService;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping ("/api/photos")
-@CrossOrigin
 public class GoogleApiController {
     private PhotosService photosService;
     private PlacesService placesService;
