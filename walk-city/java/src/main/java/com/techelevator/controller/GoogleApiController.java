@@ -5,6 +5,8 @@ import com.techelevator.services.PhotosService;
 import com.techelevator.services.PlacesService;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
+
 @RestController
 @RequestMapping ("/api/photos")
 @CrossOrigin
@@ -20,9 +22,9 @@ public class GoogleApiController {
     }
 
     @RequestMapping(value="/{address}", method = RequestMethod.GET)
-    public String getImage (@PathVariable String address){
+    public byte[] getImage (@PathVariable String address){
         String photoReference = placesService.getPhotoReference(address, API_KEY);
-        String imageURL = photosService.getImageURL(photoReference, API_KEY);
+        byte[] imageURL = photosService.getImageURL(photoReference, API_KEY);
         System.out.println(imageURL);
         return imageURL;
     }
