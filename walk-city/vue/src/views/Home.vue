@@ -60,7 +60,7 @@
                   DIRECTIONS
                 </button>
               </div>
-              <button class="btn-midnight-green" @click="checkIn({userId: $store.state.user.userId, locationId: m.locationId})">CHECK-IN</button>
+              <button class="btn-midnight-green" @click="checkIn({userId: $store.state.user.id, locationId: m.id})">CHECK-IN</button>
             </div>
           </div>
         </GmapInfoWindow>
@@ -159,6 +159,8 @@ export default {
       ],
       isDirectionsShowing: false,
       placeImage: null,
+      currentLocationId: 0,
+      currentUserId: this.$store.state.user.id
     };
   },
   mounted() {
