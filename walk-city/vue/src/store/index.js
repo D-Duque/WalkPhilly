@@ -29,7 +29,8 @@ export default new Vuex.Store({
     filteredMarkers: [],
     currentMarker: null,
     startLocation: null,
-    endLocation: null
+    endLocation: null,
+    placeId: ""
   },
   getters: {
     nearbyLocations(state) {
@@ -114,6 +115,9 @@ export default new Vuex.Store({
     },
     SET_END_LOCATION(state, location) {
       state.endLocation = location;
+    },
+    SET_PLACE_ID(state, id){
+      state.placeId = id;
     }
   }
 });
