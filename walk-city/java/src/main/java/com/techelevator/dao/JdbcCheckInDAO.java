@@ -21,7 +21,7 @@ public class JdbcCheckInDao implements CheckInDao
     public List<CheckIn> findAll()
     {
         List<CheckIn> checkInList = new ArrayList<>();
-        String sql = "SELECT * FROM checking";
+        String sql = "SELECT * FROM check_in";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while(results.next()) {
@@ -35,7 +35,7 @@ public class JdbcCheckInDao implements CheckInDao
     @Override
     public CheckIn getCheckInById(int checkingID)
     {
-        String sql = "SELECT * FROM checking WHERE checking_id = ?";
+        String sql = "SELECT * FROM check_in WHERE check_in_id = ?";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, checkingID);
 
@@ -44,7 +44,7 @@ public class JdbcCheckInDao implements CheckInDao
             return mapRowToCheckIn(results);
         }
         else {
-            throw new RuntimeException("CheckingId " + checkingID + " was not found");
+            throw new RuntimeException("CheckInId " + checkingID + " was not found");
         }
 
 
@@ -54,7 +54,7 @@ public class JdbcCheckInDao implements CheckInDao
     public List<CheckIn> findCheckInByUserAndLocation(int UserId, int LocationId){
         List<CheckIn> checkInList = new ArrayList<>();
 
-        String sql = "SELECT * FROM locations WHERE user_id = ? AND location_id = ?";
+        String sql = "SELECT * FROM check_in WHERE user_id = ? AND location_id = ?";
 
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, UserId,LocationId);
@@ -69,7 +69,7 @@ public class JdbcCheckInDao implements CheckInDao
 
     @Override
     public CheckIn create(CheckIn checkIn) {
-        checkIn.setCheckingId(getMaxIdPlusOne());
+        checkIn.setCheckInId(getMaxIdPlusOne());
         checkIns.add(checkIn);
         return checkIn;
     }
@@ -78,7 +78,7 @@ public class JdbcCheckInDao implements CheckInDao
     public List<CheckIn> findAllCheckInsByUserId(int userID) {
         List<CheckIn> checkInList = new ArrayList<>();
 
-        String sql = "SELECT * FROM checking WHERE user_id = ?";
+        String sql = "SELECT * FROM check_in WHERE user_id = ?";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userID);
 
@@ -92,7 +92,7 @@ public class JdbcCheckInDao implements CheckInDao
 
     public CheckIn mapRowToCheckIn(SqlRowSet rs) {
         CheckIn checkIn = new CheckIn();
-        checkIn.setCheckingId(rs.getInt("checking_id"));
+        checkIn.setCheckInId(rs.getInt("check_in_id"));
         checkIn.setUserId(rs.getInt("user_id"));
         checkIn.setLocationId(rs.getInt("location_id"));
         return checkIn;
@@ -107,8 +107,8 @@ public class JdbcCheckInDao implements CheckInDao
     private int getMaxId() {
         int maxId = 0;
         for (CheckIn checkIn : checkIns) {
-            if (checkIn.getCheckingId() > maxId) {
-                maxId = checkIn.getCheckingId();
+            if (checkIn.getCheckInId() > maxId) {
+                maxId = checkIn.getCheckInId();
             }
         }
         return maxId;

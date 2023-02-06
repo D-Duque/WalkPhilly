@@ -36,8 +36,8 @@ CREATE TABLE badges (
     description varchar(500)
 );
 
-CREATE TABLE checking (
-    checking_id SERIAL NOT NULL PRIMARY KEY,
+CREATE TABLE check_in (
+    check_in_id SERIAL NOT NULL PRIMARY KEY,
     user_id INT NOT NULL,
     location_id INT NOT NULL
 );

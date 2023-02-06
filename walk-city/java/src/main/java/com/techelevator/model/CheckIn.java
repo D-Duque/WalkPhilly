@@ -2,23 +2,23 @@ package com.techelevator.model;
 
 public class CheckIn
 {
-    private int checkingId;
+    private int checkInId;
     private int userId;
     private int locationId;
 
     public CheckIn(){
     }
 
-    public CheckIn(int checkingId, int userId, int locationId)
+    public CheckIn(int checkInId, int userId, int locationId)
     {
-        this.checkingId = checkingId;
+        this.checkInId = checkInId;
         this.userId = userId;
         this.locationId = locationId;
     }
 
-    public int getCheckingId()
+    public int getCheckInId()
     {
-        return checkingId;
+        return checkInId;
     }
 
     public int getUserId()
@@ -31,9 +31,9 @@ public class CheckIn
         return locationId;
     }
 
-    public void setCheckingId(int checkingId)
+    public void setCheckInId(int checkInId)
     {
-        this.checkingId = checkingId;
+        this.checkInId = checkInId;
     }
 
     public void setUserId(int userId)
