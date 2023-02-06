@@ -13,7 +13,9 @@
         alt=""
       />
       <div id="location-buttons">
-        <button class="btn-darker-midnight-green">
+        <button class="btn-darker-midnight-green" @click="
+                  checkIn({ userId: $store.state.user.id, locationId: location.locationId })
+                ">
           CHECK-IN
         </button>
         <button
@@ -24,7 +26,15 @@
         >
           DIRECTIONS
         </button>
+        
       </div>
+      <div
+                class="alert alert-success"
+                role="alert"
+                v-show="isCheckedIn"
+              >
+                Check-in successful!
+              </div>
       <div id="location-description">
         <p id="description">{{ location.description }}</p>
         <p id="availability">{{ location.availability }}</p>
@@ -48,7 +58,8 @@ export default {
   props: ["checkInId"],
   data() {
     return {
-      location: {}
+      location: {},
+      isCheckedIn: false,
     };
   },
   created() {
@@ -65,10 +76,11 @@ export default {
       this.$router.push({ name: "home", query: { dir: true } });
       this.$store.commit("SET_END_LOCATION", location);
     },
-    saveCheckIn() {
-      checkInService.createCheckin(this.checkin).then(response => {
-        if (response.status === 201) {
-          this.$router.push(`/${this.message.topicId}`);
+    checkIn(checkIn) {
+      checkInService.createCheckin(checkIn).then(response => {
+        if (response.status === 200 || response.status === 201) {
+          // success code here
+          this.isCheckedIn = true;
         }
       });
     }
