@@ -30,7 +30,7 @@ export default new Vuex.Store({
     currentMarker: null,
     startLocation: null,
     endLocation: null,
-    placeId: ""
+    placeImage: null,
   },
   getters: {
     nearbyLocations(state) {
@@ -116,8 +116,8 @@ export default new Vuex.Store({
     SET_END_LOCATION(state, location) {
       state.endLocation = location;
     },
-    SET_PLACE_ID(state, id){
-      state.placeId = id;
+    SET_PLACE_IMAGE(state, image){
+      state.placeImage = image;
     }
   }
 });

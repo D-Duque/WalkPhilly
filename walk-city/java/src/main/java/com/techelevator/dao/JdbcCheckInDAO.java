@@ -123,5 +123,4 @@ public class JdbcCheckInDao implements CheckInDao
     private int getMaxIdPlusOne() {
         return getMaxId() + 1;
     }
-
 }
