@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.model.PlacesSearchResponse;
 import com.techelevator.services.PhotosService;
 import com.techelevator.services.PlacesService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
@@ -21,8 +22,8 @@ public class GoogleApiController {
         this.placesService =  new PlacesService();
     }
 
-    @RequestMapping(value="/{address}", method = RequestMethod.GET)
-    public byte[] getImage (@PathVariable String address){
+    @GetMapping(value="/{address}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] getImage (@PathVariable String address){
         String photoReference = placesService.getPhotoReference(address, API_KEY);
         byte[] imageURL = photosService.getImageURL(photoReference, API_KEY);
         System.out.println(imageURL);
