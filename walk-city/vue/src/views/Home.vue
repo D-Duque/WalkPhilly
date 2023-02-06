@@ -41,7 +41,7 @@
             </router-link>
 
             <div id="location-address">{{ m.address }}</div>
-            <img id="location-img" src="../assets/harpers-garden.png" alt="" />
+            <img id="location-img" :src="`http://localhost:8080/api/photos/Philadelphia ${m.name}`" alt="" />
             <div id="location-buttons">
               
               <div id="directions">
@@ -130,7 +130,7 @@ export default {
         this.$router.push({name: 'home', query: {dir: true}});
       }
       this.isDirectionsShowing = !dir;
-    }
+    },
   },
   components: {
     MenuButton,
@@ -154,6 +154,7 @@ export default {
         { value: "TRANSIT", text: "Transit" },
       ],
       isDirectionsShowing: false,
+      placeImage: null,
     };
   },
   mounted() {
