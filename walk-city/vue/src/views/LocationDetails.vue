@@ -7,7 +7,13 @@
       <div class="cooler-line"></div>
       <img id="location-image" :src="`http://localhost:8080/api/photos/Philadelphia ${location.locationName}`" alt="" />
       <div id="location-buttons">
-        <button class="btn-darker-midnight-green">CHECK-IN</button>
+        <button
+          class="btn-darker-midnight-green"
+          type="submit"
+          @click.prevent="saveCheckIn()"
+        >
+          CHECK-IN
+        </button>
         <button
           class="btn-darker-midnight-green"
           @click.prevent="
@@ -32,20 +38,12 @@
 </template>
 
 <script>
+import checkInService from "../services/CheckInService";
 import locationService from "../services/LocationService";
 export default {
   name: "location-details",
   components: {},
-  props: [],
-  methods: {
-    goBack() {
-      this.$router.back(1);
-    },
-    setLocation(location) {
-      this.$router.push({ name: "home", query: { dir: true } });
-      this.$store.commit("SET_END_LOCATION", location);
-    }
-  },
+  props: ["checkInId"],
   data() {
     return {
       location: {}
@@ -56,7 +54,23 @@ export default {
       this.location = response.data;
     });
   },
-  computed: {}
+  computed: {},
+  methods: {
+    goBack() {
+      this.$router.back(1);
+    },
+    setLocation(location) {
+      this.$router.push({ name: "home", query: { dir: true } });
+      this.$store.commit("SET_END_LOCATION", location);
+    },
+    saveCheckIn() {
+      checkInService.createCheckin(this.checkin).then(response => {
+        if (response.status === 201) {
+          this.$router.push(`/${this.message.topicId}`);
+        }
+      });
+    }
+  }
 };
 </script>
 

@@ -30,7 +30,12 @@ export default new Vuex.Store({
     currentMarker: null,
     startLocation: null,
     endLocation: null,
-    placeImage: null,
+    placeId: "",
+    activeChechIn: {
+      checkInId: null,
+      userId: null,
+      locationId: null
+    }
   },
   getters: {
     nearbyLocations(state) {
