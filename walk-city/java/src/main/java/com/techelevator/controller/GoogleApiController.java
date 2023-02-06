@@ -25,8 +25,7 @@ public class GoogleApiController {
     @GetMapping(value="/{address}", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] getImage (@PathVariable String address){
         String photoReference = placesService.getPhotoReference(address, API_KEY);
-        byte[] imageURL = photosService.getImageURL(photoReference, API_KEY);
-        System.out.println(imageURL);
-        return imageURL;
+        byte[] image = photosService.getImage(photoReference, API_KEY);
+        return image;
     }
 }

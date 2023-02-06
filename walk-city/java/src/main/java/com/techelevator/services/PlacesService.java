@@ -18,7 +18,6 @@ public class PlacesService {
 
     public String getPhotoReference(String address, String apiKey) {
         PlacesSearchResponse searchResponse = restTemplate.getForObject(API_URL,PlacesSearchResponse.class, address, apiKey);
-//        System.out.println(searchResponse);
         Candidate[] candidates = searchResponse.getCandidates();
         int candidatesLength = candidates.length;
         Candidate candidate = candidates[0];

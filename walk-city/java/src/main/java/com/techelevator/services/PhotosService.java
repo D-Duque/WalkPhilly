@@ -12,10 +12,8 @@ public class PhotosService {
     private static final String API_URL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference={photoReference}&key={apiKey}";
     private RestTemplate restTemplate = new RestTemplate();
 
-    public byte[] getImageURL(String photoReference, String apiKey) {
-        byte[] imageURL = restTemplate.getForObject(API_URL, byte[].class, photoReference, apiKey);
-        return imageURL;
-
-
+    public byte[] getImage(String photoReference, String apiKey) {
+        byte[] image = restTemplate.getForObject(API_URL, byte[].class, photoReference, apiKey);
+        return image;
     }
 }
