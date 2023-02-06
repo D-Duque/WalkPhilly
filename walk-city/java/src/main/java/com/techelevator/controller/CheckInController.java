@@ -32,8 +32,8 @@ public class CheckInController
     }
 
     @RequestMapping(value = "/checkin", method = RequestMethod.POST)
-    public CheckIn add(@Valid @RequestBody CheckIn checkIn) {
-        return checkInDao.create(checkIn);
+    public void add(@Valid @RequestBody CheckIn checkIn) {
+        checkInDao.create(checkIn);
     }
 
     @GetMapping("/checkins/{userId}")

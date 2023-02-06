@@ -68,10 +68,20 @@ public class JdbcCheckInDao implements CheckInDao
     }
 
     @Override
-    public CheckIn create(CheckIn checkIn) {
-        checkIn.setCheckInId(getMaxIdPlusOne());
-        checkIns.add(checkIn);
-        return checkIn;
+    public Integer create(CheckIn checkIn) {
+
+        int userId = checkIn.getUserId();
+        int locationId = checkIn.getLocationId();
+
+        String sql = "INSERT into check_in (user_id, location_id)"
+                        + " VALUES (?, ?)"
+                        + " RETURNING check_in_id";
+
+        Integer checkInId = jdbcTemplate.queryForObject(sql, Integer.class, userId, locationId);
+        if (checkInId != null) {
+            return checkInId;
+        }
+        return null;
     }
 
     @Override
@@ -98,29 +108,4 @@ public class JdbcCheckInDao implements CheckInDao
         return checkIn;
     }
 
-
-    /**
-     * finds the max id in the list of checkIns and returns it
-     *
-     * @return int the max id
-     */
-    private int getMaxId() {
-        int maxId = 0;
-        for (CheckIn checkIn : checkIns) {
-            if (checkIn.getCheckInId() > maxId) {
-                maxId = checkIn.getCheckInId();
-            }
-        }
-        return maxId;
-    }
-
-
-    /**
-     * Adds 1 to the max id and returns it
-     *
-     * @return int maxId + 1
-     */
-    private int getMaxIdPlusOne() {
-        return getMaxId() + 1;
-    }
 }
