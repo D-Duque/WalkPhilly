@@ -30,7 +30,12 @@ export default new Vuex.Store({
     currentMarker: null,
     startLocation: null,
     endLocation: null,
-    placeId: ""
+    placeId: "",
+    activeChechIn: {
+      checkInId: null,
+      userId: null,
+      locationId: null
+    }
   },
   getters: {
     nearbyLocations(state) {
@@ -116,7 +121,7 @@ export default new Vuex.Store({
     SET_END_LOCATION(state, location) {
       state.endLocation = location;
     },
-    SET_PLACE_ID(state, id){
+    SET_PLACE_ID(state, id) {
       state.placeId = id;
     }
   }
