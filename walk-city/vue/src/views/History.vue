@@ -1,5 +1,7 @@
 <template>
     <div id="history-page">
+        <button id="check-in-history-button" :class="{'btn-darker-midnight-green': !showBadges, 'btn-midnight-green': showBadges}" @click="historyToggle">CHECK-IN HISTORY</button>
+        <button id="badges-button" :class="{'btn-darker-midnight-green': showBadges, 'btn-midnight-green': !showBadges}" @click="historyToggle">BADGES</button>
         <history-display v-show="!showBadges"></history-display>
         <badges-display v-show="showBadges"></badges-display>
     </div>
@@ -16,6 +18,11 @@ export default {
     data() {
         return {
             showBadges: false
+        }
+    },
+    methods: {
+        historyToggle() {
+            this.showBadges = !this.showBadges
         }
     }
 }

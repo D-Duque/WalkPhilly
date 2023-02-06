@@ -36,7 +36,7 @@ public class CheckInController
         checkInDao.create(checkIn);
     }
 
-    @GetMapping("/checkins/{userId}")
+    @GetMapping("/checkins/user/{userId}")
     public List<CheckIn> getCheckInsByUserId(@PathVariable int userId) {
         List<CheckIn> checkIns = checkInDao.findAllCheckInsByUserId(userId);
         return checkIns;

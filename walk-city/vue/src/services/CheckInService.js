@@ -18,7 +18,7 @@ export default {
     },
 
     getCheckInsByUserId(userId) {
-        return axios.get(`/checkins/${userId}`)
+        return axios.get(`/checkins/user/${userId}`)
     }
 
 
