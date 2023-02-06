@@ -5,13 +5,15 @@
     <div id="location-card">
       <h2 id="location-name">{{ location.locationName }}</h2>
       <div class="cooler-line"></div>
-      <img id="location-image" :src="`http://localhost:8080/api/photos/Philadelphia ${location.locationName}`" alt="" />
+      <img
+        id="location-image"
+        :src="
+          `http://localhost:8080/api/photos/Philadelphia ${location.locationName}`
+        "
+        alt=""
+      />
       <div id="location-buttons">
-        <button
-          class="btn-darker-midnight-green"
-          type="submit"
-          @click.prevent="saveCheckIn()"
-        >
+        <button class="btn-darker-midnight-green">
           CHECK-IN
         </button>
         <button
