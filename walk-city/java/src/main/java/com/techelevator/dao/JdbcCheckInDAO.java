@@ -1,6 +1,5 @@
 package com.techelevator.dao;
 
-import com.techelevator.dao.CheckInDao;
 import com.techelevator.model.CheckIn;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
