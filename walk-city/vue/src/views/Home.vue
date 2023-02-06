@@ -11,7 +11,7 @@
         rotateControl: false,
         fullscreenControl: false,
         disableDefaultUi: false,
-        mapId: '5bad73ddd2112653',
+        mapId: '5bad73ddd2112653'
       }"
       map-type-id="roadmap"
       style="width: 100vw; height: 93vh"
@@ -22,9 +22,10 @@
         v-for="(m, index) in $store.state.filteredMarkers"
         :ref="`marker${index}`"
         :position="m.position"
-        :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${
-          index + 1
-        }|FF0000|FFFFFF`"
+        :icon="
+          `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index +
+            1}|FF0000|FFFFFF`
+        "
         :clickable="true"
         :draggable="false"
         @click="openMarker(index)"
@@ -36,14 +37,19 @@
           :opened="openMarkerId === index"
         >
           <div id="body">
-            <router-link :to="{ name: 'location-details', params: { id: m.id } }">
+            <router-link
+              :to="{ name: 'location-details', params: { id: m.id } }"
+            >
               <div id="location-name">{{ m.name }}</div>
             </router-link>
 
             <div id="location-address">{{ m.address }}</div>
-            <img id="location-img" :src="`http://localhost:8080/api/photos/Philadelphia ${m.name}`" alt="" />
+            <img
+              id="location-img"
+              :src="`http://localhost:8080/api/photos/Philadelphia ${m.name}`"
+              alt=""
+            />
             <div id="location-buttons">
-              
               <div id="directions">
                 <div class="dropdown-container">
                   <b-form-select
@@ -54,13 +60,27 @@
                 </div>
                 <button
                   class="btn-midnight-green "
-                  :class="{active: isDirectionsShowing}"
+                  :class="{ active: isDirectionsShowing }"
                   @click="showDirections(m.position)"
                 >
                   DIRECTIONS
                 </button>
               </div>
-              <button class="btn-midnight-green" @click="checkIn({userId: $store.state.user.id, locationId: m.id})">CHECK-IN</button>
+              <div
+                class="alert alert-success"
+                role="alert"
+                v-show="isCheckedIn"
+              >
+                Check-in successful!
+              </div>
+              <button
+                class="btn-midnight-green"
+                @click="
+                  checkIn({ userId: $store.state.user.id, locationId: m.id })
+                "
+              >
+                CHECK-IN
+              </button>
             </div>
           </div>
         </GmapInfoWindow>
@@ -99,11 +119,11 @@ export default {
         this.$store.commit("MENU_TOGGLE");
       }
     },
-    geolocate: function () {
-      navigator.geolocation.getCurrentPosition((position) => {
+    geolocate: function() {
+      navigator.geolocation.getCurrentPosition(position => {
         this.userPos = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lng: position.coords.longitude
         };
         this.$store.commit("SET_USER_POSITION", this.userPos);
       });
@@ -114,7 +134,7 @@ export default {
     setPlace(place) {
       this.currentPlace = place;
     },
-    showDirections(destination) { 
+    showDirections(destination) {
       this.toggleDirections();
       this.startLocation = this.userPos;
       this.endLocation = destination;
@@ -123,36 +143,34 @@ export default {
       this.travelMode = travelMode;
     },
     toggleDirections() {
-      const dir = this.$route.query.dir
+      const dir = this.$route.query.dir;
       if (dir == "true" || dir == true) {
-        this.$router.push({name: 'home', query: {dir: false}});
-      }
-      else {
-        this.$router.push({name: 'home', query: {dir: true}});
+        this.$router.push({ name: "home", query: { dir: false } });
+      } else {
+        this.$router.push({ name: "home", query: { dir: true } });
       }
       this.isDirectionsShowing = !dir;
     },
     checkIn(checkIn) {
       CheckInService.createCheckin(checkIn).then(response => {
-        if (response.status === 200 || response.status === 201 )
-        {
+        if (response.status === 200 || response.status === 201) {
           // success code here
-          this.isCheckedIn = true;  
+          this.isCheckedIn = true;
         }
-      })
+      });
     }
   },
   components: {
     MenuButton,
     MenuView,
     FilterResults,
-    DirectionsRenderer,
+    DirectionsRenderer
   },
   data() {
     return {
       userPos: {
         lat: 0,
-        lng: 0,
+        lng: 0
       },
       openMarkerId: null,
       startLocation: this.$store.state.userPos,
@@ -161,13 +179,13 @@ export default {
       travelMode: "WALKING",
       options: [
         { value: "WALKING", text: "Walk" },
-        { value: "TRANSIT", text: "Transit" },
+        { value: "TRANSIT", text: "Transit" }
       ],
       isDirectionsShowing: false,
       placeImage: null,
       currentLocationId: 0,
       currentUserId: this.$store.state.user.id,
-      isCheckedIn: false,
+      isCheckedIn: false
     };
   },
   mounted() {
@@ -175,7 +193,7 @@ export default {
   },
   created() {
     // get data from API
-    LocationService.getAllLocations().then((response) => {
+    LocationService.getAllLocations().then(response => {
       this.$store.commit("LOAD_LOCATIONS", response.data);
       this.$store.commit("LOAD_NEARBY_LOCATIONS");
     });
@@ -183,8 +201,8 @@ export default {
   computed: {
     getUserPos() {
       return this.userPos;
-    },
-  },
+    }
+  }
 };
 </script>
 
