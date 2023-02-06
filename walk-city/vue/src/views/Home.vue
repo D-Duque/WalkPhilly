@@ -60,7 +60,7 @@
                   DIRECTIONS
                 </button>
               </div>
-              <button class="btn-midnight-green">CHECK-IN</button>
+              <button class="btn-midnight-green" @click="checkIn({userId: $store.state.user.userId, locationId: m.locationId})">CHECK-IN</button>
             </div>
           </div>
         </GmapInfoWindow>
@@ -89,6 +89,7 @@ import MenuView from "../components/MenuView.vue";
 import LocationService from "../services/LocationService";
 import FilterResults from "../components/FilterResults.vue";
 import DirectionsRenderer from "../components/DirectionsRenderer.js";
+import CheckInService from "../services/CheckInService";
 
 export default {
   name: "home",
@@ -131,6 +132,9 @@ export default {
       }
       this.isDirectionsShowing = !dir;
     },
+    checkIn(checkIn) {
+      CheckInService.createCheckin(checkIn)
+    }
   },
   components: {
     MenuButton,

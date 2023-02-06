@@ -124,8 +124,6 @@ export default new Vuex.Store({
     SET_PLACE_ID(state, id) {
       state.placeId = id;
     },
-    // CHECK_IN (state, userId, locationId) {
 
-    // }
   }
 });
