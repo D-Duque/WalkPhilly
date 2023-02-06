@@ -79,4 +79,5 @@ export default {
   color: rgb(0, 73, 83);
   margin-top: 0px !important;
 }
+
 </style>

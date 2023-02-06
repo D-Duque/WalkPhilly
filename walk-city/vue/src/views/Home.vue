@@ -137,6 +137,7 @@ export default {
         if (response.status === 200 || response.status === 201 )
         {
           // success code here
+          this.isCheckedIn = true;  
         }
       })
     }
