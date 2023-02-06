@@ -1,6 +1,6 @@
-<template>
+<template >
     <div>
-        Hi I am the history
+        I am badges
     </div>
 </template>
 <script>
@@ -8,6 +8,6 @@ export default {
 
 }
 </script>
-<style>
+<style >
 
 </style>

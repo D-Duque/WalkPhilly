@@ -1,99 +1,53 @@
 <template>
   <div class="home">
-    <GmapMap
-      :center="userPos"
-      :zoom="15"
-      :options="{
-        zoomControl: false,
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        rotateControl: false,
-        fullscreenControl: false,
-        disableDefaultUi: false,
-        mapId: '5bad73ddd2112653'
-      }"
-      map-type-id="roadmap"
-      style="width: 100vw; height: 93vh"
-      @click="closeMenuView"
-    >
-      <GmapMarker
-        :key="index"
-        v-for="(m, index) in $store.state.filteredMarkers"
-        :ref="`marker${index}`"
-        :position="m.position"
-        :icon="
+    <GmapMap :center="userPos" :zoom="15" :options="{
+      zoomControl: false,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: false,
+      disableDefaultUi: false,
+      mapId: '5bad73ddd2112653'
+    }" map-type-id="roadmap" style="width: 100vw; height: 93vh" @click="closeMenuView">
+      <GmapMarker :key="index" v-for="(m, index) in $store.state.filteredMarkers" :ref="`marker${index}`"
+        :position="m.position" :icon="
           `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index +
-            1}|FF0000|FFFFFF`
-        "
-        :clickable="true"
-        :draggable="false"
-        @click="openMarker(index)"
-      >
-        <GmapInfoWindow
-          class="info-window"
-          :closeclick="true"
-          @closeclick="openMarker(null)"
-          :opened="openMarkerId === index"
-        >
+          1}|FF0000|FFFFFF`
+        " :clickable="true" :draggable="false" @click="openMarker(index)">
+        <GmapInfoWindow class="info-window" :closeclick="true" @closeclick="openMarker(null)"
+          :opened="openMarkerId === index">
           <div id="body">
-            <router-link
-              :to="{ name: 'location-details', params: { id: m.id } }"
-            >
+            <router-link :to="{ name: 'location-details', params: { id: m.id } }">
               <div id="location-name">{{ m.name }}</div>
             </router-link>
 
             <div id="location-address">{{ m.address }}</div>
-            <img
-              id="location-img"
-              :src="`http://localhost:8080/api/photos/Philadelphia ${m.name}`"
-              alt=""
-            />
+            <img id="location-img" :src="`http://localhost:8080/api/photos/Philadelphia ${m.name}`" alt="" />
             <div id="location-buttons">
               <div id="directions">
                 <div class="dropdown-container">
-                  <b-form-select
-                    v-model="travelMode"
-                    :options="options"
-                    @change="setTravelMode"
-                  ></b-form-select>
+                  <b-form-select v-model="travelMode" :options="options" @change="setTravelMode"></b-form-select>
                 </div>
-                <button
-                  class="btn-midnight-green "
-                  :class="{ active: isDirectionsShowing }"
-                  @click="showDirections(m.position)"
-                >
+                <button class="btn-midnight-green " :class="{ active: isDirectionsShowing }"
+                  @click="showDirections(m.position)">
                   DIRECTIONS
                 </button>
               </div>
-              <div
-                class="alert alert-success"
-                role="alert"
-                v-show="isCheckedIn"
-              >
+              <div class="alert alert-success" role="alert" v-show="isCheckedIn">
                 Check-in successful!
               </div>
-              <button
-                class="btn-midnight-green"
-                @click="
-                  checkIn({ userId: $store.state.user.id, locationId: m.id })
-                "
-              >
+              <button class="btn-midnight-green" @click="
+                checkIn({ userId: $store.state.user.id, locationId: m.id })
+              ">
                 CHECK-IN
               </button>
             </div>
           </div>
         </GmapInfoWindow>
       </GmapMarker>
-      <GmapMarker
-        :position="userPos"
-        :icon="require('../assets/user-location_50.png')"
-      ></GmapMarker>
-      <DirectionsRenderer
-        :travelMode="travelMode"
-        :origin="startLocation"
-        :destination="endLocation"
-      />
+      <GmapMarker :position="userPos" :icon="require('../assets/user-location_50.png')"></GmapMarker>
+      <DirectionsRenderer :travelMode="travelMode" :origin="startLocation" :destination="endLocation" />
     </GmapMap>
     <filter-results></filter-results>
     <menu-button v-show="$store.state.isMenuButtonShowing"></menu-button>
@@ -119,7 +73,7 @@ export default {
         this.$store.commit("MENU_TOGGLE");
       }
     },
-    geolocate: function() {
+    geolocate: function () {
       navigator.geolocation.getCurrentPosition(position => {
         this.userPos = {
           lat: position.coords.latitude,
@@ -238,6 +192,7 @@ export default {
   align-items: center;
   flex-shrink: 2;
 }
+
 #directions {
   display: flex;
   flex-direction: column;
