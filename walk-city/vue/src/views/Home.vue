@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <a href="placesApi.html" class="href">Photos Test</a>
     <GmapMap
       :center="userPos"
       :zoom="15"
