@@ -133,7 +133,12 @@ export default {
       this.isDirectionsShowing = !dir;
     },
     checkIn(checkIn) {
-      CheckInService.createCheckin(checkIn)
+      CheckInService.createCheckin(checkIn).then(response => {
+        if (response.status === 200 || response.status === 201 )
+        {
+          // success code here
+        }
+      })
     }
   },
   components: {
@@ -160,7 +165,8 @@ export default {
       isDirectionsShowing: false,
       placeImage: null,
       currentLocationId: 0,
-      currentUserId: this.$store.state.user.id
+      currentUserId: this.$store.state.user.id,
+      isCheckedIn: false,
     };
   },
   mounted() {
