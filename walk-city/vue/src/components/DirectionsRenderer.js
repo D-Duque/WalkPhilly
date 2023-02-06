@@ -20,24 +20,56 @@ export default MapElementFactory({
   afterCreate(directionsRenderer) {
     let directionsService = new window.google.maps.DirectionsService();
 
+    let displayDirections = () => {
+      let { origin, destination, travelMode } = this;
+      if (!origin || !destination || !travelMode) return;
+      directionsService.route(
+        {
+          origin,
+          destination,
+          travelMode
+        },
+        (response, status) => {
+          if (status !== "OK") return;
+          // eslint-disable-next-line no-debugger
+          // debugger
+          directionsRenderer.setDirections(response);
+        }
+      );
+    }
+
+    if(this.$route.query.dir === true)
+    {
+      displayDirections();
+    }
+
     this.$watch(
-      () => [this.origin, this.destination, this.travelMode],
+      () => [this.origin, this.destination, this.travelMode, this.$route.query.dir],
       () => {
-        let { origin, destination, travelMode } = this;
-        if (!origin || !destination || !travelMode) return;
-        directionsService.route(
-          {
-            origin,
-            destination,
-            travelMode
-          },
-          (response, status) => {
-            if (status !== "OK") return;
-            // eslint-disable-next-line no-debugger
-            // debugger
-            directionsRenderer.setDirections(response);
-          }
-        );
+        if (this.$route.query.dir === false)
+        {
+          directionsRenderer.setDirections({routes: []});
+        }
+        else {
+          displayDirections()
+        }
+        
+       
+        // let { origin, destination, travelMode } = this;
+        // if (!origin || !destination || !travelMode) return;
+        // directionsService.route(
+        //   {
+        //     origin,
+        //     destination,
+        //     travelMode
+        //   },
+        //   (response, status) => {
+        //     if (status !== "OK") return;
+        //     // eslint-disable-next-line no-debugger
+        //     // debugger
+        //     directionsRenderer.setDirections(response);
+        //   }
+        // );
       }
     );
   }

@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 
-
 /* https://maps.googleapis.com/maps/api/place/findplacefromtext/output?parameters
 
 Need to find location first.
@@ -30,17 +29,17 @@ candidates.photos.photo_reference
 // photo_reference
 // A string identifier that uniquely identifies a photo. Photo references are returned from either a Place Search or Place Details request.
 
-
 export default {
     data() {
         return {
             apiKey: 'AIzaSyCGANmXOYKLmKzG6N46k5oEr7MBWy01C2c'
         }
     },
-    getPhotoReference(address){
-        return axios.get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${address}&inputtype=textquery&fields=photo&key=${this.apiKey}`)
+    getPlaceId(){
+        return axios.get(`https://maps.googleapis.com/maps/api/js?key=${this.apiKey}&callback=getPlaceId&libraries=places&v=weekly`)
     },
-    getPhotoReferenceDefault(){
-        return axios.get('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photo&key=AIzaSyCGANmXOYKLmKzG6N46k5oEr7MBWy01C2c')
-    }
+    // getPhotoReferenceDefault(){
+    //     return axios.get('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Museum%20of%20Contemporary%20Art%20Australia&inputtype=textquery&fields=photo&key=AIzaSyCGANmXOYKLmKzG6N46k5oEr7MBWy01C2c')
+    // }
+
 }

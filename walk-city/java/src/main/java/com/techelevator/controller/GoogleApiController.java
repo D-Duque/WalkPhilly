@@ -6,11 +6,14 @@ import com.techelevator.services.PlacesService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.awt.*;
+
+
+@CrossOrigin
 
 @RestController
 @RequestMapping ("/api/photos")
-@CrossOrigin
 public class GoogleApiController {
     private PhotosService photosService;
     private PlacesService placesService;
@@ -19,13 +22,15 @@ public class GoogleApiController {
 
     public GoogleApiController() {
         this.photosService = new PhotosService();
-        this.placesService =  new PlacesService();
+        this.placesService = new PlacesService();
     }
 
-    @GetMapping(value="/{address}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getImage (@PathVariable String address){
+    @GetMapping(value = "/{address}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody
+    byte[] getImage(@PathVariable String address) {
         String photoReference = placesService.getPhotoReference(address, API_KEY);
         byte[] image = photosService.getImage(photoReference, API_KEY);
         return image;
+
     }
 }
