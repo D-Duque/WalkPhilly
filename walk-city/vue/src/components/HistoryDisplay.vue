@@ -1,6 +1,10 @@
 <template>
     <div class="history">
-        Hi I am the history
+        <div class="histoy-card">
+            <img id="verified-img" src="../assets/verified-account.png">
+            <h3>Location Name</h3>
+            <h4>Time Stamp</h4>
+        </div>
     </div>
 </template>
 <script>
@@ -34,8 +38,9 @@ div.history h4 {
   font-size: 1rem;
 }
 
-#description {
-  text-align: justify;
-}
+/* #history-card {
+    display: flex;
+    flex-direction: column;
+} */
 
 </style>
