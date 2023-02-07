@@ -55,7 +55,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public User findByUsername(String username) throws UsernameNotFoundException {
         for (User user : this.findAll()) {
-            if( user.getUsername().toLowerCase().equals(username.toLowerCase())) {
+            if( user .getUsername().toLowerCase().equals(username.toLowerCase())) {
                 return user;
             }
         }
