@@ -75,12 +75,13 @@ public class JdbcCheckInDao implements CheckInDao
         int userId = checkIn.getUserId();
         int locationId = checkIn.getLocationId();
         LocalDateTime checkInTime = checkIn.getCheckInTime();
+        boolean isCheckedIn = checkIn.isCheckedIn();
 
-        String sql = "INSERT into check_in (user_id, location_id, check_in_time)"
-                        + " VALUES (?, ?, ?)"
+        String sql = "INSERT into check_in (user_id, location_id, check_in_time, is_checked_in)"
+                        + " VALUES (?, ?, ?, ?)"
                         + " RETURNING check_in_id";
 
-        Integer checkInId = jdbcTemplate.queryForObject(sql, Integer.class, userId, locationId, checkInTime);
+        Integer checkInId = jdbcTemplate.queryForObject(sql, Integer.class, userId, locationId, checkInTime, isCheckedIn);
         if (checkInId != null) {
             return checkInId;
         }
@@ -109,6 +110,7 @@ public class JdbcCheckInDao implements CheckInDao
         checkIn.setUserId(rs.getInt("user_id"));
         checkIn.setLocationId(rs.getInt("location_id"));
         checkIn.setCheckInTime(Objects.requireNonNull(rs.getTimestamp("check_in_time")).toLocalDateTime());
+        checkIn.setIsCheckedIn(rs.getBoolean("is_checked_in"));
         return checkIn;
     }
 
