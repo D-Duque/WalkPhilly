@@ -48,6 +48,7 @@ div.history p {
 
 div.history h3 {
   display: inline-block;
+  font-size: 1.5rem;
 }
 
 div.history h4 {
