@@ -11,7 +11,7 @@
         rotateControl: false,
         fullscreenControl: false,
         disableDefaultUi: false,
-        mapId: '5bad73ddd2112653'
+        mapId: '5bad73ddd2112653',
       }"
       map-type-id="roadmap"
       style="width: 100vw; height: 93vh"
@@ -22,10 +22,9 @@
         v-for="(m, index) in $store.state.filteredMarkers"
         :ref="`marker${index}`"
         :position="m.position"
-        :icon="
-          `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index +
-            1}|FF0000|FFFFFF`
-        "
+        :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${
+          index + 1
+        }|FF0000|FFFFFF`"
         :clickable="true"
         :draggable="false"
         @click="openMarker(index)"
@@ -59,7 +58,7 @@
                   ></b-form-select>
                 </div>
                 <button
-                  class="btn-midnight-green "
+                  class="btn-midnight-green"
                   :class="{ active: isDirectionsShowing }"
                   @click="showDirections(m.position)"
                 >
@@ -75,8 +74,10 @@
               </div>
               <button
                 class="btn-midnight-green"
+                :id="m.id"
+                :disabled="m.isCheckedIn"
                 @click="
-                  checkIn({ userId: $store.state.user.id, locationId: m.id })
+                  checkIn({ userId: $store.state.user.id, locationId: m.id }, m.id)
                 "
               >
                 CHECK-IN
@@ -119,17 +120,18 @@ export default {
         this.$store.commit("MENU_TOGGLE");
       }
     },
-    geolocate: function() {
-      navigator.geolocation.getCurrentPosition(position => {
+    geolocate: function () {
+      navigator.geolocation.getCurrentPosition((position) => {
         this.userPos = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lng: position.coords.longitude,
         };
         this.$store.commit("SET_USER_POSITION", this.userPos);
       });
     },
     openMarker(id) {
       this.openMarkerId = id;
+      this.isCheckedIn = false;
     },
     setPlace(place) {
       this.currentPlace = place;
@@ -151,26 +153,36 @@ export default {
       }
       this.isDirectionsShowing = !dir;
     },
-    checkIn(checkIn) {
-      CheckInService.createCheckin(checkIn).then(response => {
+    checkIn(checkIn, locationId) {
+      CheckInService.createCheckin(checkIn).then((response) => {
         if (response.status === 200 || response.status === 201) {
           // success code here
-          this.isCheckedIn = true;
         }
       });
-    }
+      // get all locations, filter by checkin.locationId
+      const filteredLocations = this.$store.state.locations
+        .filter((location) => {
+          return location.locationId == locationId;
+        })
+        filteredLocations.forEach((location) => {
+          location.isCheckedIn = true;
+          this.checkedInLocations.push(location);
+        });
+
+      //set isCheckedIn to true for current location
+    },
   },
   components: {
     MenuButton,
     MenuView,
     FilterResults,
-    DirectionsRenderer
+    DirectionsRenderer,
   },
   data() {
     return {
       userPos: {
         lat: 0,
-        lng: 0
+        lng: 0,
       },
       openMarkerId: null,
       startLocation: this.$store.state.userPos,
@@ -179,13 +191,14 @@ export default {
       travelMode: "WALKING",
       options: [
         { value: "WALKING", text: "Walk" },
-        { value: "TRANSIT", text: "Transit" }
+        { value: "TRANSIT", text: "Transit" },
       ],
       isDirectionsShowing: false,
       placeImage: null,
       currentLocationId: 0,
       currentUserId: this.$store.state.user.id,
-      isCheckedIn: false
+      isCheckedIn: false,
+      checkedInLocations: [],
     };
   },
   mounted() {
@@ -193,7 +206,7 @@ export default {
   },
   created() {
     // get data from API
-    LocationService.getAllLocations().then(response => {
+    LocationService.getAllLocations().then((response) => {
       this.$store.commit("LOAD_LOCATIONS", response.data);
       this.$store.commit("LOAD_NEARBY_LOCATIONS");
     });
@@ -201,8 +214,8 @@ export default {
   computed: {
     getUserPos() {
       return this.userPos;
-    }
-  }
+    },
+  },
 };
 </script>
 

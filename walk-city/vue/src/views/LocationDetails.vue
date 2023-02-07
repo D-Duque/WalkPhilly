@@ -1,5 +1,3 @@
-<style src="../components/locationdetail/locationDetail.css" scoped />
-
 <template>
   <div class="main">
     <div id="location-card">
@@ -7,15 +5,19 @@
       <div class="cooler-line"></div>
       <img
         id="location-image"
-        :src="
-          `http://localhost:8080/api/photos/Philadelphia ${location.locationName}`
-        "
+        :src="`http://localhost:8080/api/photos/Philadelphia ${location.locationName}`"
         alt=""
       />
       <div id="location-buttons">
-        <button class="btn-darker-midnight-green" @click="
-                  checkIn({ userId: $store.state.user.id, locationId: location.locationId })
-                ">
+        <button
+          class="btn-darker-midnight-green"
+          @click="
+            checkIn({
+              userId: $store.state.user.id,
+              locationId: location.locationId,
+            })
+          "
+        >
           CHECK-IN
         </button>
         <button
@@ -26,15 +28,10 @@
         >
           DIRECTIONS
         </button>
-        
       </div>
-      <div
-                class="alert alert-success"
-                role="alert"
-                v-show="isCheckedIn"
-              >
-                Check-in successful!
-              </div>
+      <div class="alert alert-success" role="alert" v-show="isCheckedIn">
+        Check-in successful!
+      </div>
       <div id="location-description">
         <p id="description">{{ location.description }}</p>
         <p id="availability">{{ location.availability }}</p>
@@ -63,7 +60,7 @@ export default {
     };
   },
   created() {
-    locationService.getLocationById(this.$route.params.id).then(response => {
+    locationService.getLocationById(this.$route.params.id).then((response) => {
       this.location = response.data;
     });
   },
@@ -77,21 +74,15 @@ export default {
       this.$store.commit("SET_END_LOCATION", location);
     },
     checkIn(checkIn) {
-      checkInService.createCheckin(checkIn).then(response => {
+      checkInService.createCheckin(checkIn).then((response) => {
         if (response.status === 200 || response.status === 201) {
           // success code here
           this.isCheckedIn = true;
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style>
-#location-description {
-  color: rgb(0, 73, 83);
-  margin-top: 0px !important;
-}
-
-</style>
+<style src="../components/locationdetail/locationDetail.css" scoped />

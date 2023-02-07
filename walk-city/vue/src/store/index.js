@@ -47,7 +47,8 @@ export default new Vuex.Store({
             address: location.address,
             description: location.description,
             availability: location.availability,
-            social: location.socialMedia
+            social: location.socialMedia,
+            isCheckedIn: false
           };
         })
         .filter(location => {
@@ -97,9 +98,9 @@ export default new Vuex.Store({
     LOAD_NEARBY_LOCATIONS(state) {
       state.filteredMarkers = this.getters.nearbyLocations;
     },
-    FLIP_CHECKED(state, locationToChange) {
-      locationToChange.checked = !locationToChange.checked;
-    },
+    // FLIP_CHECKED(state, locationToChange) {
+    //   locationToChange.checked = !locationToChange.checked;
+    // },
     FILTER_ALL(state) {
       const filteredLocations = this.getters.nearbyLocations.filter(
         location =>
