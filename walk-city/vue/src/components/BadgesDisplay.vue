@@ -8,9 +8,26 @@
     </div>
 </template>
 <script>
-export default {
+import badgesServices from "../services/BadgesServices";
 
+export default {
+    components: {},
+    data () {
+        return {
+            badgeObject: {}
+        };
+    },
+    props: ["entry"],
+    methods: {
+        created() {
+        badgesServices.getBadgesByUserId(this.entry.userId).then(response => {
+        this.badgeObject = response.data;
+    });
+    }
+
+    }
 }
+
 </script>
 <style scoped>
 div.badge {
