@@ -1,19 +1,26 @@
 package com.techelevator.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class CheckIn
 {
     private int checkInId;
     private int userId;
     private int locationId;
+    private LocalDateTime checkInTime;
 
     public CheckIn(){
+        this.checkInTime = LocalDateTime.now();
     }
 
-    public CheckIn(int checkInId, int userId, int locationId)
+    public CheckIn(int checkInId, int userId, int locationId, LocalDateTime checkInTime)
     {
         this.checkInId = checkInId;
         this.userId = userId;
         this.locationId = locationId;
+        this.checkInTime = checkInTime;
     }
 
     public int getCheckInId()
@@ -31,6 +38,11 @@ public class CheckIn
         return locationId;
     }
 
+    public LocalDateTime getCheckInTime()
+    {
+        return checkInTime;
+    }
+
     public void setCheckInId(int checkInId)
     {
         this.checkInId = checkInId;
@@ -44,5 +56,11 @@ public class CheckIn
     public void setLocationId(int locationId)
     {
         this.locationId = locationId;
+    }
+
+    public void setCheckInTime(LocalDateTime checkInTime)
+    {
+        this.checkInTime = checkInTime;
+        ;
     }
 }

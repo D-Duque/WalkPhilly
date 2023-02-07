@@ -14,7 +14,7 @@
           @click="
             checkIn({
               userId: $store.state.user.id,
-              locationId: location.locationId,
+              locationId: location.locationId
             })
           "
         >
@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       location: {},
-      isCheckedIn: false,
+      isCheckedIn: false
     };
   },
   created() {
