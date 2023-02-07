@@ -1,7 +1,9 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.CheckInDao;
+import com.techelevator.dao.UserCheckInCategoryDao;
 import com.techelevator.model.CheckIn;
+import com.techelevator.model.UserCheckInCategory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -13,8 +15,10 @@ import java.util.List;
 public class CheckInController
 {
     private CheckInDao checkInDao;
+    private UserCheckInCategoryDao userCheckInCategoryDao;
 
-    public CheckInController(CheckInDao checkInDao) {this.checkInDao = checkInDao;}
+    public CheckInController(CheckInDao checkInDao, UserCheckInCategoryDao userCheckInCategoryDao) {this.checkInDao = checkInDao;
+    this.userCheckInCategoryDao = userCheckInCategoryDao;}
 
     @GetMapping("/checkins")
     public List<CheckIn> getCheckIns() {return checkInDao.findAll(); }
@@ -39,6 +43,12 @@ public class CheckInController
     @GetMapping("/checkins/user/{userId}")
     public List<CheckIn> getCheckInsByUserId(@PathVariable int userId) {
         List<CheckIn> checkIns = checkInDao.findAllCheckInsByUserId(userId);
+        return checkIns;
+    }
+
+    @GetMapping("/checkins/category/user/{userId}")
+    public List<UserCheckInCategory> getCategoryCheckInsByUserId(@PathVariable int userId){
+        List<UserCheckInCategory> checkIns = userCheckInCategoryDao.listAll(userId);
         return checkIns;
     }
 }

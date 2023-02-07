@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.UserBadgeDao;
 import com.techelevator.model.UserBadge;
+import com.techelevator.model.UserCheckInCategory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,4 +34,5 @@ public class BadgesController {
     public void addBadge(@Valid @RequestBody UserBadge userBadge){
         userBadgeDao.create(userBadge);
     }
+
 }
