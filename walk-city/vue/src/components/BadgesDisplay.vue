@@ -1,8 +1,9 @@
 <template >
     <div class="badge">
-        <div class="badge-card"> Hi</div>
+        <div class="badge-card"> <img id="badge-img" src="../assets/badge.png"> 
+        </div>
         <div class="badge-image"></div>
-        <!-- <img id="badge-img" src="../assets/badge.png"> -->
+    
     </div>
 </template>
 <script>
@@ -42,10 +43,10 @@ div.badge h4 {
     width: 146px;
     height: 158px;
     border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
 }
 
-/* #image-badge {
-    content:url()
-} */
 
 </style>
