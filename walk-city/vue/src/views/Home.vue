@@ -38,7 +38,7 @@
                 Check-in successful!
               </div>
               <button class="btn-midnight-green" @click="
-                checkIn({ userId: $store.state.user.id, locationId: m.id })
+                checkIn({ userId: $store.state.user.id, locationId: m.id, isCheckedIn: true})
               ">
                 CHECK-IN
               </button>
@@ -110,7 +110,7 @@ export default {
       CheckInService.createCheckin(checkIn).then((response) => {
         if (response.status === 200 || response.status === 201) {
           // success code here
-          this.isCheckedIn = true;
+      
         }
       });
       // get all locations, filter by checkin.locationId
