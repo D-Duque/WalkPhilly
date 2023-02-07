@@ -98,9 +98,6 @@ export default new Vuex.Store({
     LOAD_NEARBY_LOCATIONS(state) {
       state.filteredMarkers = this.getters.nearbyLocations;
     },
-    // FLIP_CHECKED(state, locationToChange) {
-    //   locationToChange.checked = !locationToChange.checked;
-    // },
     FILTER_ALL(state) {
       const filteredLocations = this.getters.nearbyLocations.filter(
         location =>
@@ -119,6 +116,25 @@ export default new Vuex.Store({
     },
     SET_PLACE_ID(state, id) {
       state.placeId = id;
+    },
+    CHECK_IN(state, locationId) {
+      const location = state.filteredMarkers.filter(location => {
+        return location.id == locationId;
+      })[0]
+      location.isCheckedIn = true;
+    },
+    SET_CHECK_IN_STATUS(state, checkIns){
+      // reduce checkIns to just locationIds
+      const checkedInLocations = checkIns.reduce((newArray, current) => newArray.concat(current.locationId), []);
+      // for each checkin, match locationId to location array locations
+     state.filteredMarkers.forEach(location => {
+       if (checkedInLocations.includes(location.id)){
+         //for each match, set isCheckedIn to true;
+         location.isCheckedIn = true;
+       }
+     })
+      
+      
     }
   }
 });
