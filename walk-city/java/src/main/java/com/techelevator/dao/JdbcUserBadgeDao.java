@@ -1,8 +1,8 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.CheckIn;
-import com.techelevator.model.User;
 import com.techelevator.model.UserBadge;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.quartz.QuartzProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -12,7 +12,10 @@ import java.util.List;
 
 @Component
 public class JdbcUserBadgeDao implements UserBadgeDao{
+
     private JdbcTemplate jdbcTemplate;
+
+    public JdbcUserBadgeDao(JdbcTemplate jdbcTemplate) {this.jdbcTemplate = jdbcTemplate;}
 
     @Override
     public List<UserBadge> listAll(){
@@ -44,7 +47,7 @@ public class JdbcUserBadgeDao implements UserBadgeDao{
     }
 
     @Override
-    public List<UserBadge> getUserBadgeByBadge(int badgeId){
+    public List<UserBadge> getUserBadgesByBadge(int badgeId){
         List<UserBadge> userBadgeList = new ArrayList<>();
         String sql = "SELECT * FROM user_badge WHERE badge_id = ?";
 
@@ -64,9 +67,9 @@ public class JdbcUserBadgeDao implements UserBadgeDao{
         int badgeId = userBadge.getBadgeId();
 
         String sql = "INSERT into user_badge (user_id, badge_id) "
-                + "VALUES (?, ?) ";
+                + "VALUES (?, ?)";
 
-        jdbcTemplate.update(sql);
+        jdbcTemplate.update(sql, userId, badgeId);
     }
 
     public UserBadge mapRowToUserBadge(SqlRowSet rs){
