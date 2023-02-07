@@ -1,26 +1,34 @@
 <template>
-  <router-link
-    :to="{ name: 'location-details', params: { id: location.id } }"
-    style="text-decoration: none"
-  >
+  <div>
     <div
       class="location"
       v-bind:class="{ checking: location.checked }"
       v-bind:key="location.id"
-    >  
-      <h3>{{ location.name }}</h3>
+    >
+      <router-link
+        :to="{ name: 'location-details', params: { id: location.id } }"
+        style="text-decoration: none"
+      >
+        <h3 id="name">{{ location.name }}</h3>
+      </router-link>
       <h4>{{ location.category }}</h4>
-      <img id="location-image" :src="`http://localhost:8080/api/photos/Philadelphia ${location.name}`" alt="" />
+      <img
+        id="location-image"
+        :src="`http://localhost:8080/api/photos/Philadelphia ${location.name}`"
+        alt=""
+      />
+
       <p id="description">{{ location.description }}</p>
       <p id="address">{{ location.address }}</p>
       <p id="availability">{{ location.availability }}</p>
+
       <p>
         <a v-bind:href="location.social" target="_blank">{{
           location.social
         }}</a>
       </p>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script>
@@ -62,6 +70,14 @@ div.location h4 {
 }
 #location-image {
   max-width: 80vw;
+}
 
+#name:hover {
+  color: #3366bb;
+  cursor: pointer;
+}
+
+#name {
+  color: rgb(0, 73, 83);
 }
 </style>

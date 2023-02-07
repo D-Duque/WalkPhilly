@@ -5,8 +5,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class JdbcCheckInDao implements CheckInDao
@@ -72,12 +75,13 @@ public class JdbcCheckInDao implements CheckInDao
 
         int userId = checkIn.getUserId();
         int locationId = checkIn.getLocationId();
+        LocalDateTime checkInTime = checkIn.getCheckInTime();
 
-        String sql = "INSERT into check_in (user_id, location_id)"
-                        + " VALUES (?, ?)"
+        String sql = "INSERT into check_in (user_id, location_id, check_in_time)"
+                        + " VALUES (?, ?, ?)"
                         + " RETURNING check_in_id";
 
-        Integer checkInId = jdbcTemplate.queryForObject(sql, Integer.class, userId, locationId);
+        Integer checkInId = jdbcTemplate.queryForObject(sql, Integer.class, userId, locationId, checkInTime);
         if (checkInId != null) {
             return checkInId;
         }
@@ -105,6 +109,7 @@ public class JdbcCheckInDao implements CheckInDao
         checkIn.setCheckInId(rs.getInt("check_in_id"));
         checkIn.setUserId(rs.getInt("user_id"));
         checkIn.setLocationId(rs.getInt("location_id"));
+        checkIn.setCheckInTime(Objects.requireNonNull(rs.getTimestamp("check_in_time")).toLocalDateTime());
         return checkIn;
     }
 

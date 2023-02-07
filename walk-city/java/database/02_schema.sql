@@ -39,7 +39,8 @@ CREATE TABLE badges (
 CREATE TABLE check_in (
     check_in_id SERIAL NOT NULL PRIMARY KEY,
     user_id INT NOT NULL,
-    location_id INT NOT NULL
+    location_id INT NOT NULL,
+    check_in_time TIMESTAMP NOT NULl
 );
 
 CREATE TABLE user_badge (

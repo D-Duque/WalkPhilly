@@ -13,9 +13,15 @@
         alt=""
       />
       <div id="location-buttons">
-        <button class="btn-darker-midnight-green" @click="
-                  checkIn({ userId: $store.state.user.id, locationId: location.locationId })
-                ">
+        <button
+          class="btn-darker-midnight-green"
+          @click="
+            checkIn({
+              userId: $store.state.user.id,
+              locationId: location.locationId
+            })
+          "
+        >
           CHECK-IN
         </button>
         <button
@@ -26,15 +32,10 @@
         >
           DIRECTIONS
         </button>
-        
       </div>
-      <div
-                class="alert alert-success"
-                role="alert"
-                v-show="isCheckedIn"
-              >
-                Check-in successful!
-              </div>
+      <div class="alert alert-success" role="alert" v-show="isCheckedIn">
+        Check-in successful!
+      </div>
       <div id="location-description">
         <p id="description">{{ location.description }}</p>
         <p id="availability">{{ location.availability }}</p>
@@ -59,7 +60,7 @@ export default {
   data() {
     return {
       location: {},
-      isCheckedIn: false,
+      isCheckedIn: false
     };
   },
   created() {
@@ -93,5 +94,4 @@ export default {
   color: rgb(0, 73, 83);
   margin-top: 0px !important;
 }
-
 </style>
