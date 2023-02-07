@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Objects;
 
 @Component
-public class JdbcCheckInDaoSomethingDifferent implements CheckInDao
+public class JdbcCheckInDao implements CheckInDao
 {
     private JdbcTemplate jdbcTemplate;
 
     private List<CheckIn> checkIns = new ArrayList<>();
 
-    public JdbcCheckInDaoSomethingDifferent(JdbcTemplate jdbcTemplate) {this.jdbcTemplate = jdbcTemplate;}
+    public JdbcCheckInDao(JdbcTemplate jdbcTemplate) {this.jdbcTemplate = jdbcTemplate;}
 
     @Override
     public List<CheckIn> findAll()
