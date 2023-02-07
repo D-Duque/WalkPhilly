@@ -14,8 +14,8 @@
     </router-link>
     <div class="cool-line"></div>
 
-    <router-link :to="{name: 'history' }" v-if="$store.state.token != ''"> 
-      <div id="view-history">
+    <router-link :to="{ name: 'history' }" v-if="$store.state.token != ''">
+      <div id="view-history" @click="menuToggle">
         {{ $store.state.token != "" ? "VIEW HISTORY" : " " }}
       </div>
     </router-link>
@@ -112,12 +112,13 @@ export default {
   display: flex;
 }
 
-#list-view, #view-history {
+#list-view,
+#view-history {
   color: white;
 }
 
-#list-view:hover, #view-history:hover  {
+#list-view:hover,
+#view-history:hover {
   color: orange;
 }
-
 </style>
