@@ -1,8 +1,7 @@
 package com.techelevator.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 
 public class CheckIn
 {
@@ -10,17 +9,21 @@ public class CheckIn
     private int userId;
     private int locationId;
     private LocalDateTime checkInTime;
+    private boolean isCheckedIn;
+
+
 
     public CheckIn(){
         this.checkInTime = LocalDateTime.now();
     }
 
-    public CheckIn(int checkInId, int userId, int locationId, LocalDateTime checkInTime)
+    public CheckIn(int checkInId, int userId, int locationId, LocalDateTime checkInTime, boolean isCheckedIn)
     {
         this.checkInId = checkInId;
         this.userId = userId;
         this.locationId = locationId;
         this.checkInTime = checkInTime;
+        this.isCheckedIn = isCheckedIn;
     }
 
     public int getCheckInId()
@@ -62,5 +65,14 @@ public class CheckIn
     {
         this.checkInTime = checkInTime;
         ;
+    }
+    public boolean isCheckedIn()
+    {
+        return isCheckedIn;
+    }
+
+    public void setIsCheckedIn(boolean isCheckedIn)
+    {
+        this.isCheckedIn = isCheckedIn;
     }
 }

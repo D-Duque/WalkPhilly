@@ -9,14 +9,14 @@
 
     <router-link :to="{ name: 'location-list' }" v-if="$store.state.token != ''">
       <div id="list-view" @click="menuToggle">
-        {{ $store.state.token != "" ? "LIST VIEW" : " " }}
+        {{ $store.state.token != "" ? "VIEW LOCATIONS" : " " }}
       </div>
     </router-link>
     <div class="cool-line"></div>
 
     <router-link :to="{ name: 'history' }" v-if="$store.state.token != ''">
       <div id="view-history" @click="menuToggle">
-        {{ $store.state.token != "" ? "VIEW HISTORY" : " " }}
+        {{ $store.state.token != "" ? "VIEW CHECK-INS" : " " }}
       </div>
     </router-link>
 

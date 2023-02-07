@@ -34,7 +34,7 @@ export default {
 </script>
 <style scoped>
 div.history {
-    display: grid;
+    /* display: grid; */
     border: 1px black solid;
     border-radius: 6px;
     padding: 1rem;
@@ -55,10 +55,19 @@ div.history h3 {
 
 div.history h4 {
     font-size: 1rem;
+    margin: 3px;
+    display: flex;
+    justify-content: center;
 }
 
-/* #history-card {
+#history-card {
     display: flex;
-    flex-direction: column;
-} */
+    justify-content: center;
+}
+
+#verified-img {
+    margin-right: 10px;
+    justify-content: left;
+}
+
 </style>

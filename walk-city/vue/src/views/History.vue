@@ -1,11 +1,13 @@
 <template>
     <div id="history-page">
-        <button id="check-in-history-button"
-            :class="{ 'btn-darker-midnight-green': showBadges, 'btn-midnight-green': !showBadges }"
-            @click="historyToggle">CHECK-IN HISTORY</button>
-        <button id="badges-button"
-            :class="{ 'btn-darker-midnight-green': !showBadges, 'btn-midnight-green': showBadges }"
-            @click="historyToggle">BADGES</button>
+        <div class="buttons">
+            <button id="check-in-history-button"
+                :class="{ 'btn-white-outline': showBadges, 'btn-midnight-green': !showBadges }"
+                @click="historyToggle">CHECK-IN HISTORY</button>
+            <button id="badges-button"
+                :class="{ 'btn-white-outline': !showBadges, 'btn-midnight-green': showBadges }"
+                @click="historyToggle">BADGES</button>
+        </div>
         <history-display v-for="entry in checkInList" v-bind:key="entry.checkInId" v-bind:entry="entry"
             v-show="!showBadges"></history-display>
         <badges-display v-show="showBadges"></badges-display>
@@ -40,5 +42,11 @@ export default {
 }
 </script>
 <style scoped>
-
+    .buttons {
+        margin-top: 1rem;
+        margin-left: 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
 </style>
