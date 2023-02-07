@@ -18,7 +18,7 @@ public class BadgesController {
     public BadgesController(UserBadgeDao userBadgeDao) {this.userBadgeDao = userBadgeDao;}
 
     @GetMapping("/badges/user/{userId}")
-    public List<UserBadge> getBadgesById(@PathVariable int userId){
+    public List<UserBadge> getBadgesByUser(@PathVariable int userId){
         List<UserBadge> userBadges = userBadgeDao.getUserBadgesByUser(userId);
         return userBadges;
     }
