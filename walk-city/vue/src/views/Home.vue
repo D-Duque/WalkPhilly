@@ -38,7 +38,7 @@
                 Check-in successful!
               </div>
               <button class="btn-midnight-green" @click="
-                checkIn({ userId: $store.state.user.id, locationId: m.id })
+                checkIn({ userId: $store.state.user.id, locationId: m.id, isCheckedIn: true})
               ">
                 CHECK-IN
               </button>
@@ -106,21 +106,22 @@ export default {
       }
       this.isDirectionsShowing = !dir;
     },
-    checkIn(checkIn, locationId) {
+    checkIn(checkIn) {
       CheckInService.createCheckin(checkIn).then((response) => {
         if (response.status === 200 || response.status === 201) {
           // success code here
+      
         }
       });
       // get all locations, filter by checkin.locationId
-      const filteredLocations = this.$store.state.locations
-        .filter((location) => {
-          return location.locationId == locationId;
-        })
-        filteredLocations.forEach((location) => {
-          location.isCheckedIn = true;
-          this.checkedInLocations.push(location);
-        });
+      // const filteredLocations = this.$store.state.locations
+      //   .filter((location) => {
+      //     return location.locationId == locationId;
+      //   })
+      //   filteredLocations.forEach((location) => {
+      //     location.isCheckedIn = true;
+      //     this.checkedInLocations.push(location);
+      //   });
 
       //set isCheckedIn to true for current location
     },
