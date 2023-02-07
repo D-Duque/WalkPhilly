@@ -62,10 +62,16 @@ div.history h4 {
 #history-card {
   display: flex;
   justify-content: center;
+  /* align-items: center; */
+  place-items: center;
+
 }
 
 #verified-img {
   margin-right: 10px;
-  justify-content: left;
+  
 }
+
+
+
 </style>
