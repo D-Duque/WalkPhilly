@@ -53,8 +53,9 @@ div.history h3 {
 div.history h4 {
   font-size: 1rem;
   margin: 3px;
+  margin-left: 3.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 
 #history-card {
