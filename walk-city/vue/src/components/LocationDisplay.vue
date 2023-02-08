@@ -15,16 +15,12 @@
           "
           alt=""
         />
-        <!-- <p id="description">{{ location.description }}</p> -->
         <p id="address">{{ location.address }}</p>
-        <!-- <p id="availability">{{ location.availability }}</p> -->
       </router-link>
 
-      <p id="website">
-        <a v-bind:href="location.social" target="_blank">{{
-          location.social
-        }}</a>
-      </p>
+      <a id="website" v-bind:href="location.social" target="_blank">{{
+        location.social
+      }}</a>
     </div>
   </div>
 </template>
@@ -52,7 +48,7 @@ div.location {
 }
 
 div.location p {
-  margin: 20px;
+  margin: 5px;
 }
 
 div.location h3 {
@@ -63,14 +59,12 @@ div.location h4 {
   font-size: 1rem;
 }
 
-#description {
-  text-align: justify;
-}
 #location-image {
   max-width: 80vw;
 }
 
 #website {
+  margin: 5px;
   overflow-wrap: anywhere;
 }
 </style>
