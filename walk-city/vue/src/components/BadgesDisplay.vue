@@ -1,27 +1,21 @@
 <template >
-    <div class="badge-card"> {{badge.badgeName}}
-        <img :src="require(`../assets/${badge.badgeImage}.png`)" >
-    </div>    
+    <div class="badge-card" :class="{ 'not-earned-card': !isEarned }"> {{ badge.badgeName }}
+        <img :src="require(`../assets/${badge.badgeImage}.png`)">
+    </div>
 </template>
 <script>
 // import badgesServices from "../services/BadgesServices";
 
 export default {
-    // components: {},
-    // data () {
-    //     return {
-    //         badgeObject: {}
-    //     };
-    // },
-    props: ["badge"],
-    // methods: {
-    //     created() {
-    //     badgesServices.getBadgesByUserId(this.entry.userId).then(response => {
-    //     this.badgeObject = response.data;
-    // });
-    // }
+    props: ["badge", "userBadgeList"],
+    mounted() {
 
-    // }
+    },
+    computed: {
+        isEarned() {
+            return this.userBadgeList.filter(entry => entry.badgeId == this.badge.badgeId).length == 1
+        }
+    }
 }
 
 </script>
@@ -63,8 +57,6 @@ div.badge h4 {
 }
 
 .not-earned-card {
-    
+    -webkit-filter: grayscale(100%);
 }
-
-
 </style>
