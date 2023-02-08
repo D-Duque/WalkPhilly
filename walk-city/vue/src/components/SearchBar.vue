@@ -1,7 +1,16 @@
 <template>
   <div class="form-outline">
-    <input type="search" id="search-input" class="form-control" placeholder="Search" aria-label="Search"
-      v-model="textFilter" @change="filterMarkers" />
+    <input
+      type="search"
+      id="search-input"
+      class="form-control"
+      placeholder="Search"
+      aria-label="Search"
+      v-model="textFilter"
+      @change="filterMarkers"
+      ref="Search"
+      @click="resetSearch"
+    />
   </div>
 </template>
 
@@ -19,15 +28,18 @@ export default {
     filterMarkers() {
       this.$store.state.textFilter = this.textFilter;
       this.$store.commit("FILTER_ALL");
+    },
+    resetSearch() {
+      this.$refs["Search"].value = "";
     }
   },
   data() {
     return {
-      textFilter: "",
+      textFilter: ""
     };
   },
-  mounted() { },
-  computed: {},
+  mounted() {},
+  computed: {}
 };
 </script>
 <style scoped>

@@ -29,7 +29,7 @@ export default new Vuex.Store({
     filteredMarkers: [],
     currentMarker: null,
     startLocation: null,
-    endLocation: null,
+    endLocation: null
   },
   getters: {
     nearbyLocations(state) {
@@ -48,7 +48,7 @@ export default new Vuex.Store({
             availability: location.availability,
             social: location.socialMedia,
             isCheckedIn: false,
-            isTooFar: false,
+            isTooFar: false
           };
         })
         .filter(location => {
@@ -120,26 +120,28 @@ export default new Vuex.Store({
     CHECK_IN(state, locationId) {
       const location = state.filteredMarkers.filter(location => {
         return location.id == locationId;
-      })[0]
+      })[0];
       location.isCheckedIn = true;
     },
-    SET_CHECK_IN_STATUS(state, checkIns){
+    SET_CHECK_IN_STATUS(state, checkIns) {
       // reduce checkIns to just locationIds
-      const checkedInLocations = checkIns.reduce((newArray, current) => newArray.concat(current.locationId), []);
+      const checkedInLocations = checkIns.reduce(
+        (newArray, current) => newArray.concat(current.locationId),
+        []
+      );
       // for each checkin, match locationId to location array locations
-     state.filteredMarkers.forEach(location => {
-       if (checkedInLocations.includes(location.id)){
-         //for each match, set isCheckedIn to true;
-         location.isCheckedIn = true;
-       }
-     })      
+      state.filteredMarkers.forEach(location => {
+        if (checkedInLocations.includes(location.id)) {
+          //for each match, set isCheckedIn to true;
+          location.isCheckedIn = true;
+        }
+      });
     },
-    SET_IS_TOO_FAR(state, locationId){
-     const location = state.filteredMarkers.filter(location => {
+    SET_IS_TOO_FAR(state, locationId) {
+      const location = state.filteredMarkers.filter(location => {
         return location.id == locationId;
-      })[0]
+      })[0];
       location.isTooFar = true;
     }
-    
   }
 });

@@ -1,6 +1,11 @@
 <template>
   <div id="history-page">
     <div class="buttons">
+    <div>
+      <router-link id="back-button" to="/">
+        <img src="../assets/back-arrow.png" />
+      </router-link>
+    </div>
       <button
         id="check-in-history-button"
         :class="{
@@ -21,20 +26,30 @@
       >
         BADGES
       </button>
+
     </div>
     <history-display
-      v-for="entry in checkInList"
-      v-bind:key="entry.checkInId"
-      v-bind:entry="entry"
-      v-show="!showBadges"
+        v-for="entry in checkInList"
+        v-bind:key="entry.checkInId"
+        v-bind:entry="entry"
+        v-show="!showBadges"
     ></history-display>
-    <badges-display v-show="showBadges"></badges-display>
+    <div class="badge-container">
+    <badges-display 
+        v-show="showBadges"
+        v-for="badge in badgeList" 
+        v-bind:key="badge.badgeId"
+        v-bind:badge="badge">
+
+    </badges-display>
+    </div>
   </div>
 </template>
 <script>
 import HistoryDisplay from "../components/HistoryDisplay.vue";
 import BadgesDisplay from "../components/BadgesDisplay.vue";
 import checkInService from "../services/CheckInService";
+// import badgesService from "../services/BadgesService";
 
 export default {
   components: {
@@ -44,7 +59,39 @@ export default {
   data() {
     return {
       showBadges: false,
-      checkInList: []
+      checkInList: [],
+        badgeList: [
+        {
+            "badgeId": 1,
+            "badgeName": "Urban Explorer",
+            "description": "for visiting every location",
+            "badgeImage": "urban-frame"
+        },
+        {
+            "badgeId": 2,
+            "badgeName": "Bar Hopper",
+            "description": "for visiting 5 bars",
+            "badgeImage": "bar-frame"
+        },
+        {
+            "badgeId": 3,
+            "badgeName": "History Hoarder",
+            "description": "for visiting 5 museums",
+            "badgeImage": "museum-frame"
+        },
+        {
+            "badgeId": 4,
+            "badgeName": "Nature Lover",
+            "description": "for visiting 5 parks",
+            "badgeImage": "park-frame"
+        },
+        {
+            "badgeId": 5,
+            "badgeName": "Food Critic",
+            "description": "for visiting 5 restaurants",
+            "badgeImage": "restaurant-frame"
+        }
+    ]
     };
   },
   methods: {
@@ -58,6 +105,12 @@ export default {
       .then(response => {
         this.checkInList = response.data;
       });
+
+    // badgesService
+    //     .getAllBadges()
+    //     .then(response => {
+    //     this.badgeList = response.data;
+    // });
   }
 };
 </script>
@@ -68,5 +121,16 @@ export default {
   display: flex;
   justify-content: center;
   gap: 1rem;
+}
+
+.badge-container {
+    display: grid;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 10px;
+    color: rgb(0, 73, 83);
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+    row-gap: 1rem;
 }
 </style>

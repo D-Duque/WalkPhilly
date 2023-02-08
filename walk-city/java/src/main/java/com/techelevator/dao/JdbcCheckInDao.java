@@ -105,6 +105,8 @@ public class JdbcCheckInDao implements CheckInDao
         return checkInList;
     }
 
+
+
     public CheckIn mapRowToCheckIn(SqlRowSet rs) {
         CheckIn checkIn = new CheckIn();
         checkIn.setCheckInId(rs.getInt("check_in_id"));

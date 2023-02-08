@@ -33,7 +33,8 @@ CREATE TABLE locations (
 CREATE TABLE badges (
     badge_id SERIAL NOT NULL PRIMARY KEY,
     badge_name varchar(50) NOT NULL,
-    description varchar(500)
+    description varchar(500),
+    badge_image varchar(50)
 );
 
 CREATE TABLE check_in (
