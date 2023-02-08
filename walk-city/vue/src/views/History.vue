@@ -17,7 +17,8 @@
     <history-display v-for="entry in checkInList" v-bind:key="entry.checkInId" v-bind:entry="entry"
       v-show="!showBadges"></history-display>
     <div class="badge-container">
-      <badges-display v-show="showBadges" v-for="badge in badgeList" v-bind:key="badge.badgeId" v-bind:badge="badge">
+      <badges-display v-show="showBadges" v-for="badge in badgeList" v-bind:key="badge.badgeId" v-bind:badge="badge"
+        v-bind:userBadgeList="userBadgeList">
       </badges-display>
       <div class="back-button">
         <router-link id="back-button" to="/">
