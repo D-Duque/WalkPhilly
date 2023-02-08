@@ -1,11 +1,6 @@
 <template>
   <div id="history-page">
     <div class="buttons">
-      <div>
-        <router-link id="back-button" to="/">
-          <img src="../assets/back-arrow.png" />
-        </router-link>
-      </div>
       <button id="check-in-history-button" :class="{
         'btn-white-outline': showBadges,
         'btn-midnight-green': !showBadges
@@ -18,15 +13,17 @@
       }" @click="historyToggle">
         BADGES
       </button>
-
     </div>
     <history-display v-for="entry in checkInList" v-bind:key="entry.checkInId" v-bind:entry="entry"
       v-show="!showBadges"></history-display>
     <div class="badge-container">
-      <badges-display v-show="showBadges" v-for="badge in badgeList" v-bind:userBadgeList="userBadgeList"
-        v-bind:key="badge.badgeId" v-bind:badge="badge">
-
+      <badges-display v-show="showBadges" v-for="badge in badgeList" v-bind:key="badge.badgeId" v-bind:badge="badge">
       </badges-display>
+      <div class="back-button">
+        <router-link id="back-button" to="/">
+          <img src="../assets/back-arrow.png" />
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -67,6 +64,9 @@ export default {
         this.badgeList = response.data;
       });
     badgesService.getBadgesByUserId(this.$store.state.user.id).then(response => { this.userBadgeList = response.data })
+    badgesService.getAllBadges().then(response => {
+      this.badgeList = response.data;
+    });
   }
 };
 </script>
@@ -88,5 +88,11 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   column-gap: 1rem;
   row-gap: 1rem;
+}
+
+.back-button {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
 }
 </style>

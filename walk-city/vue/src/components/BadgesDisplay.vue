@@ -18,6 +18,7 @@ export default {
     }
 }
 
+
 </script>
 <style scoped>
 div.badge {
@@ -44,7 +45,7 @@ div.badge h4 {
 }
 
 .badge-card {
-    background: #4FD695;
+    background: #4fd695;
     border: 1px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 146px;
@@ -53,10 +54,10 @@ div.badge h4 {
     display: flex;
     justify-content: center;
     padding: 1rem;
-
 }
 
 .not-earned-card {
     -webkit-filter: grayscale(100%);
 }
 </style>
+
