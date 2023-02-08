@@ -1,5 +1,6 @@
 <template >
-    <div class="badge-card" @click="badgeClicked(badge)"> {{badge.badgeName}}
+    <div class="badge-card" @click="badgeClicked(badge)"> 
+        <div id="badge-name">{{badge.badgeName}}</div>
         <img :src="require(`../assets/${badge.badgeImage}.png`)" >
       <b-modal :id="`badge-modal-`+ badge.badgeId" centered>
             <h1>{{badge.badgeName}}</h1>
@@ -66,14 +67,23 @@ div.badge h4 {
 
 .badge-card {
     background: #4fd695;
-    border: 1px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 146px;
-    height: 158px;
+    width: 150px;
+    height: 175px;
     border-radius: 6px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     padding: 1rem;
+    color: white;
+    font-weight: 100;
+    text-align: center;
+    font-size: 1rem;
+
+}
+
+#badge-name {
+    display: flex;
+    align-self: center;
 }
 
 .not-earned-card {
