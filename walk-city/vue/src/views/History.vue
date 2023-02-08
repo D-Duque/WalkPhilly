@@ -110,8 +110,8 @@ export default {
 }
 
 .back-button {
-  position: fixed;
+  position: relative;
   bottom: 10px;
-  left: 10px;
+  left: -1rem;
 }
 </style>

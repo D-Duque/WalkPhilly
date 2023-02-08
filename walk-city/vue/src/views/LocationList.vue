@@ -29,6 +29,6 @@ export default {
 .back-button {
   position: relative;
   bottom: 10px;
-  left: 10px;
+  left: 0rem;
 }
 </style>
