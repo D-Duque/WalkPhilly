@@ -74,7 +74,9 @@
                 >
                 Check-in successful!
               </div>
-              <div id="check-in-far" class="alert alert-failure" role="alert" v-show="m.isTooFar"></div>
+              <div id="check-in-far" class="alert alert-danger" role="alert" v-show="m.isTooFar && isHidden == false" @click="hideAlert">You're too far from this location!
+                <span href="#" id="close">&times;</span>
+              </div>
               <button
                 class="btn-midnight-green"
                 @click="
@@ -207,6 +209,9 @@ export default {
 
       return isInParkRange || isInRange;
     },
+    hideAlert(){
+      this.isHidden = !this.isHidden;
+    }
   },
   components: {
     MenuButton,
@@ -235,6 +240,7 @@ export default {
       currentUserId: this.$store.state.user.id,
       isCheckedIn: false,
       checkedInLocations: [],
+      isHidden: false,
     };
   },
   mounted() {
