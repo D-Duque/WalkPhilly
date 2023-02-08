@@ -20,23 +20,24 @@ export default {
             description: '',
         };
     },
-    props: ["badge"],
+    props: ["badge", "userBadgeList"],
     methods: {
         badgeClicked: function(badge) {
             this.name = badge.badgeName;
             this.image = badge.badgeImage;
             this.$bvModal.show('badge-modal-' + badge.badgeId)
         }
-    }
-    // methods: {
-    //     created() {
-    //     badgesServices.getBadgesByUserId(this.entry.userId).then(response => {
-    //     this.badgeObject = response.data;
-    // });
-    // }
+    },
+    mounted() {
 
-    // }
+    },
+    computed: {
+        isEarned() {
+            return this.userBadgeList.filter(entry => entry.badgeId == this.badge.badgeId).length == 1
+        }
+    }
 }
+
 
 </script>
 <style scoped>
@@ -64,7 +65,7 @@ div.badge h4 {
 }
 
 .badge-card {
-    background: #4FD695;
+    background: #4fd695;
     border: 1px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 146px;
@@ -73,10 +74,9 @@ div.badge h4 {
     display: flex;
     justify-content: center;
     padding: 1rem;
-
 }
 
 .not-earned-card {
-    
+    -webkit-filter: grayscale(100%);
 }
 </style>
