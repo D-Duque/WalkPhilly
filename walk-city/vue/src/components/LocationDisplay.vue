@@ -15,12 +15,12 @@
           "
           alt=""
         />
-        <p id="description">{{ location.description }}</p>
+        <!-- <p id="description">{{ location.description }}</p> -->
         <p id="address">{{ location.address }}</p>
-        <p id="availability">{{ location.availability }}</p>
+        <!-- <p id="availability">{{ location.availability }}</p> -->
       </router-link>
 
-      <p>
+      <p id="website">
         <a v-bind:href="location.social" target="_blank">{{
           location.social
         }}</a>
@@ -68,5 +68,9 @@ div.location h4 {
 }
 #location-image {
   max-width: 80vw;
+}
+
+#website {
+  overflow-wrap: break-word;
 }
 </style>

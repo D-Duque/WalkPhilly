@@ -1,11 +1,6 @@
 <template>
   <div id="history-page">
     <div class="buttons">
-      <div>
-        <router-link id="back-button" to="/">
-          <img src="../assets/back-arrow.png" />
-        </router-link>
-      </div>
       <button
         id="check-in-history-button"
         :class="{
@@ -41,6 +36,11 @@
         v-bind:badge="badge"
       >
       </badges-display>
+      <div class="back-button">
+        <router-link id="back-button" to="/">
+          <img src="../assets/back-arrow.png" />
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -102,5 +102,11 @@ export default {
 
 .greyscale {
   -webkit-filter: grayscale(100%);
+}
+
+.back-button {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
 }
 </style>

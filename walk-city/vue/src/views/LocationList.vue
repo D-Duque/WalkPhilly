@@ -1,15 +1,15 @@
 <template>
   <div class="locations">
-    <div>
-      <router-link id="back-button" to="/">
-        <img src="../assets/back-arrow.png" />
-      </router-link>
-    </div>
     <location-display
       v-for="location in this.$store.state.filteredMarkers"
       v-bind:key="location.id"
       v-bind:location="location"
     />
+    <div class="back-button">
+      <router-link id="back-button" to="/">
+        <img src="../assets/back-arrow.png" />
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -25,4 +25,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.back-button {
+  position: relative;
+  bottom: 10px;
+  left: 10px;
+}
+</style>
