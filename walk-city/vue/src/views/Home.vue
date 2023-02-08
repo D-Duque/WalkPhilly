@@ -87,14 +87,23 @@
                     m.position,
                     m.category
                   )
+                
                 "
                 :disabled="m.isCheckedIn"
               >
                 {{ m.isCheckedIn ? "CHECKED-IN" : "CHECK-IN" }}
               </button>
-              <div id="check-in-far" class="alert alert-danger" role="alert" v-show="m.isTooFar && isHidden == false" @click="hideAlert">You're too far from this location!
+
+              <div 
+                id="check-in-far" 
+                class="alert alert-danger" 
+                role="alert" 
+                v-show="m.isTooFar && isHidden == false" @click="hideAlert"
+                >
+                You're too far from this location!
                 <span href="#" id="close">&times;</span>
               </div>
+
             </div>
           </div>
         </GmapInfoWindow>
@@ -178,6 +187,9 @@ export default {
           } else {
             // display for when check-in exists already
             console.log("check-in already exists");
+          }
+          if (response.data === true) {
+            console.log("Nice, new badge.")
           }
         });
       } else {

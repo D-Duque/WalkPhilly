@@ -45,10 +45,10 @@ public class CheckInController
     }
 
     @RequestMapping(value = "/checkin", method = RequestMethod.POST)
-    public void add(@Valid @RequestBody CheckIn checkIn, Principal principal) {
+    public boolean add(@Valid @RequestBody CheckIn checkIn, Principal principal) {
         int userId = userDao.findByUsername(principal.getName()).getId().intValue();
         checkInDao.create(checkIn);
-        badgeService.checkForNewBadge(userId); //returns boolean if needed for front-end
+        return badgeService.checkForNewBadge(userId); //returns boolean if needed for front-end
     }
 
     @GetMapping("/checkins/user/{userId}")
