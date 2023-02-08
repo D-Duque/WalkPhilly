@@ -56,5 +56,5 @@ INSERT INTO badges (badge_name, description, badge_image)
                 VALUES ('Urban Explorer', 'for visiting every location', 'urban-frame'),
                        ('Bar Hopper', 'for visiting 5 bars', 'bar-frame'),
                        ('History Hoarder', 'for visiting 5 museums', 'museum-frame'),
-                       ('Nature Lover', 'for visiting 5 parks', 'park-frame),
+                       ('Nature Lover', 'for visiting 5 parks', 'park-frame'),
                        ('Food Critic', 'for visiting 5 restaurants', 'restaurant-frame');
