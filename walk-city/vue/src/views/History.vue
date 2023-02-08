@@ -49,7 +49,7 @@
 import HistoryDisplay from "../components/HistoryDisplay.vue";
 import BadgesDisplay from "../components/BadgesDisplay.vue";
 import checkInService from "../services/CheckInService";
-// import badgesService from "../services/BadgesService";
+import badgesService from "../services/BadgesService";
 
 export default {
   components: {
@@ -60,38 +60,7 @@ export default {
     return {
       showBadges: false,
       checkInList: [],
-        badgeList: [
-        {
-            "badgeId": 1,
-            "badgeName": "Urban Explorer",
-            "description": "for visiting every location",
-            "badgeImage": "urban-frame"
-        },
-        {
-            "badgeId": 2,
-            "badgeName": "Bar Hopper",
-            "description": "for visiting 5 bars",
-            "badgeImage": "bar-frame"
-        },
-        {
-            "badgeId": 3,
-            "badgeName": "History Hoarder",
-            "description": "for visiting 5 museums",
-            "badgeImage": "museum-frame"
-        },
-        {
-            "badgeId": 4,
-            "badgeName": "Nature Lover",
-            "description": "for visiting 5 parks",
-            "badgeImage": "park-frame"
-        },
-        {
-            "badgeId": 5,
-            "badgeName": "Food Critic",
-            "description": "for visiting 5 restaurants",
-            "badgeImage": "restaurant-frame"
-        }
-    ]
+        badgeList: []
     };
   },
   methods: {
@@ -106,11 +75,11 @@ export default {
         this.checkInList = response.data;
       });
 
-    // badgesService
-    //     .getAllBadges()
-    //     .then(response => {
-    //     this.badgeList = response.data;
-    // });
+    badgesService
+        .getAllBadges()
+        .then(response => {
+        this.badgeList = response.data;
+    });
   }
 };
 </script>

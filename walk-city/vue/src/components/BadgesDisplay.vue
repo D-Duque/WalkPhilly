@@ -1,12 +1,6 @@
 <template >
     <div class="badge-card"> {{badge.badgeName}}
         <img :src="require(`../assets/${badge.badgeImage}.png`)" >
-
-        <!-- <div class="badge-card"> <img id="badge-museum" src="../assets/museum-frame.png"> </div>
-        <div class="badge-card"> <img id="badge-park" src="../assets/park-frame.png"> </div>
-        <div class="badge-card"> <img id="badge-bar" src="../assets/bar-frame.png"> </div>
-        <div class="badge-card"> <img id="badge-restaurant" src="../assets/restaurant-frame.png"> </div>
-        <div class="badge-card"> <img id="badge-urban" src="../assets/urban-frame.png"> </div> -->
     </div>    
 </template>
 <script>
