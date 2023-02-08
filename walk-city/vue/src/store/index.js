@@ -29,7 +29,8 @@ export default new Vuex.Store({
     filteredMarkers: [],
     currentMarker: null,
     startLocation: null,
-    endLocation: null
+    endLocation: null,
+    userBadgeList: []
   },
   getters: {
     nearbyLocations(state) {
@@ -142,6 +143,9 @@ export default new Vuex.Store({
         return location.id == locationId;
       })[0];
       location.isTooFar = true;
+    },
+    SET_USER_BADGE_LIST(state, userBadgeList) {
+      state.userBadgeList = userBadgeList
     }
   }
 });

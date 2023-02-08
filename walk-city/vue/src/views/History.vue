@@ -5,7 +5,7 @@
         id="check-in-history-button"
         :class="{
           'btn-white-outline': showBadges,
-          'btn-midnight-green': !showBadges
+          'btn-midnight-green': !showBadges,
         }"
         @click="historyToggle"
       >
@@ -15,7 +15,7 @@
         id="badges-button"
         :class="{
           'btn-white-outline': !showBadges,
-          'btn-midnight-green': showBadges
+          'btn-midnight-green': showBadges,
         }"
         @click="historyToggle"
       >
@@ -34,6 +34,7 @@
         v-for="badge in badgeList"
         v-bind:key="badge.badgeId"
         v-bind:badge="badge"
+        v-bind:userBadgeList="userBadgeList"
       >
       </badges-display>
       <div class="back-button">
@@ -53,39 +54,47 @@ import badgesService from "../services/BadgesService";
 export default {
   components: {
     HistoryDisplay,
-    BadgesDisplay
+    BadgesDisplay,
   },
   data() {
     return {
       showBadges: false,
       checkInList: [],
-      badgeList: []
+      badgeList: [],
+      userBadgeList: [],
     };
   },
   methods: {
     historyToggle() {
       this.showBadges = !this.showBadges;
-    }
+    },
   },
   created() {
     checkInService
       .getCheckInsByUserId(this.$store.state.user.id)
-      .then(response => {
+      .then((response) => {
         this.checkInList = response.data;
       });
 
-    badgesService.getAllBadges().then(response => {
+    badgesService.getAllBadges().then((response) => {
       this.badgeList = response.data;
     });
-  }
+    badgesService
+      .getBadgesByUserId(this.$store.state.user.id)
+      .then((response) => {
+        this.userBadgeList = response.data;
+      });
+    badgesService.getAllBadges().then((response) => {
+      this.badgeList = response.data;
+    });
+  },
 };
 </script>
 <style scoped>
 .buttons {
   margin-top: 1rem;
-  margin-left: 1rem;
-  display: flex;
   justify-content: center;
+  display: flex;
   gap: 1rem;
 }
 
@@ -98,10 +107,6 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   column-gap: 1rem;
   row-gap: 1rem;
-}
-
-.greyscale {
-  -webkit-filter: grayscale(100%);
 }
 
 .back-button {

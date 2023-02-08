@@ -64,17 +64,7 @@
                 >
                   DIRECTIONS
                 </button>
-              </div>
-
-              <div
-                id="check-in-success"
-                class="alert alert-success alert-dismissible"
-                role="alert"
-                v-show="isCheckedIn"
-                >
-                Check-in successful!
-              </div>
-              
+              </div>              
               <button
                 class="btn-midnight-green"
                 @click="
@@ -87,14 +77,32 @@
                     m.position,
                     m.category
                   )
+                
                 "
                 :disabled="m.isCheckedIn"
               >
                 {{ m.isCheckedIn ? "CHECKED-IN" : "CHECK-IN" }}
               </button>
-              <div id="check-in-far" class="alert alert-danger" role="alert" v-show="m.isTooFar && isHidden == false" @click="hideAlert">You're too far from this location!
+
+              <!-- <div>
+                <b-button 
+                variant="success"
+                @click="checkIn() === true">
+                New Badge - Send true
+
+                </b-button>
+              </div> -->
+
+              <div 
+                id="check-in-far" 
+                class="alert alert-danger" 
+                role="alert" 
+                v-show="m.isTooFar && isHidden == false" @click="hideAlert"
+                >
+                You're too far from this location!
                 <span href="#" id="close">&times;</span>
               </div>
+
             </div>
           </div>
         </GmapInfoWindow>
@@ -109,6 +117,7 @@
         :destination="endLocation"
       />
     </GmapMap>
+    <new-badge-modal></new-badge-modal>
     <filter-results></filter-results>
     <menu-button v-show="$store.state.isMenuButtonShowing"></menu-button>
     <Transition name="slide">
@@ -124,6 +133,8 @@ import LocationService from "../services/LocationService";
 import FilterResults from "../components/FilterResults.vue";
 import DirectionsRenderer from "../components/DirectionsRenderer.js";
 import CheckInService from "../services/CheckInService";
+import badgesServices from "../services/BadgesService";
+import NewBadgeModal from '../components/NewBadgeModal.vue';
 
 export default {
   name: "home",
@@ -179,6 +190,11 @@ export default {
             // display for when check-in exists already
             console.log("check-in already exists");
           }
+          if (response.data === true) {
+            console.log("Nice, new badge.")
+            this.$bvModal.show("new-badge-modal");
+
+          }
         });
       } else {
         this.$store.commit("SET_IS_TOO_FAR", checkIn.locationId)
@@ -212,13 +228,18 @@ export default {
     },
     hideAlert(){
       this.isHidden = !this.isHidden;
-    }
+    },
+    
+
+
+
   },
   components: {
     MenuButton,
     MenuView,
     FilterResults,
     DirectionsRenderer,
+    NewBadgeModal,
   },
   data() {
     return {
@@ -257,6 +278,10 @@ export default {
     CheckInService.getAllCheckIns().then((response) => {
       this.$store.commit("SET_CHECK_IN_STATUS", response.data);
     });
+    badgesServices.getBadgesByUserId(this.$store.state.user.id).then((response)=> {
+      this.$store.commit("SET_USER_BADGE_LIST", response.data);
+    })
+
   },
   computed: {
     getUserPos() {

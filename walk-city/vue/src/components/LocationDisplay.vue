@@ -60,7 +60,7 @@ div.location h4 {
 }
 
 #location-image {
-  max-width: 80vw;
+  max-width: 70vw;
 }
 
 #website {
