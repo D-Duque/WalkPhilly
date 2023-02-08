@@ -74,9 +74,7 @@
                 >
                 Check-in successful!
               </div>
-              <div id="check-in-far" class="alert alert-danger" role="alert" v-show="m.isTooFar && isHidden == false" @click="hideAlert">You're too far from this location!
-                <span href="#" id="close">&times;</span>
-              </div>
+              
               <button
                 class="btn-midnight-green"
                 @click="
@@ -94,6 +92,9 @@
               >
                 {{ m.isCheckedIn ? "CHECKED-IN" : "CHECK-IN" }}
               </button>
+              <div id="check-in-far" class="alert alert-danger" role="alert" v-show="m.isTooFar && isHidden == false" @click="hideAlert">You're too far from this location!
+                <span href="#" id="close">&times;</span>
+              </div>
             </div>
           </div>
         </GmapInfoWindow>
