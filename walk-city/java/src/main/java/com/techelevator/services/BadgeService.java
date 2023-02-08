@@ -47,57 +47,69 @@ public class BadgeService {
     }
 
     private boolean checkForParkBadge(int userId, List<UserCheckInCategory> userCheckInCategoryList){
-        var parkList = userCheckInCategoryList.stream()
-                                .filter(checkIn -> checkIn.getCategory().equals("Park"))
-                                .collect(Collectors.toList());
-        if (parkList.size() == 5){
-            UserBadge userBadge = new UserBadge();
-            userBadge.setUserId(userId);
-            userBadge.setBadgeId(4);
-            userBadgeDao.create(userBadge);
-            return true;
+        List<UserBadge> badgeList = userBadgeDao.getUserBadgesByBadge(4);
+        if (badgeList.size() != 1) {
+            var parkList = userCheckInCategoryList.stream()
+                    .filter(checkIn -> checkIn.getCategory().equals("Park"))
+                    .collect(Collectors.toList());
+            if (parkList.size() == 5) {
+                UserBadge userBadge = new UserBadge();
+                userBadge.setUserId(userId);
+                userBadge.setBadgeId(4);
+                userBadgeDao.create(userBadge);
+                return true;
+            }
         }
         return false;
     }
 
     private boolean checkForRestaurantBadge(int userId, List<UserCheckInCategory> userCheckInCategoryList){
-        var restaurantList = userCheckInCategoryList.stream()
-                .filter(checkIn -> checkIn.getCategory().equals("Restaurant"))
-                .collect(Collectors.toList());
-        if (restaurantList.size() == 5){
-            UserBadge userBadge = new UserBadge();
-            userBadge.setUserId(userId);
-            userBadge.setBadgeId(5);
-            userBadgeDao.create(userBadge);
-            return true;
+        List<UserBadge> badgeList = userBadgeDao.getUserBadgesByBadge(5);
+        if (badgeList.size() != 1) {
+            var restaurantList = userCheckInCategoryList.stream()
+                    .filter(checkIn -> checkIn.getCategory().equals("Restaurant"))
+                    .collect(Collectors.toList());
+            if (restaurantList.size() == 5) {
+                UserBadge userBadge = new UserBadge();
+                userBadge.setUserId(userId);
+                userBadge.setBadgeId(5);
+                userBadgeDao.create(userBadge);
+                return true;
+            }
         }
         return false;
     }
 
     private boolean checkForBarBadge(int userId, List<UserCheckInCategory> userCheckInCategoryList){
-        var barList = userCheckInCategoryList.stream()
-                .filter(checkIn -> checkIn.getCategory().equals("Bar"))
-                .collect(Collectors.toList());
-        if (barList.size() == 5){
-            UserBadge userBadge = new UserBadge();
-            userBadge.setUserId(userId);
-            userBadge.setBadgeId(2);
-            userBadgeDao.create(userBadge);
-            return true;
+        List<UserBadge> badgeList = userBadgeDao.getUserBadgesByBadge(2);
+        if (badgeList.size() != 1) {
+            var barList = userCheckInCategoryList.stream()
+                    .filter(checkIn -> checkIn.getCategory().equals("Bar"))
+                    .collect(Collectors.toList());
+            if (barList.size() == 5) {
+                UserBadge userBadge = new UserBadge();
+                userBadge.setUserId(userId);
+                userBadge.setBadgeId(2);
+                userBadgeDao.create(userBadge);
+                return true;
+            }
         }
         return false;
     }
 
     private boolean checkForMuseumBadge(int userId, List<UserCheckInCategory> userCheckInCategoryList){
-        var museumList = userCheckInCategoryList.stream()
-                .filter(checkIn -> checkIn.getCategory().equals("Museum"))
-                .collect(Collectors.toList());
-        if (museumList.size() == 5){
-            UserBadge userBadge = new UserBadge();
-            userBadge.setUserId(userId);
-            userBadge.setBadgeId(3);
-            userBadgeDao.create(userBadge);
-            return true;
+        List<UserBadge> badgeList = userBadgeDao.getUserBadgesByBadge(3);
+        if (badgeList.size() != 1) {
+            var museumList = userCheckInCategoryList.stream()
+                    .filter(checkIn -> checkIn.getCategory().equals("Museum"))
+                    .collect(Collectors.toList());
+            if (museumList.size() == 5) {
+                UserBadge userBadge = new UserBadge();
+                userBadge.setUserId(userId);
+                userBadge.setBadgeId(3);
+                userBadgeDao.create(userBadge);
+                return true;
+            }
         }
         return false;
     }
