@@ -94,6 +94,15 @@
                 {{ m.isCheckedIn ? "CHECKED-IN" : "CHECK-IN" }}
               </button>
 
+              <!-- <div>
+                <b-button 
+                variant="success"
+                @click="checkIn() === true">
+                New Badge - Send true
+
+                </b-button>
+              </div> -->
+
               <div 
                 id="check-in-far" 
                 class="alert alert-danger" 
