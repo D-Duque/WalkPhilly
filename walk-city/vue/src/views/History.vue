@@ -102,4 +102,8 @@ export default {
     column-gap: 1rem;
     row-gap: 1rem;
 }
+
+.greyscale {
+    -webkit-filter: grayscale(100%);
+}
 </style>

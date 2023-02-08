@@ -62,5 +62,9 @@ div.badge h4 {
 
 }
 
+.not-earned-card {
+    
+}
+
 
 </style>
