@@ -43,6 +43,7 @@
             </router-link>
 
             <div id="location-address">{{ m.address }}</div>
+
             <img
               id="location-img"
               :src="`http://localhost:8080/api/photos/Philadelphia ${m.name}`"
@@ -64,7 +65,7 @@
                 >
                   DIRECTIONS
                 </button>
-              </div>              
+              </div>
               <button
                 class="btn-midnight-green"
                 @click="
@@ -77,32 +78,21 @@
                     m.position,
                     m.category
                   )
-                
                 "
                 :disabled="m.isCheckedIn"
               >
                 {{ m.isCheckedIn ? "CHECKED-IN" : "CHECK-IN" }}
               </button>
-
-              <!-- <div>
-                <b-button 
-                variant="success"
-                @click="checkIn() === true">
-                New Badge - Send true
-
-                </b-button>
-              </div> -->
-
-              <div 
-                id="check-in-far" 
-                class="alert alert-danger" 
-                role="alert" 
-                v-show="m.isTooFar && isHidden == false" @click="hideAlert"
-                >
+              <div
+                id="check-in-far"
+                class="alert alert-danger"
+                role="alert"
+                v-show="m.isTooFar && isHidden == false"
+                @click="hideAlert"
+              >
                 You're too far from this location!
                 <span href="#" id="close">&times;</span>
               </div>
-
             </div>
           </div>
         </GmapInfoWindow>
@@ -134,7 +124,7 @@ import FilterResults from "../components/FilterResults.vue";
 import DirectionsRenderer from "../components/DirectionsRenderer.js";
 import CheckInService from "../services/CheckInService";
 import badgesServices from "../services/BadgesService";
-import NewBadgeModal from '../components/NewBadgeModal.vue';
+import NewBadgeModal from "../components/NewBadgeModal.vue";
 
 export default {
   name: "home",
@@ -191,13 +181,12 @@ export default {
             console.log("check-in already exists");
           }
           if (response.data === true) {
-            console.log("Nice, new badge.")
+            console.log("Nice, new badge.");
             this.$bvModal.show("new-badge-modal");
-
           }
         });
       } else {
-        this.$store.commit("SET_IS_TOO_FAR", checkIn.locationId)
+        this.$store.commit("SET_IS_TOO_FAR", checkIn.locationId);
         console.log("Too far from location");
       }
     },
@@ -226,13 +215,9 @@ export default {
 
       return isInParkRange || isInRange;
     },
-    hideAlert(){
+    hideAlert() {
       this.isHidden = !this.isHidden;
     },
-    
-
-
-
   },
   components: {
     MenuButton,
@@ -278,10 +263,11 @@ export default {
     CheckInService.getAllCheckIns().then((response) => {
       this.$store.commit("SET_CHECK_IN_STATUS", response.data);
     });
-    badgesServices.getBadgesByUserId(this.$store.state.user.id).then((response)=> {
-      this.$store.commit("SET_USER_BADGE_LIST", response.data);
-    })
-
+    badgesServices
+      .getBadgesByUserId(this.$store.state.user.id)
+      .then((response) => {
+        this.$store.commit("SET_USER_BADGE_LIST", response.data);
+      });
   },
   computed: {
     getUserPos() {
@@ -311,9 +297,15 @@ export default {
 }
 
 #location-img {
-  max-width: 240px;
+  object-fit: cover;
   margin: auto;
   padding: 10px;
+  left: -1000%;
+  right: -1000%;
+  top: -1000%;
+  bottom: -1000%;
+  width: 200px;
+  height: 200px;
 }
 
 #location-buttons {
