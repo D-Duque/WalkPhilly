@@ -119,6 +119,9 @@ export default new Vuex.Store({
     },
     SET_PLACE_ID(state, id) {
       state.placeId = id;
+    },
+    CLEAR_TEXT_FILTER(state) {
+      state.textFilter = "";
     }
   }
 });
