@@ -1,47 +1,43 @@
 <template >
-    <div class="badge">
-        <div class="badge-card"> <img id="badge-museum" src="../assets/museum-frame.png"> </div>
+    <div class="badge-card"> {{badge.badgeName}}
+        <img :src="require(`../assets/${badge.badgeImage}.png`)" >
+
+        <!-- <div class="badge-card"> <img id="badge-museum" src="../assets/museum-frame.png"> </div>
         <div class="badge-card"> <img id="badge-park" src="../assets/park-frame.png"> </div>
         <div class="badge-card"> <img id="badge-bar" src="../assets/bar-frame.png"> </div>
         <div class="badge-card"> <img id="badge-restaurant" src="../assets/restaurant-frame.png"> </div>
-        <div class="badge-card"> <img id="badge-urban" src="../assets/urban-frame.png"> </div>
-    </div>
+        <div class="badge-card"> <img id="badge-urban" src="../assets/urban-frame.png"> </div> -->
+    </div>    
 </template>
 <script>
-import badgesServices from "../services/BadgesServices";
+// import badgesServices from "../services/BadgesServices";
 
 export default {
-    components: {},
-    data () {
-        return {
-            badgeObject: {}
-        };
-    },
-    props: ["entry"],
-    methods: {
-        created() {
-        badgesServices.getBadgesByUserId(this.entry.userId).then(response => {
-        this.badgeObject = response.data;
-    });
-    }
+    // components: {},
+    // data () {
+    //     return {
+    //         badgeObject: {}
+    //     };
+    // },
+    props: ["badge"],
+    // methods: {
+    //     created() {
+    //     badgesServices.getBadgesByUserId(this.entry.userId).then(response => {
+    //     this.badgeObject = response.data;
+    // });
+    // }
 
-    }
+    // }
 }
 
 </script>
 <style scoped>
 div.badge {
     display: grid;
-    /* justify-content: space-around; */
-    /* border: 1px black solid; */
-    /* grid-template-columns: 1fr 1fr; */
     border-radius: 6px;
     padding: 1rem;
     margin: 10px;
-    /* background-color: white; */
     color: rgb(0, 73, 83);
-    /* align-items: center; */
-    /* align-self: center; */
     grid-template-columns: repeat(2, 1fr);
     column-gap: 1rem;
     row-gap: 1rem;
@@ -69,6 +65,7 @@ div.badge h4 {
     display: flex;
     justify-content: center;
     padding: 1rem;
+
 }
 
 

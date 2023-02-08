@@ -9,4 +9,8 @@ export default {
         return axios.get(`/badges/badge/${badgeId}`);
     },
 
+    getAllBadges() {
+        return axios.get("/badges/all");
+    }
+
 }
