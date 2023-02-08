@@ -8,16 +8,18 @@
     <img :src="require(`../assets/${badge.badgeImage}.png`)" />
     <b-modal
       :id="`badge-modal-` + badge.badgeId"
-      
-      centered
       :title="badge.badgeName"
       hide-footer
       hide-header
       text-center
+      centered
     >
-      <div id="modal-details">
-        <img :src="require(`../assets/${badge.badgeImage}.png`)" alt="" />
-        <p>{{ badge.description }}</p>
+      <div id="badge-modal-details">
+        <h2 id="badge-modal-name">{{ badge.badgeName }}</h2>
+        <div class="cool-line"></div>
+        <img :src="require(`../assets/${badge.badgeImage}.png`)" alt="" id="badge-modal-image" />
+        <h4 id="badge-modal-description">{{ badge.description }}</h4>
+        <p id="badge-modal-timestamp" >{{isEarned ? "Earned on: YYYY/MM/DD" : "Not yet earned"}}</p>
       </div>
     </b-modal>
   </div>
@@ -56,7 +58,6 @@ export default {
 };
 </script>
 <style scoped>
-
 div.badge {
   display: grid;
   border-radius: 6px;
@@ -81,38 +82,53 @@ div.badge h4 {
 }
 
 .badge-card {
-    background: #4fd695;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 150px;
-    height: 175px;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    color: white;
-    font-weight: 100;
-    text-align: center;
-    font-size: 1rem;
-
+  background: #4fd695;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  width: 150px;
+  height: 175px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  color: white;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1rem;
 }
 
 #badge-name {
-    display: flex;
-    align-self: center;
+  display: flex;
+  align-self: center;
 }
 
 .not-earned-card {
   -webkit-filter: grayscale(100%);
 }
-#modal-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#badge-modal-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
-
+#badge-modal-image {
+    width: 40vw;
+}
+#badge-modal-timestamp {
+    font-style: italic;
+}
 </style>
 <style >
+.modal-content {
+  background: rgba(23, 19, 19, 0.25) !important;
+  backdrop-filter: blur(15px) !important;
+  border-radius: 40px !important;
+  color: white;
+  margin: 1rem;
+}
 .modal-backdrop {
-    opacity: 0.25 !important;
+  opacity: 0.25 !important;
+}
+.modal-header {
+  text-align: center !important;
 }
 </style>
