@@ -1,28 +1,23 @@
 <template >
-    <div class="badge-card"> {{badge.badgeName}}
-        <img :src="require(`../assets/${badge.badgeImage}.png`)" >
-    </div>    
+    <div class="badge-card" :class="{ 'not-earned-card': !isEarned }"> {{ badge.badgeName }}
+        <img :src="require(`../assets/${badge.badgeImage}.png`)">
+    </div>
 </template>
 <script>
 // import badgesServices from "../services/BadgesServices";
 
 export default {
-    // components: {},
-    // data () {
-    //     return {
-    //         badgeObject: {}
-    //     };
-    // },
-    props: ["badge"],
-    // methods: {
-    //     created() {
-    //     badgesServices.getBadgesByUserId(this.entry.userId).then(response => {
-    //     this.badgeObject = response.data;
-    // });
-    // }
+    props: ["badge", "userBadgeList"],
+    mounted() {
 
-    // }
+    },
+    computed: {
+        isEarned() {
+            return this.userBadgeList.filter(entry => entry.badgeId == this.badge.badgeId).length == 1
+        }
+    }
 }
+
 
 </script>
 <style scoped>
@@ -50,7 +45,7 @@ div.badge h4 {
 }
 
 .badge-card {
-    background: #4FD695;
+    background: #4fd695;
     border: 1px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 146px;
@@ -59,12 +54,10 @@ div.badge h4 {
     display: flex;
     justify-content: center;
     padding: 1rem;
-
 }
 
 .not-earned-card {
-    
+    -webkit-filter: grayscale(100%);
 }
-
-
 </style>
+
