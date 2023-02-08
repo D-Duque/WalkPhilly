@@ -48,22 +48,30 @@ div.history p {
 
 div.history h3 {
   display: inline-block;
+  font-size: 1.5rem;
 }
 
 div.history h4 {
   font-size: 1rem;
   margin: 3px;
+  margin-left: 3.5rem;
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 
 #history-card {
   display: flex;
   justify-content: center;
+  /* align-items: center; */
+  place-items: center;
+
 }
 
 #verified-img {
   margin-right: 10px;
-  justify-content: left;
+  
 }
+
+
+
 </style>

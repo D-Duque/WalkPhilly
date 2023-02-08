@@ -7,7 +7,7 @@ public class CheckIn
 {
     private int checkInId;
     private int userId;
-    private int locationId;
+    private Integer locationId;
     private LocalDateTime checkInTime;
     private boolean isCheckedIn;
 
@@ -17,7 +17,7 @@ public class CheckIn
         this.checkInTime = LocalDateTime.now();
     }
 
-    public CheckIn(int checkInId, int userId, int locationId, LocalDateTime checkInTime, boolean isCheckedIn)
+    public CheckIn(int checkInId, int userId, Integer locationId, LocalDateTime checkInTime, boolean isCheckedIn)
     {
         this.checkInId = checkInId;
         this.userId = userId;
@@ -36,7 +36,7 @@ public class CheckIn
         return userId;
     }
 
-    public int getLocationId()
+    public Integer getLocationId()
     {
         return locationId;
     }
@@ -56,7 +56,7 @@ public class CheckIn
         this.userId = userId;
     }
 
-    public void setLocationId(int locationId)
+    public void setLocationId(Integer locationId)
     {
         this.locationId = locationId;
     }

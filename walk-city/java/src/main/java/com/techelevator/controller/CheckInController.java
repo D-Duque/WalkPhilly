@@ -32,14 +32,14 @@ public class CheckInController
     @GetMapping("/checkins")
     public List<CheckIn> getCheckIns() {return checkInDao.findAll(); }
 
-    @GetMapping("/checkins/{checkInId}")
+    @GetMapping("/checkins/checkin/{checkInId}")
     public CheckIn getCheckInById(@PathVariable int checkInId) {
         CheckIn checkIn = checkInDao.getCheckInById(checkInId);
         return checkIn;
     }
 
-    @GetMapping("/checkins/{userId}/{locationId}")
-    public List<CheckIn> getCheckInByUserIdAndLocationId(@PathVariable int userId, int locationId) {
+    @GetMapping("/checkins/user/{userId}/location/{locationId}")
+    public List<CheckIn> getCheckInByUserIdAndLocationId(@PathVariable int userId, Integer locationId) {
         List<CheckIn> checkIns = checkInDao.findCheckInByUserAndLocation(userId, locationId);
         return checkIns;
     }
