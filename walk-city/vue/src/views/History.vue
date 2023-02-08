@@ -1,11 +1,11 @@
 <template>
   <div id="history-page">
     <div class="buttons">
-    <div>
-      <router-link id="back-button" to="/">
-        <img src="../assets/back-arrow.png" />
-      </router-link>
-    </div>
+      <div>
+        <router-link id="back-button" to="/">
+          <img src="../assets/back-arrow.png" />
+        </router-link>
+      </div>
       <button
         id="check-in-history-button"
         :class="{
@@ -26,22 +26,21 @@
       >
         BADGES
       </button>
-
     </div>
     <history-display
-        v-for="entry in checkInList"
-        v-bind:key="entry.checkInId"
-        v-bind:entry="entry"
-        v-show="!showBadges"
+      v-for="entry in checkInList"
+      v-bind:key="entry.checkInId"
+      v-bind:entry="entry"
+      v-show="!showBadges"
     ></history-display>
     <div class="badge-container">
-    <badges-display 
+      <badges-display
         v-show="showBadges"
-        v-for="badge in badgeList" 
+        v-for="badge in badgeList"
         v-bind:key="badge.badgeId"
-        v-bind:badge="badge">
-
-    </badges-display>
+        v-bind:badge="badge"
+      >
+      </badges-display>
     </div>
   </div>
 </template>
@@ -60,7 +59,7 @@ export default {
     return {
       showBadges: false,
       checkInList: [],
-        badgeList: []
+      badgeList: []
     };
   },
   methods: {
@@ -75,10 +74,8 @@ export default {
         this.checkInList = response.data;
       });
 
-    badgesService
-        .getAllBadges()
-        .then(response => {
-        this.badgeList = response.data;
+    badgesService.getAllBadges().then(response => {
+      this.badgeList = response.data;
     });
   }
 };
@@ -93,17 +90,17 @@ export default {
 }
 
 .badge-container {
-    display: grid;
-    border-radius: 6px;
-    padding: 1rem;
-    margin: 10px;
-    color: rgb(0, 73, 83);
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 1rem;
-    row-gap: 1rem;
+  display: grid;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 10px;
+  color: rgb(0, 73, 83);
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1rem;
+  row-gap: 1rem;
 }
 
 .greyscale {
-    -webkit-filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
 }
 </style>
