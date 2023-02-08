@@ -71,6 +71,6 @@ div.location h4 {
 }
 
 #website {
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 </style>
