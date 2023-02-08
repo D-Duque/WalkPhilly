@@ -5,7 +5,7 @@
         id="check-in-history-button"
         :class="{
           'btn-white-outline': showBadges,
-          'btn-midnight-green': !showBadges,
+          'btn-midnight-green': !showBadges
         }"
         @click="historyToggle"
       >
@@ -15,7 +15,7 @@
         id="badges-button"
         :class="{
           'btn-white-outline': !showBadges,
-          'btn-midnight-green': showBadges,
+          'btn-midnight-green': showBadges
         }"
         @click="historyToggle"
       >
@@ -54,40 +54,40 @@ import badgesService from "../services/BadgesService";
 export default {
   components: {
     HistoryDisplay,
-    BadgesDisplay,
+    BadgesDisplay
   },
   data() {
     return {
       showBadges: false,
       checkInList: [],
       badgeList: [],
-      userBadgeList: [],
+      userBadgeList: []
     };
   },
   methods: {
     historyToggle() {
       this.showBadges = !this.showBadges;
-    },
+    }
   },
   created() {
     checkInService
       .getCheckInsByUserId(this.$store.state.user.id)
-      .then((response) => {
+      .then(response => {
         this.checkInList = response.data;
       });
 
-    badgesService.getAllBadges().then((response) => {
+    badgesService.getAllBadges().then(response => {
       this.badgeList = response.data;
     });
     badgesService
       .getBadgesByUserId(this.$store.state.user.id)
-      .then((response) => {
+      .then(response => {
         this.userBadgeList = response.data;
       });
-    badgesService.getAllBadges().then((response) => {
+    badgesService.getAllBadges().then(response => {
       this.badgeList = response.data;
     });
-  },
+  }
 };
 </script>
 <style scoped>
@@ -112,6 +112,6 @@ export default {
 .back-button {
   position: relative;
   bottom: 10px;
-  left: -1rem;
+  left: 0rem;
 }
 </style>

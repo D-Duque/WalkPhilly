@@ -11,7 +11,7 @@
         rotateControl: false,
         fullscreenControl: false,
         disableDefaultUi: false,
-        mapId: '5bad73ddd2112653',
+        mapId: '5bad73ddd2112653'
       }"
       map-type-id="roadmap"
       style="width: 100vw; height: 93vh"
@@ -22,9 +22,10 @@
         v-for="(m, index) in $store.state.filteredMarkers"
         :ref="`marker${index}`"
         :position="m.position"
-        :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${
-          index + 1
-        }|FF0000|FFFFFF`"
+        :icon="
+          `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index +
+            1}|FF0000|FFFFFF`
+        "
         :clickable="true"
         :draggable="false"
         @click="openMarker(index)"
@@ -64,7 +65,7 @@
                 >
                   DIRECTIONS
                 </button>
-              </div>              
+              </div>
               <button
                 class="btn-midnight-green"
                 @click="
@@ -72,12 +73,11 @@
                     {
                       userId: $store.state.user.id,
                       locationId: m.id,
-                      isCheckedIn: true,
+                      isCheckedIn: true
                     },
                     m.position,
                     m.category
                   )
-                
                 "
                 :disabled="m.isCheckedIn"
               >
@@ -93,23 +93,23 @@
                 </b-button>
               </div> -->
 
-              <div 
-                id="check-in-far" 
-                class="alert alert-danger" 
-                role="alert" 
-                v-show="m.isTooFar && isHidden == false" @click="hideAlert"
-                >
+              <div
+                id="check-in-far"
+                class="alert alert-danger"
+                role="alert"
+                v-show="m.isTooFar && isHidden == false"
+                @click="hideAlert"
+              >
                 You're too far from this location!
                 <span href="#" id="close">&times;</span>
               </div>
-
             </div>
           </div>
         </GmapInfoWindow>
       </GmapMarker>
       <GmapMarker
         :position="this.$store.state.userPos"
-        :icon="require('../assets/user-location_50.png')"
+        :icon="require('../assets/user-location_50-1.png')"
       ></GmapMarker>
       <DirectionsRenderer
         :travelMode="travelMode"
@@ -134,7 +134,7 @@ import FilterResults from "../components/FilterResults.vue";
 import DirectionsRenderer from "../components/DirectionsRenderer.js";
 import CheckInService from "../services/CheckInService";
 import badgesServices from "../services/BadgesService";
-import NewBadgeModal from '../components/NewBadgeModal.vue';
+import NewBadgeModal from "../components/NewBadgeModal.vue";
 
 export default {
   name: "home",
@@ -144,11 +144,11 @@ export default {
         this.$store.commit("MENU_TOGGLE");
       }
     },
-    geolocate: function () {
-      navigator.geolocation.getCurrentPosition((position) => {
+    geolocate: function() {
+      navigator.geolocation.getCurrentPosition(position => {
         this.userPos = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lng: position.coords.longitude
         };
         this.$store.commit("SET_USER_POSITION", this.userPos);
       });
@@ -180,7 +180,7 @@ export default {
     checkIn(checkIn, locationPos, category) {
       // check if user is within location range
       if (this.checkUserDistance(locationPos, category)) {
-        CheckInService.createCheckin(checkIn).then((response) => {
+        CheckInService.createCheckin(checkIn).then(response => {
           if (response.status === 200 || response.status === 201) {
             // success code here
             this.$store.commit("CHECK_IN", checkIn.locationId);
@@ -191,13 +191,12 @@ export default {
             console.log("check-in already exists");
           }
           if (response.data === true) {
-            console.log("Nice, new badge.")
+            console.log("Nice, new badge.");
             this.$bvModal.show("new-badge-modal");
-
           }
         });
       } else {
-        this.$store.commit("SET_IS_TOO_FAR", checkIn.locationId)
+        this.$store.commit("SET_IS_TOO_FAR", checkIn.locationId);
         console.log("Too far from location");
       }
     },
@@ -226,26 +225,22 @@ export default {
 
       return isInParkRange || isInRange;
     },
-    hideAlert(){
+    hideAlert() {
       this.isHidden = !this.isHidden;
-    },
-    
-
-
-
+    }
   },
   components: {
     MenuButton,
     MenuView,
     FilterResults,
     DirectionsRenderer,
-    NewBadgeModal,
+    NewBadgeModal
   },
   data() {
     return {
       userPos: {
         lat: 0,
-        lng: 0,
+        lng: 0
       },
       openMarkerId: null,
       startLocation: this.$store.state.userPos,
@@ -254,7 +249,7 @@ export default {
       travelMode: "WALKING",
       options: [
         { value: "WALKING", text: "Walk" },
-        { value: "TRANSIT", text: "Transit" },
+        { value: "TRANSIT", text: "Transit" }
       ],
       isDirectionsShowing: false,
       placeImage: null,
@@ -262,7 +257,7 @@ export default {
       currentUserId: this.$store.state.user.id,
       isCheckedIn: false,
       checkedInLocations: [],
-      isHidden: false,
+      isHidden: false
     };
   },
   mounted() {
@@ -270,24 +265,25 @@ export default {
   },
   created() {
     // get data from API
-    LocationService.getAllLocations().then((response) => {
+    LocationService.getAllLocations().then(response => {
       this.$store.commit("LOAD_LOCATIONS", response.data);
       this.$store.commit("LOAD_NEARBY_LOCATIONS");
     });
     // set marker check-ins to API value
-    CheckInService.getAllCheckIns().then((response) => {
+    CheckInService.getAllCheckIns().then(response => {
       this.$store.commit("SET_CHECK_IN_STATUS", response.data);
     });
-    badgesServices.getBadgesByUserId(this.$store.state.user.id).then((response)=> {
-      this.$store.commit("SET_USER_BADGE_LIST", response.data);
-    })
-
+    badgesServices
+      .getBadgesByUserId(this.$store.state.user.id)
+      .then(response => {
+        this.$store.commit("SET_USER_BADGE_LIST", response.data);
+      });
   },
   computed: {
     getUserPos() {
       return this.userPos;
-    },
-  },
+    }
+  }
 };
 </script>
 

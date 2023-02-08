@@ -1,4 +1,4 @@
-<template >
+<template>
   <div
     class="badge-card"
     :class="{ 'not-earned-card': !isEarned }"
@@ -17,9 +17,15 @@
       <div id="badge-modal-details">
         <h2 id="badge-modal-name">{{ badge.badgeName }}</h2>
         <div class="cool-line"></div>
-        <img :src="require(`../assets/${badge.badgeImage}.png`)" alt="" id="badge-modal-image" />
+        <img
+          :src="require(`../assets/${badge.badgeImage}.png`)"
+          alt=""
+          id="badge-modal-image"
+        />
         <h4 id="badge-modal-description">{{ badge.description }}</h4>
-        <p id="badge-modal-timestamp" >{{isEarned ? "Earned on: YYYY/MM/DD" : "Not yet earned"}}</p>
+        <p id="badge-modal-timestamp">
+          {{ isEarned ? "Earned on: YYYY/MM/DD" : "Not yet earned" }}
+        </p>
       </div>
     </b-modal>
   </div>
@@ -34,27 +40,26 @@ export default {
       // badgeObject: {},
       name: "",
       image: null,
-      description: "",
+      description: ""
     };
   },
   props: ["badge", "userBadgeList"],
   methods: {
-    badgeClicked: function (badge) {
+    badgeClicked: function(badge) {
       this.name = badge.badgeName;
       this.image = badge.badgeImage;
       this.$bvModal.show("badge-modal-" + badge.badgeId);
-    },
+    }
   },
   mounted() {},
   computed: {
     isEarned() {
       return (
-        this.userBadgeList.filter(
-          (entry) => entry.badgeId == this.badge.badgeId
-        ).length == 1
+        this.userBadgeList.filter(entry => entry.badgeId == this.badge.badgeId)
+          .length == 1
       );
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
@@ -108,16 +113,15 @@ div.badge h4 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 }
 #badge-modal-image {
-    width: 40vw;
+  width: 40vw;
 }
 #badge-modal-timestamp {
-    font-style: italic;
+  font-style: italic;
 }
 </style>
-<style >
+<style>
 .modal-content {
   background: rgba(23, 19, 19, 0.25) !important;
   backdrop-filter: blur(15px) !important;
