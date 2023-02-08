@@ -1,47 +1,31 @@
 <template>
   <div id="history-page">
     <div class="buttons">
-      <button
-        id="check-in-history-button"
-        :class="{
-          'btn-white-outline': showBadges,
-          'btn-midnight-green': !showBadges,
-        }"
-        @click="historyToggle"
-      >
+      <button id="check-in-history-button" :class="{
+        'btn-white-outline': showBadges,
+        'btn-midnight-green': !showBadges,
+      }" @click="historyToggle">
         CHECK-IN HISTORY
       </button>
-      <button
-        id="badges-button"
-        :class="{
-          'btn-white-outline': !showBadges,
-          'btn-midnight-green': showBadges,
-        }"
-        @click="historyToggle"
-      >
+      <button id="badges-button" :class="{
+        'btn-white-outline': !showBadges,
+        'btn-midnight-green': showBadges,
+      }" @click="historyToggle">
         BADGES
       </button>
     </div>
-    <history-display
-      v-for="entry in checkInList"
-      v-bind:key="entry.checkInId"
-      v-bind:entry="entry"
-      v-show="!showBadges"
-    ></history-display>
+    <div class="history-container" v-show="!showBadges">
+      <history-display v-for="entry in checkInList" v-bind:key="entry.checkInId" v-bind:entry="entry"></history-display>
+    </div>
     <div class="badge-container">
-      <badges-display
-        v-show="showBadges"
-        v-for="badge in badgeList"
-        v-bind:key="badge.badgeId"
-        v-bind:badge="badge"
-        v-bind:userBadgeList="userBadgeList"
-      >
+      <badges-display v-show="showBadges" v-for="badge in badgeList" v-bind:key="badge.badgeId" v-bind:badge="badge"
+        v-bind:userBadgeList="userBadgeList">
       </badges-display>
-      <div class="back-button">
-        <router-link id="back-button" to="/">
-          <img src="../assets/back-arrow.png" />
-        </router-link>
-      </div>
+    </div>
+    <div class="back-button">
+      <router-link id="back-button" to="/">
+        <img src="../assets/back-arrow.png" />
+      </router-link>
     </div>
   </div>
 </template>
@@ -93,6 +77,7 @@ export default {
 <style scoped>
 .buttons {
   margin-top: 1rem;
+  margin-bottom: 2%;
   justify-content: center;
   display: flex;
   gap: 1rem;
@@ -109,9 +94,17 @@ export default {
   row-gap: 1rem;
 }
 
+.history-container {
+  margin: 0;
+  height: 82.5vh;
+  overflow: auto;
+  border-radius: 6px;
+}
+
 .back-button {
-  position: relative;
-  bottom: 10px;
-  left: -1rem;
+
+  position: fixed;
+  bottom: 0vh;
+  left: .5rem;
 }
 </style>
