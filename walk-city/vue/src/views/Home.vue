@@ -65,32 +65,39 @@
                   DIRECTIONS
                 </button>
               </div>
+
               <div
-                class="alert alert-success"
+                id="check-in-success"
+                class="alert alert-success alert-dismissible"
                 role="alert"
                 v-show="isCheckedIn"
-              >
+                >
                 Check-in successful!
               </div>
+              <div id="check-in-far" class="alert alert-failure" role="alert" v-show="m.isTooFar"></div>
               <button
-              class="btn-midnight-green"
+                class="btn-midnight-green"
                 @click="
-                  checkIn({
-                    userId: $store.state.user.id,
-                    locationId: m.id,
-                    isCheckedIn: true,
-                  })
+                  checkIn(
+                    {
+                      userId: $store.state.user.id,
+                      locationId: m.id,
+                      isCheckedIn: true,
+                    },
+                    m.position,
+                    m.category
+                  )
                 "
                 :disabled="m.isCheckedIn"
               >
-                {{m.isCheckedIn ? "CHECKED-IN" : "CHECK-IN"}}
+                {{ m.isCheckedIn ? "CHECKED-IN" : "CHECK-IN" }}
               </button>
             </div>
           </div>
         </GmapInfoWindow>
       </GmapMarker>
       <GmapMarker
-        :position="userPos"
+        :position="this.$store.state.userPos"
         :icon="require('../assets/user-location_50.png')"
       ></GmapMarker>
       <DirectionsRenderer
@@ -156,19 +163,49 @@ export default {
       }
       this.isDirectionsShowing = !dir;
     },
-    checkIn(checkIn) {
-      CheckInService.createCheckin(checkIn).then((response) => {
-        if (response.status === 200 || response.status === 201) {
-          // success code here
-          this.$store.commit("CHECK_IN", checkIn.locationId);
-          // display for successful-checkin
-          console.log("check-in successful");
-        }
-        else {
-          // display for when check-in exists already
-        console.log("check-in already exists")
-        }
-      });
+    checkIn(checkIn, locationPos, category) {
+      // check if user is within location range
+      if (this.checkUserDistance(locationPos, category)) {
+        CheckInService.createCheckin(checkIn).then((response) => {
+          if (response.status === 200 || response.status === 201) {
+            // success code here
+            this.$store.commit("CHECK_IN", checkIn.locationId);
+            // display for successful-checkin
+            console.log("check-in successful");
+          } else {
+            // display for when check-in exists already
+            console.log("check-in already exists");
+          }
+        });
+      } else {
+        this.$store.commit("SET_IS_TOO_FAR", checkIn.locationId)
+        console.log("Too far from location");
+      }
+    },
+    checkUserDistance(locationPos, category) {
+      // 1 km = ~0.01 degrees
+      // average Philadelphia park size = 0.0145687 kms
+      const parkRange = 0.0015;
+      const range = 0.001;
+      const isParkLatNear =
+        locationPos.lat - this.$store.state.userPos.lat <= parkRange &&
+        locationPos.lat - this.$store.state.userPos.lat >= -parkRange;
+      const isParkLngNear =
+        locationPos.lng - this.$store.state.userPos.lng <= parkRange &&
+        locationPos.lng - this.$store.state.userPos.lng >= -parkRange;
+
+      const isLatNear =
+        locationPos.lat - this.$store.state.userPos.lat <= range &&
+        locationPos.lat - this.$store.state.userPos.lat >= -range;
+      const isLngNear =
+        locationPos.lng - this.$store.state.userPos.lng <= range &&
+        locationPos.lng - this.$store.state.userPos.lng >= -range;
+
+      const isInParkRange =
+        category.includes("Park") && isParkLatNear && isParkLngNear;
+      const isInRange = !category.includes("Park") && isLatNear && isLngNear;
+
+      return isInParkRange || isInRange;
     },
   },
   components: {
@@ -210,9 +247,9 @@ export default {
       this.$store.commit("LOAD_NEARBY_LOCATIONS");
     });
     // set marker check-ins to API value
-    CheckInService.getAllCheckIns().then(response => {
+    CheckInService.getAllCheckIns().then((response) => {
       this.$store.commit("SET_CHECK_IN_STATUS", response.data);
-    })
+    });
   },
   computed: {
     getUserPos() {

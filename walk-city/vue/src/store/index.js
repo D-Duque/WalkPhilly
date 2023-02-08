@@ -30,7 +30,6 @@ export default new Vuex.Store({
     currentMarker: null,
     startLocation: null,
     endLocation: null,
-    placeId: ""
   },
   getters: {
     nearbyLocations(state) {
@@ -48,7 +47,8 @@ export default new Vuex.Store({
             description: location.description,
             availability: location.availability,
             social: location.socialMedia,
-            isCheckedIn: false
+            isCheckedIn: false,
+            isTooFar: false,
           };
         })
         .filter(location => {
@@ -132,9 +132,14 @@ export default new Vuex.Store({
          //for each match, set isCheckedIn to true;
          location.isCheckedIn = true;
        }
-     })
-      
-      
+     })      
+    },
+    SET_IS_TOO_FAR(state, locationId){
+     const location = state.filteredMarkers.filter(location => {
+        return location.id == locationId;
+      })[0]
+      location.isTooFar = true;
     }
+    
   }
 });

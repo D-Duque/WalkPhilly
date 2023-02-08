@@ -48,8 +48,6 @@ public class JdbcCheckInDao implements CheckInDao
         else {
             throw new RuntimeException("CheckInId " + checkingID + " was not found");
         }
-
-
     }
 
     @Override
