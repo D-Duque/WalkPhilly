@@ -117,6 +117,7 @@
         :destination="endLocation"
       />
     </GmapMap>
+    <new-badge-modal></new-badge-modal>
     <filter-results></filter-results>
     <menu-button v-show="$store.state.isMenuButtonShowing"></menu-button>
     <Transition name="slide">
@@ -132,6 +133,8 @@ import LocationService from "../services/LocationService";
 import FilterResults from "../components/FilterResults.vue";
 import DirectionsRenderer from "../components/DirectionsRenderer.js";
 import CheckInService from "../services/CheckInService";
+import badgesServices from "../services/BadgesService";
+import NewBadgeModal from '../components/NewBadgeModal.vue';
 
 export default {
   name: "home",
@@ -189,6 +192,8 @@ export default {
           }
           if (response.data === true) {
             console.log("Nice, new badge.")
+            this.$bvModal.show("new-badge-modal");
+
           }
         });
       } else {
@@ -223,13 +228,18 @@ export default {
     },
     hideAlert(){
       this.isHidden = !this.isHidden;
-    }
+    },
+    
+
+
+
   },
   components: {
     MenuButton,
     MenuView,
     FilterResults,
     DirectionsRenderer,
+    NewBadgeModal,
   },
   data() {
     return {
@@ -268,6 +278,10 @@ export default {
     CheckInService.getAllCheckIns().then((response) => {
       this.$store.commit("SET_CHECK_IN_STATUS", response.data);
     });
+    badgesServices.getBadgesByUserId(this.$store.state.user.id).then((response)=> {
+      this.$store.commit("SET_USER_BADGE_LIST", response.data);
+    })
+
   },
   computed: {
     getUserPos() {

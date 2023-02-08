@@ -1,7 +1,5 @@
 <template>
   <div>
-  <b-button id="show-btn" @click="$bvModal.show('new-badge-modal')">Open Modal</b-button>
-
   <b-modal id="new-badge-modal" hide-footer>
     <template #modal-title>
       NEW BADGE
