@@ -5,12 +5,14 @@ import com.techelevator.controller.CheckInController;
 import com.techelevator.dao.CheckInDao;
 import com.techelevator.dao.UserBadgeDao;
 import com.techelevator.dao.UserCheckInCategoryDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.model.CheckIn;
 import com.techelevator.model.User;
 import com.techelevator.model.UserBadge;
 import com.techelevator.model.UserCheckInCategory;
 import org.springframework.stereotype.Component;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,23 +24,26 @@ public class BadgeService {
     private CheckInDao checkInDao;
     private UserCheckInCategoryDao userCheckInCategoryDao;
 
-    public BadgeService(UserBadgeDao userBadgeDao, CheckInDao checkInDao, UserCheckInCategoryDao userCheckInCategoryDao) {
+
+    public BadgeService(UserBadgeDao userBadgeDao, CheckInDao checkInDao, UserCheckInCategoryDao userCheckInCategoryDao, UserDao userDao) {
         this.userBadgeDao = userBadgeDao;
         this.checkInDao = checkInDao;
         this.userCheckInCategoryDao = userCheckInCategoryDao;
+
     }
 
     public boolean checkForNewBadge(int userId){
         List<CheckIn> checkInList = checkInDao.findAllCheckInsByUserId(userId);
         List<UserCheckInCategory> userCheckInCategoryList = userCheckInCategoryDao.listAll(userId);
         //methods for checking each badge
-        checkForParkBadge(userId, userCheckInCategoryList);
-        checkForRestaurantBadge(userId, userCheckInCategoryList);
-        checkForBarBadge(userId, userCheckInCategoryList);
-        checkForMuseumBadge(userId, userCheckInCategoryList);
-        checkForAllBadge(userId, checkInList);
+        if (checkForParkBadge(userId, userCheckInCategoryList) || checkForRestaurantBadge(userId, userCheckInCategoryList) ||
+                checkForBarBadge(userId, userCheckInCategoryList)||checkForMuseumBadge(userId, userCheckInCategoryList) ||
+                checkForAllBadge(userId, checkInList)){
+            return true;
+        }
+
         //if any return true, then return true
-       return true;
+       return false;
     }
 
     private boolean checkForParkBadge(int userId, List<UserCheckInCategory> userCheckInCategoryList){
@@ -62,7 +67,7 @@ public class BadgeService {
         if (restaurantList.size() == 5){
             UserBadge userBadge = new UserBadge();
             userBadge.setUserId(userId);
-            userBadge.setBadgeId(4);
+            userBadge.setBadgeId(5);
             userBadgeDao.create(userBadge);
             return true;
         }
@@ -76,7 +81,7 @@ public class BadgeService {
         if (barList.size() == 5){
             UserBadge userBadge = new UserBadge();
             userBadge.setUserId(userId);
-            userBadge.setBadgeId(4);
+            userBadge.setBadgeId(2);
             userBadgeDao.create(userBadge);
             return true;
         }
@@ -90,7 +95,7 @@ public class BadgeService {
         if (museumList.size() == 5){
             UserBadge userBadge = new UserBadge();
             userBadge.setUserId(userId);
-            userBadge.setBadgeId(4);
+            userBadge.setBadgeId(3);
             userBadgeDao.create(userBadge);
             return true;
         }

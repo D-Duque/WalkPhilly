@@ -1,6 +1,8 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.BadgeDao;
 import com.techelevator.dao.UserBadgeDao;
+import com.techelevator.model.Badge;
 import com.techelevator.model.UserBadge;
 import com.techelevator.model.UserCheckInCategory;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +17,12 @@ import java.util.List;
 public class BadgesController {
 
     private UserBadgeDao userBadgeDao;
+    private BadgeDao badgeDao;
 
-    public BadgesController(UserBadgeDao userBadgeDao) {this.userBadgeDao = userBadgeDao;}
+    public BadgesController(UserBadgeDao userBadgeDao, BadgeDao badgeDao) {
+        this.userBadgeDao = userBadgeDao;
+        this.badgeDao = badgeDao;
+    }
 
     @GetMapping("/badges/user/{userId}")
     public List<UserBadge> getBadgesByUser(@PathVariable int userId){
@@ -35,4 +41,8 @@ public class BadgesController {
         userBadgeDao.create(userBadge);
     }
 
+    @GetMapping("/badges/all")
+    public List<Badge> listAllBadges(){
+        return badgeDao.listAll();
+    }
 }
