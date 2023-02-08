@@ -15,9 +15,9 @@
           "
           alt=""
         />
-        <p id="description">{{ location.description }}</p>
+        <!-- <p id="description">{{ location.description }}</p> -->
         <p id="address">{{ location.address }}</p>
-        <p id="availability">{{ location.availability }}</p>
+        <!-- <p id="availability">{{ location.availability }}</p> -->
       </router-link>
 
       <p>
@@ -67,6 +67,6 @@ div.location h4 {
   text-align: justify;
 }
 #location-image {
-  max-width: 80vw;
+  max-width: 70vw;
 }
 </style>

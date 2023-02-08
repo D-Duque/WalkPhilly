@@ -1,6 +1,10 @@
 <template >
-    <div class="badge-card"> {{badge.badgeName}}
+    <div class="badge-card" @click="badgeClicked(badge)"> {{badge.badgeName}}
         <img :src="require(`../assets/${badge.badgeImage}.png`)" >
+      <b-modal :id="`badge-modal-`+ badge.badgeId" centered>
+            <h1>{{badge.badgeName}}</h1>
+            <p>Test</p>
+        </b-modal>
     </div>    
 </template>
 <script>
@@ -8,12 +12,22 @@
 
 export default {
     // components: {},
-    // data () {
-    //     return {
-    //         badgeObject: {}
-    //     };
-    // },
+    data () {
+        return {
+            // badgeObject: {},
+            name: '',
+            image: null,
+            description: '',
+        };
+    },
     props: ["badge"],
+    methods: {
+        badgeClicked: function(badge) {
+            this.name = badge.badgeName;
+            this.image = badge.badgeImage;
+            this.$bvModal.show('badge-modal-' + badge.badgeId)
+        }
+    }
     // methods: {
     //     created() {
     //     badgesServices.getBadgesByUserId(this.entry.userId).then(response => {
@@ -65,6 +79,4 @@ div.badge h4 {
 .not-earned-card {
     
 }
-
-
 </style>

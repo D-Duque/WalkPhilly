@@ -26,7 +26,6 @@
       >
         BADGES
       </button>
-
     </div>
     <history-display
         v-for="entry in checkInList"
@@ -39,9 +38,10 @@
         v-show="showBadges"
         v-for="badge in badgeList" 
         v-bind:key="badge.badgeId"
-        v-bind:badge="badge">
-
-    </badges-display>
+        v-bind:badge="badge"
+       > 
+      </badges-display>
+    
     </div>
   </div>
 </template>
@@ -60,13 +60,13 @@ export default {
     return {
       showBadges: false,
       checkInList: [],
-        badgeList: []
+
     };
   },
   methods: {
     historyToggle() {
       this.showBadges = !this.showBadges;
-    }
+    },
   },
   created() {
     checkInService
