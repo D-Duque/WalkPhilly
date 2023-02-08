@@ -64,17 +64,7 @@
                 >
                   DIRECTIONS
                 </button>
-              </div>
-
-              <div
-                id="check-in-success"
-                class="alert alert-success alert-dismissible"
-                role="alert"
-                v-show="isCheckedIn"
-                >
-                Check-in successful!
-              </div>
-              
+              </div>              
               <button
                 class="btn-midnight-green"
                 @click="

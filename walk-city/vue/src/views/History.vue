@@ -50,7 +50,7 @@ export default {
   methods: {
     historyToggle() {
       this.showBadges = !this.showBadges;
-    }
+    },
   },
   created() {
     checkInService

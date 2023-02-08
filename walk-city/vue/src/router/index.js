@@ -8,6 +8,7 @@ import store from "../store/index";
 import LocationList from "../views/LocationList.vue";
 import LocationDetails from "../views/LocationDetails.vue";
 import History from "../views/History.vue"
+
 Vue.use(Router);
 
 /**
@@ -78,7 +79,7 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }  
-    }
+    },
   ]
 });
 
