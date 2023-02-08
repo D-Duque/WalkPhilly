@@ -1,53 +1,110 @@
 <template>
   <div class="home">
-    <GmapMap :center="userPos" :zoom="15" :options="{
-      zoomControl: false,
-      mapTypeControl: false,
-      scaleControl: false,
-      streetViewControl: false,
-      rotateControl: false,
-      fullscreenControl: false,
-      disableDefaultUi: false,
-      mapId: '5bad73ddd2112653'
-    }" map-type-id="roadmap" style="width: 100vw; height: 93vh" @click="closeMenuView">
-      <GmapMarker :key="index" v-for="(m, index) in $store.state.filteredMarkers" :ref="`marker${index}`"
-        :position="m.position" :icon="
-          `http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${index +
-          1}|FF0000|FFFFFF`
-        " :clickable="true" :draggable="false" @click="openMarker(index)">
-        <GmapInfoWindow class="info-window" :closeclick="true" @closeclick="openMarker(null)"
-          :opened="openMarkerId === index">
+    <GmapMap
+      :center="userPos"
+      :zoom="15"
+      :options="{
+        zoomControl: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false,
+        disableDefaultUi: false,
+        mapId: '5bad73ddd2112653',
+      }"
+      map-type-id="roadmap"
+      style="width: 100vw; height: 93vh"
+      @click="closeMenuView"
+    >
+      <GmapMarker
+        :key="index"
+        v-for="(m, index) in $store.state.filteredMarkers"
+        :ref="`marker${index}`"
+        :position="m.position"
+        :icon="`http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=${
+          index + 1
+        }|FF0000|FFFFFF`"
+        :clickable="true"
+        :draggable="false"
+        @click="openMarker(index)"
+      >
+        <GmapInfoWindow
+          class="info-window"
+          :closeclick="true"
+          @closeclick="openMarker(null)"
+          :opened="openMarkerId === index"
+        >
           <div id="body">
-            <router-link :to="{ name: 'location-details', params: { id: m.id } }">
+            <router-link
+              :to="{ name: 'location-details', params: { id: m.id } }"
+            >
               <div id="location-name">{{ m.name }}</div>
             </router-link>
 
             <div id="location-address">{{ m.address }}</div>
-            <img id="location-img" :src="`http://localhost:8080/api/photos/Philadelphia ${m.name}`" alt="" />
+            <img
+              id="location-img"
+              :src="`http://localhost:8080/api/photos/Philadelphia ${m.name}`"
+              alt=""
+            />
             <div id="location-buttons">
               <div id="directions">
                 <div class="dropdown-container">
-                  <b-form-select v-model="travelMode" :options="options" @change="setTravelMode"></b-form-select>
+                  <b-form-select
+                    v-model="travelMode"
+                    :options="options"
+                    @change="setTravelMode"
+                  ></b-form-select>
                 </div>
-                <button class="btn-midnight-green " :class="{ active: isDirectionsShowing }"
-                  @click="showDirections(m.position)">
+                <button
+                  class="btn-midnight-green"
+                  :class="{ active: isDirectionsShowing }"
+                  @click="showDirections(m.position)"
+                >
                   DIRECTIONS
                 </button>
               </div>
-              <div class="alert alert-success" role="alert" v-show="isCheckedIn">
+
+              <div
+                id="check-in-success"
+                class="alert alert-success alert-dismissible"
+                role="alert"
+                v-show="isCheckedIn"
+                >
                 Check-in successful!
               </div>
-              <button class="btn-midnight-green" @click="
-                checkIn({ userId: $store.state.user.id, locationId: m.id, isCheckedIn: true})
-              ">
-                CHECK-IN
+              <div id="check-in-far" class="alert alert-failure" role="alert" v-show="m.isTooFar"></div>
+              <button
+                class="btn-midnight-green"
+                @click="
+                  checkIn(
+                    {
+                      userId: $store.state.user.id,
+                      locationId: m.id,
+                      isCheckedIn: true,
+                    },
+                    m.position,
+                    m.category
+                  )
+                "
+                :disabled="m.isCheckedIn"
+              >
+                {{ m.isCheckedIn ? "CHECKED-IN" : "CHECK-IN" }}
               </button>
             </div>
           </div>
         </GmapInfoWindow>
       </GmapMarker>
-      <GmapMarker :position="userPos" :icon="require('../assets/user-location_50.png')"></GmapMarker>
-      <DirectionsRenderer :travelMode="travelMode" :origin="startLocation" :destination="endLocation" />
+      <GmapMarker
+        :position="this.$store.state.userPos"
+        :icon="require('../assets/user-location_50.png')"
+      ></GmapMarker>
+      <DirectionsRenderer
+        :travelMode="travelMode"
+        :origin="startLocation"
+        :destination="endLocation"
+      />
     </GmapMap>
     <filter-results></filter-results>
     <menu-button v-show="$store.state.isMenuButtonShowing"></menu-button>
@@ -74,7 +131,7 @@ export default {
       }
     },
     geolocate: function () {
-      navigator.geolocation.getCurrentPosition(position => {
+      navigator.geolocation.getCurrentPosition((position) => {
         this.userPos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
@@ -106,24 +163,49 @@ export default {
       }
       this.isDirectionsShowing = !dir;
     },
-    checkIn(checkIn) {
-      CheckInService.createCheckin(checkIn).then((response) => {
-        if (response.status === 200 || response.status === 201) {
-          // success code here
-      
-        }
-      });
-      // get all locations, filter by checkin.locationId
-      // const filteredLocations = this.$store.state.locations
-      //   .filter((location) => {
-      //     return location.locationId == locationId;
-      //   })
-      //   filteredLocations.forEach((location) => {
-      //     location.isCheckedIn = true;
-      //     this.checkedInLocations.push(location);
-      //   });
+    checkIn(checkIn, locationPos, category) {
+      // check if user is within location range
+      if (this.checkUserDistance(locationPos, category)) {
+        CheckInService.createCheckin(checkIn).then((response) => {
+          if (response.status === 200 || response.status === 201) {
+            // success code here
+            this.$store.commit("CHECK_IN", checkIn.locationId);
+            // display for successful-checkin
+            console.log("check-in successful");
+          } else {
+            // display for when check-in exists already
+            console.log("check-in already exists");
+          }
+        });
+      } else {
+        this.$store.commit("SET_IS_TOO_FAR", checkIn.locationId)
+        console.log("Too far from location");
+      }
+    },
+    checkUserDistance(locationPos, category) {
+      // 1 km = ~0.01 degrees
+      // average Philadelphia park size = 0.0145687 kms
+      const parkRange = 0.0015;
+      const range = 0.001;
+      const isParkLatNear =
+        locationPos.lat - this.$store.state.userPos.lat <= parkRange &&
+        locationPos.lat - this.$store.state.userPos.lat >= -parkRange;
+      const isParkLngNear =
+        locationPos.lng - this.$store.state.userPos.lng <= parkRange &&
+        locationPos.lng - this.$store.state.userPos.lng >= -parkRange;
 
-      //set isCheckedIn to true for current location
+      const isLatNear =
+        locationPos.lat - this.$store.state.userPos.lat <= range &&
+        locationPos.lat - this.$store.state.userPos.lat >= -range;
+      const isLngNear =
+        locationPos.lng - this.$store.state.userPos.lng <= range &&
+        locationPos.lng - this.$store.state.userPos.lng >= -range;
+
+      const isInParkRange =
+        category.includes("Park") && isParkLatNear && isParkLngNear;
+      const isInRange = !category.includes("Park") && isLatNear && isLngNear;
+
+      return isInParkRange || isInRange;
     },
   },
   components: {
@@ -163,6 +245,10 @@ export default {
     LocationService.getAllLocations().then((response) => {
       this.$store.commit("LOAD_LOCATIONS", response.data);
       this.$store.commit("LOAD_NEARBY_LOCATIONS");
+    });
+    // set marker check-ins to API value
+    CheckInService.getAllCheckIns().then((response) => {
+      this.$store.commit("SET_CHECK_IN_STATUS", response.data);
     });
   },
   computed: {
@@ -214,6 +300,10 @@ export default {
 }
 
 button.active {
+  background-color: rgb(0, 73, 83);
+  color: white;
+}
+button:disabled {
   background-color: rgb(0, 73, 83);
   color: white;
 }

@@ -6,11 +6,11 @@ export default {
   },
 
   getCheckInsById(checkInId) {
-    return axios.get(`/checkins/${checkInId}`);
+    return axios.get(`/checkins/checkin/${checkInId}`);
   },
 
   getCheckInsByUserIdAndLocationID(userId, locationId) {
-    return axios.get(`/checkins/${userId}/${locationId}`);
+    return axios.get(`/checkins/user/${userId}/location/${locationId}`);
   },
 
   createCheckin(checkin) {

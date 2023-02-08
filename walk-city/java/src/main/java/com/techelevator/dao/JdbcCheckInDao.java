@@ -48,8 +48,6 @@ public class JdbcCheckInDao implements CheckInDao
         else {
             throw new RuntimeException("CheckInId " + checkingID + " was not found");
         }
-
-
     }
 
     @Override
@@ -71,19 +69,22 @@ public class JdbcCheckInDao implements CheckInDao
 
     @Override
     public Integer create(CheckIn checkIn) {
-
         int userId = checkIn.getUserId();
-        int locationId = checkIn.getLocationId();
+        Integer locationId = checkIn.getLocationId();
         LocalDateTime checkInTime = checkIn.getCheckInTime();
         boolean isCheckedIn = checkIn.isCheckedIn();
 
         String sql = "INSERT into check_in (user_id, location_id, check_in_time, is_checked_in)"
-                        + " VALUES (?, ?, ?, ?)"
-                        + " RETURNING check_in_id";
+                + " VALUES (?, ?, ?, ?)"
+                + " RETURNING check_in_id";
 
-        Integer checkInId = jdbcTemplate.queryForObject(sql, Integer.class, userId, locationId, checkInTime, isCheckedIn);
-        if (checkInId != null) {
-            return checkInId;
+        List<CheckIn> checkInList = findCheckInByUserAndLocation(userId, locationId);
+        if (checkInList.size() == 0)
+        {
+            Integer checkInId = jdbcTemplate.queryForObject(sql, Integer.class, userId, locationId, checkInTime, isCheckedIn);
+            if (checkInId != null) {
+                return checkInId;
+            }
         }
         return null;
     }
@@ -103,6 +104,8 @@ public class JdbcCheckInDao implements CheckInDao
         }
         return checkInList;
     }
+
+
 
     public CheckIn mapRowToCheckIn(SqlRowSet rs) {
         CheckIn checkIn = new CheckIn();
