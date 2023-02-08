@@ -44,6 +44,7 @@
             </router-link>
 
             <div id="location-address">{{ m.address }}</div>
+
             <img
               id="location-img"
               :src="`http://localhost:8080/api/photos/Philadelphia ${m.name}`"
@@ -307,9 +308,15 @@ export default {
 }
 
 #location-img {
-  max-width: 240px;
+  object-fit: cover;
   margin: auto;
   padding: 10px;
+  left: -1000%;
+  right: -1000%;
+  top: -1000%;
+  bottom: -1000%;
+  width: 200px;
+  height: 200px;
 }
 
 #location-buttons {

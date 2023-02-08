@@ -22,12 +22,13 @@
         BADGES
       </button>
     </div>
-    <history-display
-      v-for="entry in checkInList"
-      v-bind:key="entry.checkInId"
-      v-bind:entry="entry"
-      v-show="!showBadges"
-    ></history-display>
+    <div class="history-container" v-show="!showBadges">
+      <history-display
+        v-for="entry in checkInList"
+        v-bind:key="entry.checkInId"
+        v-bind:entry="entry"
+      ></history-display>
+    </div>
     <div class="badge-container">
       <badges-display
         v-show="showBadges"
@@ -37,11 +38,11 @@
         v-bind:userBadgeList="userBadgeList"
       >
       </badges-display>
-      <div class="back-button">
-        <router-link id="back-button" to="/">
-          <img src="../assets/back-arrow.png" />
-        </router-link>
-      </div>
+    </div>
+    <div class="back-button">
+      <router-link id="back-button" to="/">
+        <img src="../assets/back-arrow.png" />
+      </router-link>
     </div>
   </div>
 </template>
@@ -93,6 +94,7 @@ export default {
 <style scoped>
 .buttons {
   margin-top: 1rem;
+  margin-bottom: 2%;
   justify-content: center;
   display: flex;
   gap: 1rem;
@@ -107,6 +109,13 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   column-gap: 1rem;
   row-gap: 1rem;
+}
+
+.history-container {
+  margin: 0;
+  height: 82.5vh;
+  overflow: auto;
+  border-radius: 6px;
 }
 
 .back-button {
