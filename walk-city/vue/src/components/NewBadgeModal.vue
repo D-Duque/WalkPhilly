@@ -1,31 +1,60 @@
 <template>
-  <div>
-  <b-modal id="new-badge-modal" hide-footer>
-    <template #modal-title>
-      NEW BADGE
-    </template>
-    <div class="d-block text-center">
-      <h3>Congrats! You earned a new badge!</h3>
+  <div class="new-badge-container">
+  <b-modal 
+    id="new-badge-modal" 
+    hide-footer
+    hide-header
+    centered
+    text-center>
+
+    <div id="new-badge-details">
+      <h2>CONGRATULATIONS!</h2>
+      <div class="cool-line"></div>
+      <div id="image-badge">
+        <img src="../assets/badge.png" width = "150" height = "150">
+      </div>
+      <h5>You just earned a new badge! Check it out in 'view check-ins' under badges!</h5>
     </div>
-    <b-button class="mt-3" block @click="$bvModal.hide('new-badge-modal')">Yay!</b-button>
   </b-modal>
 </div>
 </template>
 
 <script>
   export default {
-  //   methods: {
-  //     showModal() {
-  //       this.$refs['my-modal'].show()
-  //     },
-  //     hideModal() {
-  //       this.$refs['my-modal'].hide()
-  //     },
-  //     toggleModal() {
-  //       // We pass the ID of the button that we want to return focus to
-  //       // when the modal has hidden
-  //       this.$refs['my-modal'].toggle('#toggle-btn')
-  //     }
-  //   }
   }
 </script>
+
+<style scoped>
+
+.new-badge-container {
+  /* display: flex;
+  justify-content: center;
+  flex-direction: column; */
+}
+
+.modal-content {
+  background: rgba(23, 19, 19, 0.25) !important;
+  backdrop-filter: blur(15px) !important;
+  border-radius: 40px !important;
+  color: white;
+  margin: 1rem;
+}
+.modal-backdrop {
+  opacity: 0.25 !important;
+}
+.modal-header {
+  text-align: center !important;
+}
+
+#new-badge-details {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+#image-badge {
+  
+}
+</style>
