@@ -1,8 +1,10 @@
 <template >
     <div class="badge">
-        <div class="badge-card"> Hi</div>
-        <div class="badge-image"></div>
-        <!-- <img id="badge-img" src="../assets/badge.png"> -->
+        <div class="badge-card"> <img id="badge-museum" src="../assets/museum-frame.png"> </div>
+        <div class="badge-card"> <img id="badge-park" src="../assets/park-frame.png"> </div>
+        <div class="badge-card"> <img id="badge-bar" src="../assets/bar-frame.png"> </div>
+        <div class="badge-card"> <img id="badge-restaurant" src="../assets/restaurant-frame.png"> </div>
+        <div class="badge-card"> <img id="badge-urban" src="../assets/urban-frame.png"> </div>
     </div>
 </template>
 <script>
@@ -13,14 +15,19 @@ export default {
 <style scoped>
 div.badge {
     display: grid;
+    /* justify-content: space-around; */
     /* border: 1px black solid; */
+    /* grid-template-columns: 1fr 1fr; */
     border-radius: 6px;
     padding: 1rem;
     margin: 10px;
     /* background-color: white; */
     color: rgb(0, 73, 83);
-    align-items: center;
-    align-self: center;
+    /* align-items: center; */
+    /* align-self: center; */
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+    row-gap: 1rem;
 }
 
 div.badge p {
@@ -42,10 +49,10 @@ div.badge h4 {
     width: 146px;
     height: 158px;
     border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
 }
 
-/* #image-badge {
-    content:url()
-} */
 
 </style>

@@ -14,7 +14,7 @@ public interface UserBadgeDao {
 
     List<UserBadge> getUserBadgesByUser(int userId);
 
-    List<UserBadge> getUserBadgeByBadge(int badgeId);
+    List<UserBadge> getUserBadgesByBadge(int badgeId);
 
     void create(UserBadge userBadge);
 

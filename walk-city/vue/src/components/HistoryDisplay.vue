@@ -1,73 +1,77 @@
 <template>
-    <div class="history">
-        <div class="history-card">
-            <img id="verified-img" src="../assets/verified-account.png">
-            <h3>{{ locationObject.locationName }}</h3>
-            <h4>{{ entry.checkInTime }}</h4>
-        </div>
+  <div class="history">
+    <div class="history-card">
+      <img id="verified-img" src="../assets/verified-account.png" />
+      <h3>{{ locationObject.locationName }}</h3>
+      <h4>
+        {{ entry.checkInTime.toString().slice(0, 10) }}
+        {{ entry.checkInTime.toString().slice(11, 19) }}
+      </h4>
     </div>
+  </div>
 </template>
 <script>
-
-import locationService from '../services/LocationService';
+import locationService from "../services/LocationService";
 
 export default {
-    components: {
+  components: {},
+  data() {
+    return {
+      locationObject: {}
+    };
+  },
+  props: ["entry"],
 
-    },
-    data() {
-        return {
-            locationObject: {}
-        }
-    },
-    props: ["entry"],
-
-    created() {
-        locationService.getLocationById(this.entry.locationId).then(response => {
-            this.locationObject = response.data
-        })
-
-    }
-}
-
-
+  created() {
+    locationService.getLocationById(this.entry.locationId).then(response => {
+      this.locationObject = response.data;
+    });
+  }
+};
 </script>
 <style scoped>
 div.history {
-    /* display: grid; */
-    border: 1px black solid;
-    border-radius: 6px;
-    padding: 1rem;
-    margin: 10px;
-    background-color: white;
-    color: rgb(0, 73, 83);
-    align-items: center;
-    align-self: center;
+  /* display: grid; */
+  border: 1px black solid;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 10px;
+  background-color: white;
+  color: rgb(0, 73, 83);
+  align-items: center;
+  align-self: center;
 }
 
 div.history p {
-    margin: 20px;
+  margin: 20px;
 }
 
 div.history h3 {
-    display: inline-block;
+  display: inline-block;
+  font-size: 1.5rem;
 }
 
 div.history h4 {
-    font-size: 1rem;
-    margin: 3px;
-    display: flex;
-    justify-content: center;
+  font-size: 1rem;
+  margin: 3px;
+  margin-left: 3.5rem;
+  display: flex;
+  justify-content: left;
 }
 
 #history-card {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  place-items: center;
+
 }
 
 #verified-img {
-    margin-right: 10px;
-    justify-content: left;
+  margin-right: 10px;
+  
 }
+
+
 
 </style>
