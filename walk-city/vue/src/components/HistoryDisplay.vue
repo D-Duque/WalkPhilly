@@ -31,7 +31,6 @@ export default {
 </script>
 <style scoped>
 div.history {
-  /* display: grid; */
   border: 1px black solid;
   border-radius: 6px;
   padding: 1rem;
@@ -62,7 +61,6 @@ div.history h4 {
 #history-card {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   place-items: center;
 
 }
@@ -70,6 +68,11 @@ div.history h4 {
 #verified-img {
   margin-right: 10px;
   
+}
+
+.park-overlay {
+  background: url(.png);
+  transform: rotate(32.7deg);
 }
 
 
