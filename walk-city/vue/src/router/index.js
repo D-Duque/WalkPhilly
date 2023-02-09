@@ -61,7 +61,7 @@ const router = new Router({
       name: "location-list",
       component: LocationList,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
