@@ -1,6 +1,6 @@
 
 -- insert users table data
-INSERT INTO users (user_id, username,password_hash,role) VALUES (1, 'user', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (user_id, username,password_hash,role) VALUES (1, 'shawnbcool27', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (user_id, username,password_hash,role) VALUES (2, 'admin', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO users (user_id, username,password_hash,role) VALUES (3, 'daniel', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO users (user_id, username,password_hash,role) VALUES (4, 'emma', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
@@ -32,7 +32,7 @@ INSERT INTO locations(location_name, category, latitude, longitude, address, des
                        ('Spin Philadelphia', 'Bar', '39.9493597', '-75.16601085', '211 S 15th St, Philadelphia, PA 19102', 'SPIN is the original ping pong social club, your offline social network, the only one that doesn’t require a membership. We encourage human connections through a game that transcends age, gender, and any boundaries.', 'Tues-Sat: 4PM-10PM, Sun & Mon: Closed', '', 'https://wearespin.com'),
                        ('Graffiti bar', 'Bar', '39.94963003', '-75.16223866', '124 S 13th St, Sampan Restaurant, Philadelphia, PA 19107', 'Sampan is an oasis of contemporary Asian small plates located in the heart of Center City.', 'Mon-Sun: 4PM-11PM', '',  'https://sampanphilly.com/graffiti-bar'),
                        ('Oscar''s Tavern', 'Bar', '39.95030233', '-75.16675276', '1524 Sansom St, Philadelphia, PA 19102', 'Very casual neighborhood bar in Center City.', 'Mon-Sun: 11:30AM-2AM', '', 'https://oscarstavernphiladelphia.mybistro.online/'),
-                       ('Harper''s Garden', 'Bar', '39.95253202', '-75.16994273', '31 S 18th St, Philadelphia, PA 19103', 'A contemporary bar and restaurant tucked away in Rittenhouse Square.', 'Mon-Sun: 10AM-12PM', '', 'https://harpersgardenphilly.com'),
+                       ('Harper''s Garden', 'Bar', '39.95240409413879','-75.16981416722389', '31 S 18th St, Philadelphia, PA 19103', 'A contemporary bar and restaurant tucked away in Rittenhouse Square.', 'Mon-Sun: 10AM-12PM', '', 'https://harpersgardenphilly.com'),
                        ('Hop Sing Laundromat', 'Bar', '39.95582246', '-75.1567964', '1029 Race St, Philadelphia, PA 19107', 'A speakeasies bar in the heart of the city.', 'Open Daily: 5PM-2AM (Next Day)', '', 'https://www.yelp.com/biz/hop-sing-laundromat-philadelphia'),
                        ('Attico Rooftop Lounge', 'Bar', '39.94877543', '-75.16369375', '219 S Broad St, Rooftop of Cambria Hotel, Philadelphia, PA 19107', 'A rooftop lounge in the heart of Philadelphia.', 'Wed-Sun: 4PM-10PM, Mon & Tues: Closed', '', 'https://atticorooftop.com'),
                        ('Prohibition Taproom', 'Bar', '39.96142108', '-75.15873239', '501 N 13th St Philadelphia, PA 19123', 'CASUAL GASTROPUB FEATURING CRAFT BEER & CIDER, CLASSIC COCKTAILS, & COMFORT FOOD RIGHT ON THE CORNER OF 13TH & BUTTONWOOD IN THE HEART OF PHILADELPHIA.', 'Mon-Sun: 4PM-12AM', '', 'https://prohibitiontaproom.com'),
@@ -66,7 +66,7 @@ INSERT INTO check_in (check_in_id, user_id, location_id, check_in_time, is_check
                        (24, 1, 4, '2023-02-08 16:29:51.465719', true),
                        (25, 1, 5, '2023-02-08 16:29:56.330392', true),
                        (26, 1, 23, '2023-02-08 16:31:20.12164', true),
-                       (27, 1, 24, '2023-02-08 16:31:22.863234', true),
+                       (27, 1, 28, '2023-02-08 16:31:22.863234', true),
                        (28, 1, 25, '2023-02-08 16:31:26.202292', true),
                        (29, 1, 26, '2023-02-08 16:31:29.863504', true);
 
