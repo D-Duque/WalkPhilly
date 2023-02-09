@@ -77,20 +77,31 @@
                     m.category
                   )
                 "
-                :disabled="m.isCheckedIn"
+                :disabled="m.isCheckedIn && isLoggedIn"
+                :class="{ guest: !isLoggedIn}"
               >
-                {{ m.isCheckedIn ? "CHECKED-IN" : "CHECK-IN" }}
+                {{ m.isCheckedIn && isLoggedIn? "CHECKED-IN" : "CHECK-IN" }}
               </button>
 
               <div
                 id="check-in-far"
                 class="alert alert-danger"
                 role="alert"
-                v-show="m.isTooFar && isHidden == false"
+                v-show="m.isTooFar && !isHidden && isLoggedIn"
                 @click="hideAlert"
               >
                 You're too far from this location!
                 <span href="#" id="close">&times;</span>
+              </div>
+              <div
+                id="not-logged-in"
+                class="alert alert-danger"
+                role="alert"
+                v-show="!isLoggedIn"
+                @click="hideAlert"
+              >
+                You need to be logged in to use this feature.
+                  
               </div>
             </div>
           </div>
@@ -168,18 +179,15 @@ export default {
       this.isDirectionsShowing = !dir;
     },
     checkIn(checkIn, locationPos, category) {
+       
       // check if user is within location range
-      if (this.checkUserDistance(locationPos, category)) {
+      if (this.isLoggedIn && this.checkUserDistance(locationPos, category)) {
         CheckInService.createCheckin(checkIn).then(response => {
           if (response.status === 200 || response.status === 201) {
             // success code here
             this.$store.commit("CHECK_IN", checkIn.locationId);
-            // display for successful-checkin
-            console.log("check-in successful");
-          } else {
-            // display for when check-in exists already
-            console.log("check-in already exists");
-          }
+     
+          } 
           if (response.data === true) {
             console.log("Nice, new badge.");
             this.$bvModal.show("new-badge-modal");
@@ -187,7 +195,6 @@ export default {
         });
       } else {
         this.$store.commit("SET_IS_TOO_FAR", checkIn.locationId);
-        console.log("Too far from location");
       }
     },
     checkUserDistance(locationPos, category) {
@@ -251,7 +258,8 @@ export default {
       currentUserId: this.$store.state.user.id,
       isCheckedIn: false,
       checkedInLocations: [],
-      isHidden: false
+      isHidden: false,
+      isLoggedIn: this.$store.state.token != '',
     };
   },
   mounted() {
@@ -334,5 +342,9 @@ button.active {
 button:disabled {
   background-color: rgb(0, 73, 83);
   color: white;
+ 
+}
+button.guest {
+  opacity: 50%
 }
 </style>

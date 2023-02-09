@@ -1,16 +1,7 @@
 <template>
   <div class="form-outline">
-    <input
-      type="search"
-      id="search-input"
-      class="form-control"
-      placeholder="Search"
-      aria-label="Search"
-      v-model="textFilter"
-      @change="filterMarkers"
-      ref="Search"
-      @click="resetSearch"
-    />
+    <input type="search" id="search-input" class="form-control" placeholder="Search" aria-label="Search"
+      v-model="textFilter" @change="filterMarkers" ref="Search" @click="resetSearch" @keyup.enter="submit" />
   </div>
 </template>
 
@@ -31,6 +22,9 @@ export default {
     },
     resetSearch() {
       this.$refs["Search"].value = "";
+    },
+    submit() {
+      this.$store.commit("MENU_TOGGLE");
     }
   },
   data() {
@@ -38,7 +32,7 @@ export default {
       textFilter: ""
     };
   },
-  mounted() {},
+  mounted() { },
   computed: {}
 };
 </script>
