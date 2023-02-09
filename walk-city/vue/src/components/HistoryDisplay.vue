@@ -3,7 +3,10 @@
     <div class="history">
       <div class="history-card">
         <div id="overlay">
-          <img class="absolute" :src="require(`../assets/${categoryImage}.png`)">
+          <img
+            class="absolute"
+            :src="require(`../assets/${categoryImage}.png`)"
+          />
         </div>
         <h3>{{ locationObject.locationName }}</h3>
         <h4>
@@ -12,14 +15,12 @@
         </h4>
         <img id="verified-img" src="../assets/verified-account.png" />
       </div>
-
     </div>
   </div>
 
   <!-- <div id="overlay" :style="{
           backgroundImage: `url(${restaurantIcon})`
         }"> -->
-
 </template>
 <script>
 import locationService from "../services/LocationService";
@@ -38,13 +39,11 @@ export default {
     locationService.getLocationById(this.entry.locationId).then(response => {
       this.locationObject = response.data;
     });
-
   },
   computed: {
     categoryImage() {
       return (this.locationObject.category + "-icon").toLowerCase();
     }
-
   }
 };
 </script>
@@ -69,7 +68,6 @@ div.history {
   /* background: no-repeat; */
 }
 
-
 div.history p {
   margin: 20px;
 }
@@ -80,7 +78,7 @@ div.history h3 {
 }
 
 div.history h4 {
-  font-size: .7rem;
+  font-size: 0.7rem;
   margin: 3px;
   margin-left: 1.5rem;
   /* display: flex;
@@ -94,40 +92,13 @@ div.history h4 {
   justify-content: center;
   flex-direction: row;
   place-items: center;
-
 }
 
 #verified-img {
-  /* margin-right: 10px; */
-  /* justify-self: right; */
-  width: 30px;
-
+  margin-right: 10px;
 }
 
-h3 {
-  z-index: 1;
-}
-
-img.absolute {
-
-  /*
-  left: 100%;
-  margin-left: -200px;
-  position: absolute;*/
-}
-
-#overlay {
-  /* background-image: url(../assets/museum-icon.png); */
-  background-repeat: no-repeat;
-  position: relative;
+.park-overlay {
   transform: rotate(32.7deg);
-  height: 100px;
-  width: 100px;
-  margin-left: -45px;
-  margin-bottom: -60px;
-  margin-top: -80px;
-
-
-  /* overflow: hidden; */
 }
 </style>
