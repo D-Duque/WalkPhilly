@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="history" @click="openLocationDetails(locationObject.id)">
-      <div class="history-card">
+    <div class="history" >
+      <div class="history-card" @click="openLocationDetails(locationObject)">
         <div id="overlay">
           <img
             class="absolute"
@@ -24,16 +24,39 @@
         </div>
       </div>
     </div>
-    <location-details-modal :id="`location-modal-` + locationObject.id" :location="locationObject" />
+    <b-modal
+    :id="`location-details-modal-` + locationObject.id"
+    centered
+    hide-header
+    hide-footer
+  >
+    <div id="location-card">
+      <h2 id="location-name">{{ locationObject.locationName }}</h2>
+      <div class="cool-line"></div>
+      <img
+        id="location-image"
+        :src="`http://localhost:8080/api/photos/Philadelphia ${locationObject.name}`"
+        alt=""
+      />
+      <div id="location-description">
+        <p id="description">{{ locationObject.description }}</p>
+        <p id="availability">{{ locationObject.availability }}</p>
+        <p>
+          <a v-bind:href="locationObject.social" target="_blank">{{
+            locationObject.social
+          }}</a>
+        </p>
+      </div>
+    </div>
+  </b-modal>
   </div>
 </template>
 <script>
 import locationService from "../services/LocationService";
 import restaurantIcon from "../assets/restaurant-icon.png";
-import LocationDetailsModal from "../components/locationdetail/LocationDetailsModal.vue";
 export default {
   components: {
-    LocationDetailsModal,
+    
   },
   data() {
     return {
@@ -42,8 +65,8 @@ export default {
     };
   },
   methods: {
-    openLocationDetails(id) {
-      this.$bvModal.show("location-modal-" + id);
+    openLocationDetails(location) {
+      this.$bvModal.show("location-details-modal-" + location.id);
     },
   },
   props: ["entry", "location"],
