@@ -18,13 +18,10 @@
     </div>
 </template>
 <script>
-// import badgesServices from "../services/BadgesServices";
 
 export default {
-    // components: {},
     data() {
         return {
-            // badgeObject: {},
             name: "",
             image: null,
             description: "",
@@ -102,7 +99,7 @@ div.badge h4 {
 }
 
 .not-earned-card {
-    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
 }
 
 #badge-modal-details {

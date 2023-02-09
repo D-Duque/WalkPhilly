@@ -8,19 +8,25 @@
             :src="require(`../assets/${categoryImage}.png`)"
           />
         </div>
-        <h3>{{ locationObject.locationName }}</h3>
-        <h4>
-          {{ entry.checkInTime.toString().slice(0, 10) }}
-          {{ entry.checkInTime.toString().slice(11, 19) }}
-        </h4>
-        <img id="verified-img" src="../assets/verified-account.png" />
+        <div id="text-container">
+          <div id="please-work">
+            <h3>{{ locationObject.locationName }}</h3>
+          </div>
+          <h4>
+              <div>
+              {{ entry.checkInTime.toString().slice(0, 10) }}
+              {{ entry.checkInTime.toString().slice(11, 19) }}
+              </div>
+              <div>
+                <img id="verified-img" src="../assets/verified-account.png" />
+              </div>
+            </h4>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- <div id="overlay" :style="{
-          backgroundImage: `url(${restaurantIcon})`
-        }"> -->
+
 </template>
 <script>
 import locationService from "../services/LocationService";
@@ -49,7 +55,6 @@ export default {
 </script>
 <style scoped>
 div.history {
-  /* border: 1px black solid; */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
   padding: 1rem;
@@ -59,48 +64,46 @@ div.history {
   align-items: center;
   align-self: center;
   overflow: hidden;
-
-  /* background-image: url(../assets/park-icon.png); */
-  /* background-repeat: no-repeat; */
-  /* background-position: */
-  /* transform: rotate(32.7deg); */
-
-  /* background: no-repeat; */
 }
 
+#please-work {
+  display: flex;
+  flex-direction: column;
+  }
 
 div.history p {
   margin: 20px;
 }
 
 div.history h3 {
-  display: inline-block;
-  font-size: 1rem;
+  display: flex;
+  font-size: 1.2rem;
 }
 
 div.history h4 {
-  font-size: .7rem;
+  font-size: 1rem;
   margin: 3px;
-  margin-left: 1.5rem;
-  /* display: flex;
-  justify-content: center; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 310vw;
+  font-style: italic;
+}
+
+#text-container {
+  margin-left: 4.5rem;
 }
 
 .history-card {
   display: flex;
-  /* display: grid;
-  grid-template-columns: 2fr 1fr 1fr */
-  justify-content: center;
-  flex-direction: row;
-  place-items: center;
+  flex-direction: column;
+  position: relative;
 
 }
 
 #verified-img {
-  /* margin-right: 10px; */
-  /* justify-self: right; */
-  width: 30px;
-
+  height: 30px;
+  width: 33px;
 }
 
 h3 {
@@ -110,7 +113,6 @@ h3 {
 img.absolute {
   position: absolute;
   background-repeat: no-repeat;
-  position: relative;
   transform: rotate(32.7deg);
   margin-left: -50px;
   margin-top: -40px;
@@ -120,14 +122,5 @@ img.absolute {
 }
 
 #overlay {
-  /* background-image: url(../assets/museum-icon.png); */
-  /* background-repeat: no-repeat;
-  position: relative;
-  transform: rotate(32.7deg);
-  /* margin-bottom: -60px; */
- 
-
-
-  /* overflow: hidden; */
 }
 </style>

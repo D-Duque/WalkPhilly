@@ -37,12 +37,8 @@
           :opened="openMarkerId === index"
         >
           <div id="body" >
-            <!-- <router-link
-              :to="{ name: 'location-details', params: { id: m.id } }"
-            > -->
             <location-details-modal :location="m"></location-details-modal>
               <div id="location-name" @click="openLocationDetails(m.id)">{{ m.name }}</div>
-            <!-- </router-link> -->
 
             <div id="location-address">{{ m.address }}</div>
 
@@ -85,15 +81,6 @@
               >
                 {{ m.isCheckedIn ? "CHECKED-IN" : "CHECK-IN" }}
               </button>
-
-              <!-- <div>
-                <b-button 
-                variant="success"
-                @click="checkIn() === true">
-                New Badge - Send true
-
-                </b-button>
-              </div> -->
 
               <div
                 id="check-in-far"
