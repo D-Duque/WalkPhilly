@@ -1,10 +1,12 @@
 <template>
-  <div class="locations">
-    <location-display
-      v-for="location in this.$store.state.filteredMarkers"
-      v-bind:key="location.id"
-      v-bind:location="location"
-    />
+  <div>
+    <div class="locations">
+      <location-display
+        v-for="location in this.$store.state.filteredMarkers"
+        v-bind:key="location.id"
+        v-bind:location="location"
+      />
+    </div>
     <div class="back-button">
       <router-link id="back-button" to="/">
         <img src="../assets/back-arrow.png" />
@@ -26,9 +28,16 @@ export default {
 </script>
 
 <style scoped>
+.locations {
+  margin: 0;
+  height: 82.5vh;
+  overflow: auto;
+  border-radius: 6px;
+}
+
 .back-button {
   position: relative;
-  bottom: 10px;
+  bottom: -3rem;
   left: 0rem;
 }
 </style>

@@ -48,6 +48,7 @@ CREATE TABLE check_in (
 CREATE TABLE user_badge (
     user_id INT NOT NULL,
     badge_id INT NOT NULL,
+    earned_time TIMESTAMP NOT NULL,
     PRIMARY KEY (
         user_id,
         badge_id)
