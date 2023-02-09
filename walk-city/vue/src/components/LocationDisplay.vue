@@ -42,14 +42,13 @@ export default{
 <style>
 div.location {
   display: grid;
-  border: 1px black solid;
+  color: #004953;
   border-radius: 6px;
   padding: 1rem;
   margin: 10px;
   background-color: white;
-  /* color: blueviolet; */
-  align-items: center;
-  align-self: center;
+  text-align: center;
+  box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
 }
 
 div.location p {
