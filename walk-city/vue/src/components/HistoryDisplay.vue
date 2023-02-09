@@ -3,24 +3,21 @@
     <div class="history">
       <div class="history-card">
         <div id="overlay">
-          <img
-            class="absolute"
-            :src="require(`../assets/${categoryImage}.png`)"
-          />
+          <img class="absolute" :src="require(`../assets/${categoryImage}.png`)" />
         </div>
         <div id="text-container">
           <div id="please-work">
             <h3>{{ locationObject.locationName }}</h3>
           </div>
           <h4>
-              <div>
+            <div>
               {{ entry.checkInTime.toString().slice(0, 10) }}
               {{ entry.checkInTime.toString().slice(11, 19) }}
-              </div>
-              <div>
-                <img id="verified-img" src="../assets/verified-account.png" />
-              </div>
-            </h4>
+            </div>
+            <div>
+              <img id="verified-img" src="../assets/verified-account.png" />
+            </div>
+          </h4>
         </div>
       </div>
     </div>
@@ -48,10 +45,13 @@ export default {
   },
   computed: {
     categoryImage() {
-      return (this.locationObject.category + "-icon").toLowerCase();
+      if (this.locationObject.category) {
+        return (this.locationObject.category + "-icon").toLowerCase();
+      }
+      return "museum-icon";
     }
   }
-};
+}
 </script>
 <style scoped>
 div.history {
@@ -69,7 +69,7 @@ div.history {
 #please-work {
   display: flex;
   flex-direction: column;
-  }
+}
 
 div.history p {
   margin: 20px;
@@ -118,9 +118,8 @@ img.absolute {
   margin-top: -40px;
   margin-bottom: -30px;
 
-  
+
 }
 
-#overlay {
-}
+#overlay {}
 </style>

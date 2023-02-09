@@ -2,12 +2,11 @@
   <div id="login" class="text-left">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="mb-3 font-weight-bold text-center">WalkPhilly</h1>
-      <div class="text-center">
+      <div class="image">
         <img src="../assets/llama.png">
       </div>
-      <div class="welcome-message text-center text-uppercase">
-        <p>Hello and welcome to our app! </p>Let's go for a walk and eat a Philly Cheesesteak outside of Betsy Ross's
-        house—where America was born!
+      <div class="welcome-message text-center ">
+        <p>Let's go for a walk.</p>
       </div>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">Invalid username and password!</div>
       <div class="alert alert-success" role="alert" v-if="this.$route.query.registration">Thank you for registering,
@@ -71,43 +70,51 @@ export default {
 
 <style scoped>
 #app {
-  display: grid;  
+  display: grid;
   font-weight: bold;
   justify-content: center;
   padding: 20px;
 }
+
 #login {
   background-image: url("../assets/philadelphia-aerial-view.jpg") !important;
   background-size: cover;
   height: 100vh;
-  font-weight: bold;
   background-repeat: no-repeat;
 }
 
 @media (max-width: 800px) {
   #login {
-     background-position: -460px;
+    background-position: -460px;
   }
-  
+
 }
+
 h1 {
   font-size: 48px !important;
 }
+
+.image {}
+
 img {
   width: 240px;
+  position: relative;
 }
 
 .user-credentials {
   margin-top: 40px;
 }
-.form-control{
+
+.form-control {
   align-self: center;
   margin-top: 20px;
-  max-width: 20rem;  
+  max-width: 20rem;
 }
+
 .form-signin {
   margin: 30px 20px;
 }
+
 .button-container {
   display: flex;
   margin-top: 20px;
