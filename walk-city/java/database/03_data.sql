@@ -53,8 +53,23 @@ INSERT INTO locations(location_name, category, latitude, longitude, address, des
 
 
 INSERT INTO badges (badge_name, description, badge_image)
-                VALUES ('Urban Explorer', 'for visiting every location', 'urban-frame'),
-                       ('Bar Hopper', 'for visiting 5 bars', 'bar-frame'),
-                       ('History Hoarder', 'for visiting 5 museums', 'museum-frame'),
-                       ('Nature Lover', 'for visiting 5 parks', 'park-frame'),
-                       ('Food Critic', 'for visiting 5 restaurants', 'restaurant-frame');
+                VALUES ('Urban Explorer', 'Visiting every location.', 'urban-frame'),
+                       ('Bar Hopper', 'Visit 5 bars.', 'bar-frame'),
+                       ('History Hoarder', 'Visit 5 museums.', 'museum-frame'),
+                       ('Nature Lover', 'Visit 5 parks.', 'park-frame'),
+                       ('Food Critic', 'Visit 5 restaurants.', 'restaurant-frame');
+
+INSERT INTO check_in (check_in_id, user_id, location_id, check_in_time, is_checked_in)
+                VALUES (20, 1, 1, '2023-02-08 16:29:31.267127', true),
+                       (21, 1, 2, '2023-02-08 16:29:45.324574', true),
+                       (23, 1, 3, '2023-02-08 16:29:48.541147', true),
+                       (24, 1, 4, '2023-02-08 16:29:51.465719', true),
+                       (25, 1, 5, '2023-02-08 16:29:56.330392', true),
+                       (26, 1, 23, '2023-02-08 16:31:20.12164', true),
+                       (27, 1, 24, '2023-02-08 16:31:22.863234', true),
+                       (28, 1, 25, '2023-02-08 16:31:26.202292', true),
+                       (29, 1, 26, '2023-02-08 16:31:29.863504', true);
+
+INSERT INTO user_badge (user_id, badge_id, earned_time)
+                VALUES (1, 5, '2023-02-08 16:29:56.357669');
+
