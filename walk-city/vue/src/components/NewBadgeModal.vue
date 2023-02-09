@@ -26,12 +26,6 @@
 
 <style scoped>
 
-.new-badge-container {
-  /* display: flex;
-  justify-content: center;
-  flex-direction: column; */
-}
-
 .modal-content {
   background: rgba(23, 19, 19, 0.25) !important;
   backdrop-filter: blur(15px) !important;
@@ -52,9 +46,11 @@
   justify-content: center;
   flex-direction: column;
   margin: 1rem;
+  align-items: center;
 }
 
 #image-badge {
-  
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 </style>
