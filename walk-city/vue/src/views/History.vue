@@ -1,25 +1,42 @@
 <template>
   <div id="history-page">
     <div class="buttons">
-      <button id="check-in-history-button" :class="{
-        'btn-white-outline': showBadges,
-        'btn-midnight-green': !showBadges,
-      }" @click="historyToggle">
+      <button
+        id="check-in-history-button"
+        :class="{
+          'btn-white-outline': showBadges,
+          'btn-midnight-green': !showBadges
+        }"
+        @click="historyToggle"
+      >
         CHECK-IN HISTORY
       </button>
-      <button id="badges-button" :class="{
-        'btn-white-outline': !showBadges,
-        'btn-midnight-green': showBadges,
-      }" @click="historyToggle">
+      <button
+        id="badges-button"
+        :class="{
+          'btn-white-outline': !showBadges,
+          'btn-midnight-green': showBadges
+        }"
+        @click="historyToggle"
+      >
         BADGES
       </button>
     </div>
     <div class="history-container" v-show="!showBadges">
-      <history-display v-for="entry in checkInList" v-bind:key="entry.checkInId" v-bind:entry="entry"></history-display>
+      <history-display
+        v-for="entry in checkInList"
+        v-bind:key="entry.checkInId"
+        v-bind:entry="entry"
+      ></history-display>
     </div>
     <div class="badge-container">
-      <badges-display v-show="showBadges" v-for="badge in badgeList" v-bind:key="badge.badgeId" v-bind:badge="badge"
-        v-bind:userBadgeList="userBadgeList">
+      <badges-display
+        v-show="showBadges"
+        v-for="badge in badgeList"
+        v-bind:key="badge.badgeId"
+        v-bind:badge="badge"
+        v-bind:userBadgeList="userBadgeList"
+      >
       </badges-display>
     </div>
     <div class="back-button">
@@ -38,40 +55,40 @@ import badgesService from "../services/BadgesService";
 export default {
   components: {
     HistoryDisplay,
-    BadgesDisplay,
+    BadgesDisplay
   },
   data() {
     return {
       showBadges: false,
       checkInList: [],
       badgeList: [],
-      userBadgeList: [],
+      userBadgeList: []
     };
   },
   methods: {
     historyToggle() {
       this.showBadges = !this.showBadges;
-    },
+    }
   },
   created() {
     checkInService
       .getCheckInsByUserId(this.$store.state.user.id)
-      .then((response) => {
+      .then(response => {
         this.checkInList = response.data;
       });
 
-    badgesService.getAllBadges().then((response) => {
+    badgesService.getAllBadges().then(response => {
       this.badgeList = response.data;
     });
     badgesService
       .getBadgesByUserId(this.$store.state.user.id)
-      .then((response) => {
+      .then(response => {
         this.userBadgeList = response.data;
       });
-    badgesService.getAllBadges().then((response) => {
+    badgesService.getAllBadges().then(response => {
       this.badgeList = response.data;
     });
-  },
+  }
 };
 </script>
 <style scoped>
@@ -102,9 +119,8 @@ export default {
 }
 
 .back-button {
-
-  position: fixed;
-  bottom: 0vh;
-  left: .5rem;
+  position: relative;
+  bottom: 10px;
+  left: 0rem;
 }
 </style>

@@ -1,4 +1,4 @@
-<template >
+<template>
     <div class="badge-card" :class="{ 'not-earned-card': !isEarned }" @click="badgeClicked(badge)">
         {{ badge.badgeName }}
         <img :src="require(`../assets/${badge.badgeImage}.png`)" />
@@ -9,7 +9,9 @@
                 <div class="cool-line"></div>
                 <img :src="require(`../assets/${badge.badgeImage}.png`)" alt="" id="badge-modal-image" />
                 <h4 id="badge-modal-description">{{ badge.description }}</h4>
-                <p id="badge-modal-timestamp">{{ isEarned? `Earned on: ${earnedTime}` : "Not yet earned"}}</p>
+                <p id="badge-modal-timestamp">
+                    {{ isEarned? `Earned on: ${earnedTime}` : "Not yet earned" }}
+                </p>
             </div>
         </b-modal>
     </div>
@@ -117,7 +119,7 @@ div.badge h4 {
     font-style: italic;
 }
 </style>
-<style >
+<style>
 .modal-content {
     background: rgba(23, 19, 19, 0.25) !important;
     backdrop-filter: blur(15px) !important;
