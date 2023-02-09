@@ -98,7 +98,7 @@ div.history h4 {
   margin-right: 10px;
 }
 
-.park-overlay {
+#overlay {
   transform: rotate(32.7deg);
 }
 </style>
