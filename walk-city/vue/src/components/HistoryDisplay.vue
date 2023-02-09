@@ -68,6 +68,7 @@ div.history {
   /* background: no-repeat; */
 }
 
+
 div.history p {
   margin: 20px;
 }
@@ -78,7 +79,7 @@ div.history h3 {
 }
 
 div.history h4 {
-  font-size: 0.7rem;
+  font-size: .7rem;
   margin: 3px;
   margin-left: 1.5rem;
   /* display: flex;
@@ -92,13 +93,41 @@ div.history h4 {
   justify-content: center;
   flex-direction: row;
   place-items: center;
+
 }
 
 #verified-img {
-  margin-right: 10px;
+  /* margin-right: 10px; */
+  /* justify-self: right; */
+  width: 30px;
+
+}
+
+h3 {
+  z-index: 1;
+}
+
+img.absolute {
+  position: absolute;
+  background-repeat: no-repeat;
+  position: relative;
+  transform: rotate(32.7deg);
+  margin-left: -50px;
+  margin-top: -40px;
+  margin-bottom: -30px;
+
+  
 }
 
 #overlay {
+  /* background-image: url(../assets/museum-icon.png); */
+  /* background-repeat: no-repeat;
+  position: relative;
   transform: rotate(32.7deg);
+  /* margin-bottom: -60px; */
+ 
+
+
+  /* overflow: hidden; */
 }
 </style>
