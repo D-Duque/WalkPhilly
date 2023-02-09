@@ -63,6 +63,7 @@ export default {
     },
     logout() {
       this.$store.commit("LOGOUT");
+      this.$router.go();
     },
     logoutAndMenuToggle() {
       this.menuToggle();

@@ -35,7 +35,8 @@ export default{
       this.$bvModal.show("location-details-modal-" + id);
     }
   },
-  computed: {}
+  computed: {},
+  
 };
 </script>
 
