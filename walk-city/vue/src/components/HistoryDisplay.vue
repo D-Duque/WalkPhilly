@@ -1,28 +1,35 @@
 <template>
   <div>
-      <div class="history">
-        <div class="history-card">
-          <div id="overlay"><img class="absolute" src="../assets/museum-icon.png"></div>
-          <h3>{{ locationObject.locationName }}</h3>
-          <h4>
-            {{ entry.checkInTime.toString().slice(0, 10) }}
-            {{ entry.checkInTime.toString().slice(11, 19) }}
-          </h4>
-          <img id="verified-img" src="../assets/verified-account.png" />
+    <div class="history">
+      <div class="history-card">
+        <div id="overlay">
+          <img class="absolute" :src="require(`../assets/${categoryImage}.png`)">
         </div>
-
+        <h3>{{ locationObject.locationName }}</h3>
+        <h4>
+          {{ entry.checkInTime.toString().slice(0, 10) }}
+          {{ entry.checkInTime.toString().slice(11, 19) }}
+        </h4>
+        <img id="verified-img" src="../assets/verified-account.png" />
       </div>
+
+    </div>
   </div>
+
+  <!-- <div id="overlay" :style="{
+          backgroundImage: `url(${restaurantIcon})`
+        }"> -->
 
 </template>
 <script>
 import locationService from "../services/LocationService";
-
+import restaurantIcon from "../assets/restaurant-icon.png";
 export default {
   components: {},
   data() {
     return {
-      locationObject: {}
+      locationObject: {},
+      restaurantIcon
     };
   },
   props: ["entry"],
@@ -31,6 +38,13 @@ export default {
     locationService.getLocationById(this.entry.locationId).then(response => {
       this.locationObject = response.data;
     });
+
+  },
+  computed: {
+    categoryImage() {
+      return (this.locationObject.category + "-icon").toLowerCase();
+    }
+
   }
 };
 </script>
@@ -46,12 +60,12 @@ div.history {
   align-items: center;
   align-self: center;
   overflow: hidden;
-  
+
   /* background-image: url(../assets/park-icon.png); */
   /* background-repeat: no-repeat; */
   /* background-position: */
   /* transform: rotate(32.7deg); */
-  
+
   /* background: no-repeat; */
 }
 
@@ -87,17 +101,23 @@ div.history h4 {
   /* margin-right: 10px; */
   /* justify-self: right; */
   width: 30px;
-  
+
+}
+
+h3 {
+  z-index: 1;
 }
 
 img.absolute {
-  /* left: 100%; */
-  /* margin-left: -200px; */
-  /* position: absolute; */
+
+  /*
+  left: 100%;
+  margin-left: -200px;
+  position: absolute;*/
 }
 
 #overlay {
-  background-image:url(../assets/museum-icon.png);
+  /* background-image: url(../assets/museum-icon.png); */
   background-repeat: no-repeat;
   position: relative;
   transform: rotate(32.7deg);
@@ -107,9 +127,7 @@ img.absolute {
   margin-bottom: -60px;
   margin-top: -80px;
 
+
   /* overflow: hidden; */
 }
-
-
-
 </style>
