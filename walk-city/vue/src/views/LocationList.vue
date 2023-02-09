@@ -23,6 +23,13 @@ export default {
   components: {
     LocationDisplay
   },
+  created(){
+    // returns the user to the map view after refreshing list view
+    if(this.$store.state.filteredMarkers.length == 0)
+    {
+      this.$router.push("/")
+    }
+  },
   computed: {}
 };
 </script>
