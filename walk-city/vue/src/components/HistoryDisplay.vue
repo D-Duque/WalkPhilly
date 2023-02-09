@@ -62,19 +62,13 @@ div.history h4 {
   display: flex;
   justify-content: center;
   place-items: center;
-
 }
 
 #verified-img {
   margin-right: 10px;
-  
 }
 
 .park-overlay {
-  background: url(.png);
   transform: rotate(32.7deg);
 }
-
-
-
 </style>
