@@ -269,6 +269,7 @@ export default {
   },
   mounted() {
     this.geolocate();
+    this.$bvModal.show("new-badge-modal");
   },
   created() {
     // get data from API

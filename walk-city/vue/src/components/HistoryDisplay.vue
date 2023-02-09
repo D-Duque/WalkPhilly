@@ -1,14 +1,18 @@
 <template>
-  <div class="history">
-    <div class="history-card">
-      <img id="verified-img" src="../assets/verified-account.png" />
-      <h3>{{ locationObject.locationName }}</h3>
-      <h4>
-        {{ entry.checkInTime.toString().slice(0, 10) }}
-        {{ entry.checkInTime.toString().slice(11, 19) }}
-      </h4>
+  <div> <img class="park-overlay" src="../assets/park-icon.png" />
+    <div class="history">
+      <div class="history-card">
+        <img id="verified-img" src="../assets/verified-account.png" />
+        <h3>{{ locationObject.locationName }}</h3>
+        <h4>
+          {{ entry.checkInTime.toString().slice(0, 10) }}
+          {{ entry.checkInTime.toString().slice(11, 19) }}
+        </h4>
+      </div>
     </div>
   </div>
+
+
 </template>
 <script>
 import locationService from "../services/LocationService";
@@ -71,7 +75,6 @@ div.history h4 {
 }
 
 .park-overlay {
-  background: url(.png);
   transform: rotate(32.7deg);
 }
 
