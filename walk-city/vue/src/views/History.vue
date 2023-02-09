@@ -1,25 +1,42 @@
 <template>
   <div id="history-page">
     <div class="buttons">
-      <button id="check-in-history-button" :class="{
-        'btn-white-outline': showBadges,
-        'btn-midnight-green': !showBadges
-      }" @click="historyToggle">
+      <button
+        id="check-in-history-button"
+        :class="{
+          'btn-white-outline': showBadges,
+          'btn-midnight-green': !showBadges
+        }"
+        @click="historyToggle"
+      >
         CHECK-IN HISTORY
       </button>
-      <button id="badges-button" :class="{
-        'btn-white-outline': !showBadges,
-        'btn-midnight-green': showBadges
-      }" @click="historyToggle">
+      <button
+        id="badges-button"
+        :class="{
+          'btn-white-outline': !showBadges,
+          'btn-midnight-green': showBadges
+        }"
+        @click="historyToggle"
+      >
         BADGES
       </button>
     </div>
     <div class="history-container" v-show="!showBadges">
-      <history-display v-for="entry in checkInList" v-bind:key="entry.checkInId" v-bind:entry="entry"></history-display>
+      <history-display
+        v-for="entry in checkInList"
+        v-bind:key="entry.checkInId"
+        v-bind:entry="entry"
+      ></history-display>
     </div>
     <div class="badge-container">
-      <badges-display v-show="showBadges" v-for="badge in badgeList" v-bind:key="badge.badgeId" v-bind:badge="badge"
-        v-bind:userBadgeList="userBadgeList">
+      <badges-display
+        v-show="showBadges"
+        v-for="badge in badgeList"
+        v-bind:key="badge.badgeId"
+        v-bind:badge="badge"
+        v-bind:userBadgeList="userBadgeList"
+      >
       </badges-display>
     </div>
     <div class="back-button">
@@ -96,7 +113,7 @@ export default {
 
 .history-container {
   margin: 0;
-  height: 82.5vh;
+  height: 80vh;
   overflow: auto;
   border-radius: 6px;
 }

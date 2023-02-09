@@ -30,14 +30,13 @@ export default {
 <style scoped>
 .locations {
   margin: 0;
-  height: 82.5vh;
+  height: 90vh;
   overflow: auto;
   border-radius: 6px;
 }
 
 .back-button {
   position: relative;
-  bottom: -3rem;
-  left: 0rem;
+  top: 0.5rem;
 }
 </style>
