@@ -35,12 +35,13 @@
           @closeclick="openMarker(null)"
           :opened="openMarkerId === index"
         >
-          <div id="body">
-            <router-link
+          <div id="body" >
+            <!-- <router-link
               :to="{ name: 'location-details', params: { id: m.id } }"
-            >
-              <div id="location-name">{{ m.name }}</div>
-            </router-link>
+            > -->
+            <location-details-modal :location="m"></location-details-modal>
+              <div id="location-name" @click="openLocationDetails(m.id)">{{ m.name }}</div>
+            <!-- </router-link> -->
 
             <div id="location-address">{{ m.address }}</div>
 
@@ -125,6 +126,7 @@ import DirectionsRenderer from "../components/DirectionsRenderer.js";
 import CheckInService from "../services/CheckInService";
 import badgesServices from "../services/BadgesService";
 import NewBadgeModal from "../components/NewBadgeModal.vue";
+import LocationDetailsModal from "../components/locationdetail/LocationDetailsModal.vue"
 
 export default {
   name: "home",
@@ -218,6 +220,9 @@ export default {
     hideAlert() {
       this.isHidden = !this.isHidden;
     },
+    openLocationDetails(id){
+      this.$bvModal.show("location-details-modal-" + id);
+    }
   },
   components: {
     MenuButton,
@@ -225,6 +230,7 @@ export default {
     FilterResults,
     DirectionsRenderer,
     NewBadgeModal,
+    LocationDetailsModal
   },
   data() {
     return {
