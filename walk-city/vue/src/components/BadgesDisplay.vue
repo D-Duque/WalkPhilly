@@ -10,7 +10,8 @@
                 <img :src="require(`../assets/${badge.badgeImage}.png`)" alt="" id="badge-modal-image" />
                 <h4 id="badge-modal-description">{{ badge.description }}</h4>
                 <p id="badge-modal-timestamp">
-                    {{ isEarned? `Earned on: ${earnedTime}` : "Not yet earned" }}
+                    {{ isEarned? `Earned on: ${earnedTime.toString().slice(0, 10)} ${earnedTime.toString().slice(11, 19)}`
+                    : "Not yet earned" }}
                 </p>
             </div>
         </b-modal>
