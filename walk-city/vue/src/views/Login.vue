@@ -22,9 +22,9 @@
           required />
       </div>
       <div class="button-container text-center">
+        <div><router-link :to="{ name: 'register' }">Need an account?</router-link> </div>
         <div><button type="submit" class="btn-midnight-green">LOGIN</button></div>
-        <div><router-link :to="{ name: 'register' }"><button type="register"
-              class="btn-midnight-green">REGISTER</button></router-link>
+        <div><router-link :to="{ name: 'home' }"><button class="btn-midnight-green">GUEST MODE</button></router-link>
         </div>
       </div>
     </form>
