@@ -38,7 +38,7 @@
         LOG OUT
       </button>
 
-      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">
+      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''" @click="resetFilters">
         <button class="btn-midnight-green" id="log-out" @click="menuToggle">
           LOG IN
         </button>
@@ -67,6 +67,10 @@ export default {
     logoutAndMenuToggle() {
       this.menuToggle();
       this.logout();
+    },
+    resetFilters() {
+      this.$store.state.textFilter = ''
+      this.$store.state.currentCategory = ''
     }
   }
 };
