@@ -18,7 +18,7 @@ public class GoogleApiController {
     private PhotosService photosService;
     private PlacesService placesService;
 
-    private static final String API_KEY = "AIzaSyCGANmXOYKLmKzG6N46k5oEr7MBWy01C2c";
+    private static final String API_KEY = "AIzaSyCajYPVGXqeijpjhIHD_TbKBKDzDRE-qVQ";
 
     public GoogleApiController() {
         this.photosService = new PhotosService();
