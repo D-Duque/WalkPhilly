@@ -7,8 +7,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class JdbcUserBadgeDao implements UserBadgeDao{
@@ -65,17 +67,19 @@ public class JdbcUserBadgeDao implements UserBadgeDao{
     public void create(UserBadge userBadge){
         int userId = userBadge.getUserId();
         int badgeId = userBadge.getBadgeId();
+        LocalDateTime earnedTime = userBadge.getEarnedTime();
 
-        String sql = "INSERT into user_badge (user_id, badge_id) "
-                + "VALUES (?, ?)";
+        String sql = "INSERT into user_badge (user_id, badge_id, earned_time) "
+                + "VALUES (?, ?, ?)";
 
-        jdbcTemplate.update(sql, userId, badgeId);
+        jdbcTemplate.update(sql, userId, badgeId, earnedTime);
     }
 
     public UserBadge mapRowToUserBadge(SqlRowSet rs){
         UserBadge userBadge =  new UserBadge();
         userBadge.setUserId(rs.getInt("user_id"));
         userBadge.setBadgeId(rs.getInt("badge_id"));
+        userBadge.setEarnedTime(Objects.requireNonNull(rs.getTimestamp("earned_time")).toLocalDateTime());
         return userBadge;
     }
 
