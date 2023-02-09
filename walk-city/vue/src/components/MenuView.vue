@@ -7,12 +7,13 @@
     </div>
     <div class="cool-line"></div>
 
-    <router-link :to="{ name: 'location-list' }" v-if="$store.state.token != ''">
+    <router-link :to="{ name: 'location-list' }">
       <div id="list-view" @click="menuToggle">
-        {{ $store.state.token != "" ? "VIEW LOCATIONS" : " " }}
+       LIST VIEW
       </div>
     </router-link>
-    <div class="cool-line"></div>
+    
+    <div class="cool-line" v-show="$store.state.token!=''"></div>
 
     <router-link :to="{ name: 'history' }" v-if="$store.state.token != ''">
       <div id="view-history" @click="menuToggle">
