@@ -1,9 +1,12 @@
 <template>
   <div>
-    <div class="history">
+    <div class="history" @click="openLocationDetails(locationObject.id)">
       <div class="history-card">
         <div id="overlay">
-          <img class="absolute" :src="require(`../assets/${categoryImage}.png`)" />
+          <img
+            class="absolute"
+            :src="require(`../assets/${categoryImage}.png`)"
+          />
         </div>
         <div id="text-container">
           <div id="please-work">
@@ -21,25 +24,32 @@
         </div>
       </div>
     </div>
+    <location-details-modal :id="`location-modal-` + locationObject.id" :location="locationObject" />
   </div>
-
-
 </template>
 <script>
 import locationService from "../services/LocationService";
 import restaurantIcon from "../assets/restaurant-icon.png";
+import LocationDetailsModal from "../components/locationdetail/LocationDetailsModal.vue";
 export default {
-  components: {},
+  components: {
+    LocationDetailsModal,
+  },
   data() {
     return {
       locationObject: {},
-      restaurantIcon
+      restaurantIcon,
     };
   },
-  props: ["entry"],
+  methods: {
+    openLocationDetails(id) {
+      this.$bvModal.show("location-modal-" + id);
+    },
+  },
+  props: ["entry", "location"],
 
   created() {
-    locationService.getLocationById(this.entry.locationId).then(response => {
+    locationService.getLocationById(this.entry.locationId).then((response) => {
       this.locationObject = response.data;
     });
   },
@@ -49,9 +59,9 @@ export default {
         return (this.locationObject.category + "-icon").toLowerCase();
       }
       return "museum-icon";
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style scoped>
 div.history {
@@ -98,7 +108,6 @@ div.history h4 {
   display: flex;
   flex-direction: column;
   position: relative;
-
 }
 
 #verified-img {
@@ -117,9 +126,8 @@ img.absolute {
   margin-left: -50px;
   margin-top: -40px;
   margin-bottom: -30px;
-
-
 }
 
-#overlay {}
+#overlay {
+}
 </style>
