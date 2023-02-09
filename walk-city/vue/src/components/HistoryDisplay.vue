@@ -2,7 +2,7 @@
   <div>
       <div class="history">
         <div class="history-card">
-          <div id="park-overlay"><img class="absolute" src="../assets/museum-icon.png"></div>
+          <div id="overlay"><img class="absolute" src="../assets/museum-icon.png"></div>
           <h3>{{ locationObject.locationName }}</h3>
           <h4>
             {{ entry.checkInTime.toString().slice(0, 10) }}
@@ -96,7 +96,7 @@ img.absolute {
   /* position: absolute; */
 }
 
-#park-overlay {
+#overlay {
   background-image:url(../assets/museum-icon.png);
   background-repeat: no-repeat;
   position: relative;
