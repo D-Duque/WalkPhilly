@@ -1,10 +1,8 @@
 <template>
   <div>
     <div class="location" v-bind:key="location.id">
-      <router-link
-        :to="{ name: 'location-details', params: { id: location.id } }"
-        style="text-decoration: none"
-      >
+
+      <div id="location-detail-link" @click="openLocationDetails(location.id)">
         <h3>{{ location.name }}</h3>
 
         <h4>{{ location.category }}</h4>
@@ -16,20 +14,27 @@
           alt=""
         />
         <p id="address">{{ location.address }}</p>
-      </router-link>
-
+      </div>
       <a id="website" v-bind:href="location.social" target="_blank">{{
         location.social
       }}</a>
+      <location-details-modal :location="location" />
     </div>
+
   </div>
 </template>
 
 <script>
-export default {
+import LocationDetailsModal from "../components/locationdetail/LocationDetailsModal.vue"
+export default{
+  components: {LocationDetailsModal},
   name: "location-display",
   props: ["location"],
-  methods: {},
+  methods: {
+    openLocationDetails(id){
+      this.$bvModal.show("location-details-modal-" + id);
+    }
+  },
   computed: {}
 };
 </script>
