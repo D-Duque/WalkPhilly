@@ -40,12 +40,17 @@
   text-align: center !important;
 }
 
+h2 {
+  padding-top: .5rem;
+}
+
+
 #new-badge-details {
   text-align: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 1rem;
+  /* margin: 1rem; */
   align-items: center;
 }
 

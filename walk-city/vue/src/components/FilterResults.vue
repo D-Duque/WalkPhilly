@@ -25,6 +25,10 @@ export default {
         twoFilter() {
             return this.$store.state.textFilter != '' && this.$store.state.currentCategory != ''
         }
+    },
+    created() {
+        this.$store.state.textFilter = ''
+        this.$store.state.currentCategory = ''
     }
 }
 </script>

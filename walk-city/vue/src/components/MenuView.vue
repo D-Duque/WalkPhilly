@@ -7,12 +7,13 @@
     </div>
     <div class="cool-line"></div>
 
-    <router-link :to="{ name: 'location-list' }" v-if="$store.state.token != ''">
+    <router-link :to="{ name: 'location-list' }">
       <div id="list-view" @click="menuToggle">
-        {{ $store.state.token != "" ? "VIEW LOCATIONS" : " " }}
+       LIST VIEW
       </div>
     </router-link>
-    <div class="cool-line"></div>
+    
+    <div class="cool-line" v-show="$store.state.token!=''"></div>
 
     <router-link :to="{ name: 'history' }" v-if="$store.state.token != ''">
       <div id="view-history" @click="menuToggle">
@@ -37,7 +38,7 @@
         LOG OUT
       </button>
 
-      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">
+      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''" @click="resetFilters">
         <button class="btn-midnight-green" id="log-out" @click="menuToggle">
           LOG IN
         </button>
@@ -66,6 +67,10 @@ export default {
     logoutAndMenuToggle() {
       this.menuToggle();
       this.logout();
+    },
+    resetFilters() {
+      this.$store.state.textFilter = ''
+      this.$store.state.currentCategory = ''
     }
   }
 };
