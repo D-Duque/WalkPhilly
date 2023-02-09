@@ -59,6 +59,10 @@ div.location h4 {
   font-size: 1rem;
 }
 
+router-link:link {
+  color: rgb(0, 73, 83);
+}
+
 #location-image {
   max-width: 70vw;
 }
