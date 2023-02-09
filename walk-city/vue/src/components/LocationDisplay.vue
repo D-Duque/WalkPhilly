@@ -2,6 +2,7 @@
   <div>
     <div class="location" v-bind:key="location.id">
       <router-link
+        exact-tag="li"
         :to="{ name: 'location-details', params: { id: location.id } }"
         style="text-decoration: none"
       >
@@ -42,7 +43,7 @@ div.location {
   padding: 1rem;
   margin: 10px;
   background-color: white;
-  color: rgb(0, 73, 83);
+  /* color: blueviolet; */
   align-items: center;
   align-self: center;
 }
@@ -59,8 +60,13 @@ div.location h4 {
   font-size: 1rem;
 }
 
-router-link:link {
+div.location a {
   color: rgb(0, 73, 83);
+  cursor: pointer;
+}
+
+div.location a:hover {
+  color: #0066cc;
 }
 
 #location-image {
