@@ -59,11 +59,11 @@ INSERT INTO badges (badge_name, description, badge_image)
                        ('Food Critic', 'Visit 5 restaurants.', 'restaurant-frame');
 
 INSERT INTO check_in (check_in_id, user_id, location_id, check_in_time, is_checked_in)
-                VALUES (20, 1, 1, '2023-02-08 16:29:31.267127', true),
-                       (21, 1, 2, '2023-02-08 16:29:45.324574', true),
+                VALUES (20, 1, 39, '2023-02-08 16:29:31.267127', true),
+                       (21, 1, 20, '2023-02-08 16:29:45.324574', true),
                        (23, 1, 3, '2023-02-08 16:29:48.541147', true),
                        (24, 1, 4, '2023-02-08 16:29:51.465719', true),
-                       (25, 1, 5, '2023-02-08 16:29:56.330392', true),
+                       (25, 1, 35, '2023-02-08 16:29:56.330392', true),
                        (26, 1, 23, '2023-02-08 16:31:20.12164', true),
                        (27, 1, 28, '2023-02-08 16:31:22.863234', true),
                        (28, 1, 25, '2023-02-08 16:31:26.202292', true),
