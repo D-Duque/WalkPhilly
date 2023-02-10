@@ -9,11 +9,11 @@
 
     <router-link :to="{ name: 'location-list' }">
       <div id="list-view" @click="menuToggle">
-       LIST VIEW
+        LIST VIEW
       </div>
     </router-link>
-    
-    <div class="cool-line" v-show="$store.state.token!=''"></div>
+
+    <div class="cool-line" v-show="$store.state.token != ''"></div>
 
     <router-link :to="{ name: 'history' }" v-if="$store.state.token != ''">
       <div id="view-history" @click="menuToggle">
@@ -38,8 +38,8 @@
         LOG OUT
       </button>
 
-      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''" @click="resetFilters">
-        <button class="btn-midnight-green" id="log-out" @click="menuToggle">
+      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''">
+        <button class="btn-midnight-green" id="log-out" @click="menuToggleAndResetFilters">
           LOG IN
         </button>
       </router-link>
@@ -68,6 +68,10 @@ export default {
     logoutAndMenuToggle() {
       this.menuToggle();
       this.logout();
+    },
+    menuToggleAndResetFilters() {
+      this.menuToggle();
+      this.resetFilters();
     },
     resetFilters() {
       this.$store.state.textFilter = ''
