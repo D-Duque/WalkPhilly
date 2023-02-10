@@ -1,13 +1,10 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-bold">Register</h1>
-      <div class="text-center">
-        <img src="../assets/llama.png">
-      </div>
-      <div class="register-message text-center text-uppercase">
-        Please create an account so you can find an amazing philly cheesesteak and explore everything Philadelphia has
-        to offer!
+      <h1 class="h3 mb-3 font-weight-bold">WalkPhilly</h1>
+      <img src="../assets/llama.png">
+      <div class="register-message text-center">
+        Let's get you started.
       </div>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
@@ -107,6 +104,8 @@ h1 {
 }
 img {
   width: 240px;
+  position: relative;
+  left: 7vw;
 }
 
 .user-credentials {
@@ -123,5 +122,9 @@ img {
 .button-container {
   display: flex;
   margin-top: 20px;
+}
+.register-message {
+  font-weight: normal;
+  font-size: 1.5em 
 }
 </style>
