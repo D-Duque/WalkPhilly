@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="history" >
-      <div class="history-card" @click="openLocationDetails(locationObject)">
+      <div class="history-card" @click="openLocationDetails">
         <div id="overlay">
           <img
             class="absolute"
@@ -25,7 +25,7 @@
       </div>
     </div>
     <b-modal
-    :id="`location-details-modal-` + locationObject.id"
+    :id="`location-details-modal-` + entry.locationId"
     centered
     hide-header
     hide-footer
@@ -65,8 +65,8 @@ export default {
     };
   },
   methods: {
-    openLocationDetails(location) {
-      this.$bvModal.show("location-details-modal-" + location.id);
+    openLocationDetails() {
+      this.$bvModal.show("location-details-modal-" + this.entry.locationId);
     },
   },
   props: ["entry", "location"],

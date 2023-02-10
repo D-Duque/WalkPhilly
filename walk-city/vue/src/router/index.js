@@ -8,6 +8,7 @@ import store from "../store/index";
 import LocationList from "../views/LocationList.vue";
 import LocationDetails from "../views/LocationDetails.vue";
 import History from "../views/History.vue"
+import AboutUs from "../views/AboutUs.vue"
 
 Vue.use(Router);
 
@@ -80,6 +81,14 @@ const router = new Router({
         requiresAuth: true
       }  
     },
+    {
+      path: '/team-llama-drama',
+      name: "about-us",
+      component: AboutUs,
+      meta: {
+        requiresAuth: false
+      }
+    }
   ]
 });
 

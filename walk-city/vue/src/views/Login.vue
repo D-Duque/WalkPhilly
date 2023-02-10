@@ -2,9 +2,9 @@
   <div id="login" class="text-left">
     <form class="form-signin" @submit.prevent="login">
       <h1 class="mb-3 font-weight-bold text-center">WalkPhilly</h1>
-      <div class="image">
-        <img src="../assets/llama.png">
-      </div>
+      <router-link :to="{name: 'about-us'}">
+      <img src="../assets/llama.png">
+      </router-link>
       <div class="welcome-message text-center ">
         <p>Let's go for a walk.</p>
       </div>
@@ -94,11 +94,10 @@ h1 {
   font-size: 48px !important;
 }
 
-.image {}
-
 img {
   width: 240px;
   position: relative;
+  left: 21vw
 }
 
 .user-credentials {
@@ -118,5 +117,9 @@ img {
 .button-container {
   display: flex;
   margin-top: 20px;
+}
+
+.welcome-message {
+  font-size: 1.5em
 }
 </style>
