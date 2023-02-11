@@ -17,7 +17,7 @@ axios.defaults.baseURL = process.env.VUE_APP_REMOTE_API;
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyCajYPVGXqeijpjhIHD_TbKBKDzDRE-qVQ',
+    key: process.env.VUE_APP_GOOGLE_API_KEY,
     libraries: 'places',
   },
 })
