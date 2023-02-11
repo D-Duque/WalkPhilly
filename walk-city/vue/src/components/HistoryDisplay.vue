@@ -35,7 +35,7 @@
       <div class="cool-line"></div>
       <img
         id="location-image"
-        :src="`http://localhost:8080/api/photos/Philadelphia ${locationObject.name}`"
+        :src="`http://localhost:8080/api/photos/Philadelphia ${locationObject.locationName}`"
         alt=""
       />
       <div id="location-description">
