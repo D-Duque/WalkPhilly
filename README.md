@@ -1,92 +1,57 @@
-# Branching Demo
-
-
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://git.techelevator.com/niantic/remote/oct-2022/java/student-code/branching-demo.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://git.techelevator.com/niantic/remote/oct-2022/java/student-code/branching-demo/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
+# WalkPhilly 
+(PROJECT NO LONGER IN DEVELOPMENT)
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+WalkPhilly is a city walking tour app created as a capstone project for TechElevator's Java Coding Bootcamp. The application shows the user a curated collection of locations to visit in the city of Philadelphia, Pennsylvania and provides them with details of each location and provides directions via walking or public transit. The user can also create an account to gain access to "checking in" to locations and to be rewarded with badges for fulfilling certain achievements.
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+<ul>
+<li>User should be welcomed by a log-in page that allows them to log-in if they already have an account, click a link to create an account, or enter the app in a Guest Mode</li>
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+  ![1](https://github.com/D-Duque/WalkPhilly/assets/117413139/c431d169-3e11-42c5-9fd3-8d2bf48e4ba8)
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+<li>User should be able to see a route to a chosen location</li>
+
+![2](https://github.com/D-Duque/WalkPhilly/assets/117413139/e479a87a-d75d-46a0-9a56-0c9b46d0f417)
+
+<li>User should be able to swap between walking and transit directions. User should also see the name of the location, a preview image, and the address from selecting a pin on the map</li>
+
+  ![3](https://github.com/D-Duque/WalkPhilly/assets/117413139/d78656ec-ff58-45da-bb87-bdec17bb3200)
+
+<li>User should be able to pull open a menu drawer that allows them to search and filter pins as well as open up a list view of all locations and view their check-ins (if they're a registered user and logged in).</li>
+
+![4](https://github.com/D-Duque/WalkPhilly/assets/117413139/c3fee2ec-19dd-4e49-a51b-d49eb070d93c)
+
+<li>User should be able to see the curated locations in a list view, with any search terms and filters applied.</li>
+
+![5](https://github.com/D-Duque/WalkPhilly/assets/117413139/354a73bc-a555-407c-8990-6d8409423830)
+
+<li>User should be able to click on a location card and view details to the location including: a description, hours of operation, and a link to their website(if applicable)</li>
+
+  ![6](https://github.com/D-Duque/WalkPhilly/assets/117413139/cef03780-40a2-439a-b638-d68678535094)
+
+<li>A registered user who is logged in should be able to view their check-in history</li>
+
+  ![7](https://github.com/D-Duque/WalkPhilly/assets/117413139/2312defe-e803-4648-a6d8-f43a8a1e3e5e)
+
+<li>A registered user who is logged in should be able to see a list of badges available and which badges they have acquired</li>
+
+  ![8](https://github.com/D-Duque/WalkPhilly/assets/117413139/459be922-4876-46d3-a828-27d544475ef6)
+
+<li>A registered user who is logged in should be able to click on a badge and view its details and a timestamp of when they earned it.</li>
+
+![9](https://github.com/D-Duque/WalkPhilly/assets/117413139/fe1ea8e8-693c-4da9-bb15-c5472e1303b1)
+
+</ul>
+
 
 ## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+This was a course project and no contributions are sought.
 
 ## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
 
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Co-developers:
+<ul>
+<li>[enjuju](https://github.com/enjuju)</li> 
+<li>[honglebs](https://github.com/honglebs)</li>
+<li>[emmascode](https://github.com/emmascode)</li>
+</ul>
