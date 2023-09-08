@@ -1,7 +1,7 @@
 # WalkPhilly 
 (PROJECT NO LONGER IN DEVELOPMENT)
 ## Description
-WalkPhilly is a city walking tour app created as a capstone project for TechElevator's Java Coding Bootcamp. The application shows the user a curated collection of locations to visit in the city of Philadelphia, Pennsylvania and provides them with details of each location and provides directions via walking or public transit. The user can also create an account to gain access to "checking in" to locations and to be rewarded with badges for fulfilling certain achievements.
+WalkPhilly is a city walking tour app created as a capstone project for TechElevator's Java Coding Bootcamp. The application shows the user a curated collection of locations to visit in the city of Philadelphia, Pennsylvania and provides them with details of each location and provides directions via walking or public transit using Google Maps API. The user can also create an account to gain access to "checking in" to locations and to be rewarded with badges for fulfilling certain achievements.
 
 ## Usage
 <ul>
